@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-salon-100: #FF9898;
+  --color-salon-400: #CF455C;
+  --color-salon-600: #971549;
+  --color-salon-900: #470031;
+}
