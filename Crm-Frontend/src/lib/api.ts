@@ -26,22 +26,24 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error: AxiosError) => {
-    if (error.response?.status === 401) {
+    const status = error.response?.status
+    
+    if (status === 401) {
       if (typeof window !== 'undefined') {
         localStorage.removeItem('token')
         window.location.href = '/auth/login'
       }
     }
     
-    if (error.response?.status === 403) {
+    if (status === 403) {
       console.error('Access forbidden')
     }
     
-    if (error.response?.status === 429) {
+    if (status === 429) {
       console.error('Too many requests')
     }
     
-    if (error.response?.status >= 500) {
+    if (status && status >= 500) {
       console.error('Server error')
     }
     
