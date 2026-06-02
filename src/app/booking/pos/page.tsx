@@ -98,7 +98,7 @@ export default function POSPage() {
       <div>
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white">POS Billing</h1>
         <p className="text-gray-600 dark:text-gray-400 mt-1">
-          Quick billing for walk-in customers
+          Quick billing for walk-in clients
         </p>
       </div>
 
@@ -106,11 +106,11 @@ export default function POSPage() {
         <div className="lg:col-span-2 space-y-6">
           <Card>
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-              Customer Details
+              Client Details
             </h2>
             <div className="grid grid-cols-2 gap-4">
               <Input
-                label="Customer Name"
+                label="Client Name"
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
                 placeholder="Enter name"

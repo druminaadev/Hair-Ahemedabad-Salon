@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import Sidebar from '@/components/layout/Sidebar'
-import Header from '@/components/layout/Header'
+import AppShell from '@/components/layout/AppShell'
 
 export const metadata: Metadata = {
   title: 'SalonPro CRM - Salon Management System',
@@ -16,15 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="bg-gray-50 dark:bg-gray-950" suppressHydrationWarning>
-        <div className="flex min-h-screen">
-          <Sidebar />
-          <div className="flex-1 ml-64">
-            <Header />
-            <main className="p-6">
-              {children}
-            </main>
-          </div>
-        </div>
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   )

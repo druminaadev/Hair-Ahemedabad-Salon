@@ -178,7 +178,7 @@ const pages = [
     icon: UserCircle,
     items: [
       { label: 'Client List', path: '/customers', icon: UserCircle, desc: '1,340 active clients' },
-      { label: 'Add Client', path: '/customers', icon: Plus, desc: 'Register new client' },
+      { label: 'Add Client', path: '/customers/add', icon: Plus, desc: 'Register new client' },
     ],
   },
   {
@@ -247,6 +247,7 @@ const serviceBars = [
 ]
 
 const staffColors = [theme.primary, theme.primaryMid, theme.emerald, theme.amber]
+const availablePagePaths = new Set(['/booking/new', '/booking/pos', '/booking/calendar', '/customers', '/customers/add'])
 
 export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState<'today' | 'upcoming'>('today')
@@ -569,16 +570,29 @@ export default function DashboardPage() {
                 </span>
               </div>
               <div className="space-y-1">
-                {group.items.map((item) => (
-                  <Link key={item.path} href={item.path} className="group/page flex items-center gap-3 rounded-xl px-3 py-2.5 transition hover:bg-gray-50 dark:hover:bg-gray-800">
-                    <item.icon size={13} style={{ color: group.color, opacity: 0.85, flexShrink: 0 }} />
-                    <div className="min-w-0 flex-1">
-                      <div className="truncate text-xs font-semibold text-gray-900 dark:text-white">{item.label}</div>
-                      <div className="truncate text-[10px] text-gray-500 dark:text-gray-400">{item.desc}</div>
+                {group.items.map((item) => {
+                  const isAvailable = availablePagePaths.has(item.path)
+                  const itemContent = (
+                    <>
+                      <item.icon size={13} style={{ color: group.color, opacity: isAvailable ? 0.85 : 0.45, flexShrink: 0 }} />
+                      <div className="min-w-0 flex-1">
+                        <div className={`truncate text-xs font-semibold ${isAvailable ? 'text-gray-900 dark:text-white' : 'text-gray-400 dark:text-gray-500'}`}>{item.label}</div>
+                        <div className="truncate text-[10px] text-gray-500 dark:text-gray-400">{isAvailable ? item.desc : 'Coming soon'}</div>
+                      </div>
+                      <ChevronRight size={12} className="shrink-0 opacity-0 transition group-hover/page:opacity-100" style={{ color: group.color }} />
+                    </>
+                  )
+
+                  return isAvailable ? (
+                    <Link key={item.path} href={item.path} className="group/page flex items-center gap-3 rounded-xl px-3 py-2.5 transition hover:bg-gray-50 dark:hover:bg-gray-800">
+                      {itemContent}
+                    </Link>
+                  ) : (
+                    <div key={item.path} className="flex cursor-not-allowed items-center gap-3 rounded-xl px-3 py-2.5 opacity-70">
+                      {itemContent}
                     </div>
-                    <ChevronRight size={12} className="shrink-0 opacity-0 transition group-hover/page:opacity-100" style={{ color: group.color }} />
-                  </Link>
-                ))}
+                  )
+                })}
               </div>
             </div>
           ))}

@@ -11,43 +11,125 @@ import {
   CalendarDays,
   ChevronDown,
   Users,
+  UserPlus,
   UserCog,
   Scissors,
   Package,
   Receipt,
   TrendingUp,
+  BarChart2,
   CreditCard,
-  Gift,
   Tag,
   Bell,
   Settings,
+  List,
+  LayoutGrid,
+  FileText,
+  UserCircle,
+  Gift,
+  Star,
+  type LucideIcon,
 } from 'lucide-react'
 import { cn } from '@/utils/helpers'
 
-const bookingSubItems = [
-  { name: 'Schedule Booking', href: '/booking/new',      icon: CalendarCheck },
-  { name: 'Walk-in / POS',    href: '/booking/pos',      icon: ShoppingBag   },
-  { name: 'Calendar View',    href: '/booking/calendar', icon: CalendarDays  },
-]
+type SubItem = { name: string; href: string; icon: LucideIcon }
+type NavItem = { name: string; icon: LucideIcon; prefix: string; items: SubItem[] }
 
-const navigation = [
-  { name: 'Customers',     href: '/customers',     icon: Users           },
-  { name: 'Staff',         href: '/staff',         icon: UserCog         },
-  { name: 'Services',      href: '/services',      icon: Scissors        },
-  { name: 'Inventory',     href: '/inventory',     icon: Package         },
-  { name: 'Expenses',      href: '/expenses',      icon: Receipt         },
-  { name: 'Reports',       href: '/reports',       icon: TrendingUp      },
-  { name: 'Membership',    href: '/membership',    icon: CreditCard      },
-  { name: 'Loyalty',       href: '/loyalty',       icon: Gift            },
-  { name: 'Discounts',     href: '/discounts',     icon: Tag             },
-  { name: 'Notifications', href: '/notifications', icon: Bell            },
-  { name: 'Settings',      href: '/settings',      icon: Settings        },
+const navItems: NavItem[] = [
+  {
+    name: 'Bookings', icon: Calendar, prefix: '/booking',
+    items: [
+      { name: 'Schedule Booking', href: '/booking/new',      icon: CalendarCheck },
+      { name: 'Walk-in / POS',    href: '/booking/pos',      icon: ShoppingBag   },
+      { name: 'Calendar View',    href: '/booking/calendar', icon: CalendarDays  },
+    ],
+  },
+  {
+    name: 'Invoice', icon: Receipt, prefix: '/invoices',
+    items: [
+      { name: 'All Invoices', href: '/invoices',        icon: FileText },
+    ],
+  },
+  {
+    name: 'Service', icon: Scissors, prefix: '/services',
+    items: [
+      { name: 'All Services', href: '/services',            icon: List       },
+      { name: 'Categories',   href: '/services/categories', icon: LayoutGrid },
+    ],
+  },
+  {
+    name: 'Staff', icon: UserCog, prefix: '/staff',
+    items: [
+      { name: 'Staff List', href: '/staff',     icon: UserCog    },
+      { name: 'Add Staff',  href: '/staff/add', icon: UserCircle },
+    ],
+  },
+  {
+    name: 'Client', icon: Users, prefix: '/customers',
+    items: [
+      { name: 'Client List', href: '/customers',     icon: Users    },
+      { name: 'Add Client',  href: '/customers/add', icon: UserPlus },
+    ],
+  },
+  {
+    name: 'Membership', icon: CreditCard, prefix: '/membership',
+    items: [
+      { name: 'Plans',    href: '/membership/plans',    icon: CreditCard },
+      { name: 'Packages', href: '/membership/packages', icon: Gift       },
+      { name: 'Loyalty',  href: '/membership/loyalty',  icon: Star       },
+    ],
+  },
+  {
+    name: 'Discount', icon: Tag, prefix: '/discounts',
+    items: [
+      { name: 'All Discounts', href: '/discounts', icon: Tag },
+    ],
+  },
+  {
+    name: 'Inventory', icon: Package, prefix: '/inventory',
+    items: [
+      { name: 'Stock',   href: '/inventory',        icon: Package  },
+      { name: 'Reorder', href: '/inventory/reorder', icon: List    },
+    ],
+  },
+  {
+    name: 'Report', icon: TrendingUp, prefix: '/reports',
+    items: [
+      { name: 'Daily Reconciliation', href: '/reports',                    icon: TrendingUp },
+      { name: 'Transactions',         href: '/reports/transactions',        icon: FileText   },
+      { name: 'Business Trend',       href: '/reports/business-trend',      icon: BarChart2  },
+      { name: 'Stylist Progress',     href: '/reports/stylist-progress',    icon: UserCog    },
+    ],
+  },
+  {
+    name: 'Analytics', icon: BarChart2, prefix: '/analytics',
+    items: [
+      { name: 'Analytics', href: '/analytics', icon: BarChart2 },
+    ],
+  },
+  {
+    name: 'Notification', icon: Bell, prefix: '/notifications',
+    items: [
+      { name: 'All Notifications', href: '/notifications', icon: Bell },
+    ],
+  },
+  {
+    name: 'Setting', icon: Settings, prefix: '/settings',
+    items: [
+      { name: 'General',       href: '/settings',               icon: Settings },
+      { name: 'Notifications', href: '/settings/notifications', icon: Bell     },
+    ],
+  },
 ]
 
 export default function Sidebar() {
   const pathname = usePathname()
-  const isBookingActive = pathname.startsWith('/booking')
-  const [bookingOpen, setBookingOpen] = useState(isBookingActive)
+  const [openMap, setOpenMap] = useState<Record<string, boolean>>(() =>
+    Object.fromEntries(navItems.map((n) => [n.name, pathname.startsWith(n.prefix)]))
+  )
+
+  const toggle = (name: string) =>
+    setOpenMap((prev) => ({ ...prev, [name]: !prev[name] }))
 
   return (
     <aside className="fixed left-0 top-0 h-full w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 flex flex-col z-50">
@@ -80,82 +162,55 @@ export default function Sidebar() {
             <span>Dashboard</span>
           </Link>
 
-          {/* Bookings dropdown */}
-          <div>
-            <button
-              type="button"
-              onClick={() => setBookingOpen(!bookingOpen)}
-              className={cn(
-                'w-full flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium transition-all',
-                isBookingActive
-                  ? 'bg-salon-100/20 dark:bg-salon-900/20 text-salon-600 dark:text-salon-100'
-                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
-              )}
-            >
-              <Calendar size={20} />
-              <span className="flex-1 text-left">Bookings</span>
-              <ChevronDown
-                size={16}
-                className={cn('transition-transform duration-200', bookingOpen && 'rotate-180')}
-              />
-            </button>
-
-            {bookingOpen && (
-              <div className="mt-1 ml-4 pl-3 border-l-2 border-salon-100 dark:border-salon-900/40 space-y-1">
-                {bookingSubItems.map((item) => {
-                  const active = pathname === item.href
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className={cn(
-                        'flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all',
-                        active
-                          ? 'bg-salon-100/20 dark:bg-salon-900/20 text-salon-600 dark:text-salon-100'
-                          : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
-                      )}
-                    >
-                      <item.icon size={16} />
-                      <span>{item.name}</span>
-                    </Link>
-                  )
-                })}
-              </div>
-            )}
-          </div>
-
-          {/* Rest of nav */}
-          {navigation.map((item) => {
-            const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
+          {/* All dropdowns */}
+          {navItems.map((nav) => {
+            const isActive = pathname.startsWith(nav.prefix)
+            const isOpen = openMap[nav.name]
             return (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={cn(
-                  'flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium transition-all',
-                  isActive
-                    ? 'bg-salon-100/20 dark:bg-salon-900/20 text-salon-600 dark:text-salon-100'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+              <div key={nav.name}>
+                <button
+                  type="button"
+                  onClick={() => toggle(nav.name)}
+                  className={cn(
+                    'w-full flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium transition-all',
+                    isActive
+                      ? 'bg-salon-100/20 dark:bg-salon-900/20 text-salon-600 dark:text-salon-100'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                  )}
+                >
+                  <nav.icon size={20} />
+                  <span className="flex-1 text-left">{nav.name}</span>
+                  <ChevronDown
+                    size={16}
+                    className={cn('transition-transform duration-200', isOpen && 'rotate-180')}
+                  />
+                </button>
+
+                {isOpen && (
+                  <div className="mt-1 ml-4 pl-3 border-l-2 border-salon-100 dark:border-salon-900/40 space-y-1">
+                    {nav.items.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className={cn(
+                          'flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all',
+                          pathname === item.href
+                            ? 'bg-salon-100/20 dark:bg-salon-900/20 text-salon-600 dark:text-salon-100'
+                            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
+                        )}
+                      >
+                        <item.icon size={16} />
+                        <span>{item.name}</span>
+                      </Link>
+                    ))}
+                  </div>
                 )}
-              >
-                <item.icon size={20} />
-                <span>{item.name}</span>
-              </Link>
+              </div>
             )
           })}
 
         </div>
       </nav>
-
-      <div className="p-4 border-t border-gray-200 dark:border-gray-700">
-        <div className="bg-gradient-to-br from-salon-400 to-salon-900 rounded-xl p-4 text-white">
-          <h3 className="font-semibold mb-1">Need Help?</h3>
-          <p className="text-xs opacity-90 mb-3">Contact support team</p>
-          <button className="w-full bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-lg py-2 text-sm font-medium transition-colors">
-            Get Support
-          </button>
-        </div>
-      </div>
     </aside>
   )
 }
