@@ -28,6 +28,9 @@ import {
   UserCircle,
   Gift,
   Star,
+  PieChart,
+  UserSearch,
+  MessageCircle,
   type LucideIcon,
 } from 'lucide-react'
 import { cn } from '@/utils/helpers'
@@ -104,13 +107,16 @@ const navItems: NavItem[] = [
   {
     name: 'Analytics', icon: BarChart2, prefix: '/analytics',
     items: [
-      { name: 'Analytics', href: '/analytics', icon: BarChart2 },
+      { name: 'Overview',        href: '/analytics',                 icon: BarChart2    },
+      { name: 'Revenue',         href: '/analytics/revenue',         icon: TrendingUp   },
+      { name: 'Client Insights', href: '/analytics/client-insights', icon: UserSearch   },
     ],
   },
   {
     name: 'Notification', icon: Bell, prefix: '/notifications',
     items: [
-      { name: 'All Notifications', href: '/notifications', icon: Bell },
+      { name: 'All Notifications', href: '/notifications',             icon: Bell        },
+      { name: 'WhatsApp Logs',     href: '/notifications/whatsapp-logs', icon: MessageCircle },
     ],
   },
   {

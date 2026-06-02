@@ -1,55 +1,132 @@
 'use client'
 
-import { BarChart2, TrendingUp, Users, DollarSign, Calendar } from 'lucide-react'
+import { TrendingUp, TrendingDown, Users, DollarSign, Calendar, ArrowUpRight, Star, Scissors } from 'lucide-react'
 
-const monthlyData = [
-  { month: 'Jan', revenue: 82000, bookings: 210 },
-  { month: 'Feb', revenue: 91000, bookings: 234 },
-  { month: 'Mar', revenue: 78000, bookings: 198 },
-  { month: 'Apr', revenue: 105000, bookings: 267 },
-  { month: 'May', revenue: 118000, bookings: 289 },
-  { month: 'Jun', revenue: 124500, bookings: 284 },
+const revenueData = [
+  { month: 'Aug', value: 82 }, { month: 'Sep', value: 91 }, { month: 'Oct', value: 78 },
+  { month: 'Nov', value: 105 }, { month: 'Dec', value: 124 }, { month: 'Jan', value: 118 },
+]
+const maxRev = Math.max(...revenueData.map(d => d.value))
+
+const clientGrowth = [
+  { month: 'Aug', new: 42, returning: 168 }, { month: 'Sep', new: 55, returning: 179 },
+  { month: 'Oct', new: 38, returning: 182 }, { month: 'Nov', new: 61, returning: 207 },
+  { month: 'Dec', new: 74, returning: 236 }, { month: 'Jan', new: 68, returning: 222 },
 ]
 
-const maxRevenue = Math.max(...monthlyData.map(d => d.revenue))
-
-const insights = [
-  { label: 'Best Month',      value: 'June',   sub: '₹1,24,500 revenue',  icon: TrendingUp, color: 'text-emerald-500', bg: 'bg-emerald-50 dark:bg-emerald-900/20' },
-  { label: 'Avg Monthly Rev', value: '₹99,750', sub: 'Last 6 months',     icon: DollarSign, color: 'text-salon-600 dark:text-salon-100', bg: 'bg-salon-100/25 dark:bg-salon-900/30' },
-  { label: 'Peak Day',        value: 'Saturday', sub: 'Most bookings',    icon: Calendar,   color: 'text-amber-500',   bg: 'bg-amber-50 dark:bg-amber-900/20' },
-  { label: 'Top Category',    value: 'Hair',    sub: '58% of revenue',    icon: Users,      color: 'text-violet-500',  bg: 'bg-violet-50 dark:bg-violet-900/20' },
+const topServices = [
+  { name: 'Hair Cut & Color', revenue: 42000, pct: 90, color: '#7c3aed' },
+  { name: 'Facial',           revenue: 24800, pct: 59, color: '#0ea5e9' },
+  { name: 'Hair Spa',         revenue: 28800, pct: 69, color: '#10b981' },
+  { name: 'Manicure',         revenue: 8800,  pct: 21, color: '#f59e0b' },
+  { name: 'Waxing',           revenue: 19000, pct: 45, color: '#ec4899' },
 ]
 
 export default function AnalyticsPage() {
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-2">
-        <BarChart2 size={20} className="text-salon-600 dark:text-salon-100" />
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Analytics</h1>
-      </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {insights.map(({ label, value, sub, icon: Icon, color, bg }) => (
-          <div key={label} className="rounded-2xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900 p-5">
-            <div className={`w-10 h-10 rounded-xl ${bg} flex items-center justify-center mb-3`}>
-              <Icon size={18} className={color} />
+      {/* KPI Cards */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {[
+          { label: 'Total Revenue',   value: '₹1,24,500', change: '+12.5%', icon: DollarSign, color: '#7c3aed', bg: '#7c3aed18' },
+          { label: 'Total Clients',   value: '1,340',      change: '+5.1%',  icon: Users,      color: '#0ea5e9', bg: '#0ea5e918' },
+          { label: 'Appointments',    value: '284',        change: '+8.2%',  icon: Calendar,   color: '#10b981', bg: '#10b98118' },
+          { label: 'Avg Ticket',      value: '₹438',       change: '-2.3%',  icon: TrendingUp, color: '#f59e0b', bg: '#f59e0b18' },
+        ].map(({ label, value, change, icon: Icon, color, bg }) => {
+          const up = change.startsWith('+')
+          return (
+            <div key={label} className="rounded-2xl p-5" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
+              <div className="flex items-start justify-between mb-3">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: bg }}>
+                  <Icon size={17} style={{ color }} />
+                </div>
+                <span className={`flex items-center gap-0.5 text-xs font-semibold px-2 py-0.5 rounded-full ${up ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400' : 'bg-red-50 text-red-500 dark:bg-red-900/30 dark:text-red-400'}`}>
+                  {up ? <ArrowUpRight size={11} /> : <TrendingDown size={11} />}{change}
+                </span>
+              </div>
+              <div className="text-2xl font-bold mb-0.5" style={{ color: 'var(--text-primary)' }}>{value}</div>
+              <div className="text-xs" style={{ color: 'var(--text-secondary)' }}>{label}</div>
             </div>
-            <p className="text-xl font-bold text-gray-900 dark:text-white">{value}</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{label}</p>
-            <p className="text-xs font-medium text-gray-400 dark:text-gray-500 mt-1">{sub}</p>
-          </div>
-        ))}
+          )
+        })}
       </div>
 
-      <div className="rounded-2xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900 p-5">
-        <h2 className="text-base font-bold text-gray-900 dark:text-white mb-6">Monthly Revenue Trend</h2>
-        <div className="flex items-end gap-3 h-40">
-          {monthlyData.map((d, i) => (
-            <div key={d.month} className="flex flex-1 flex-col items-center gap-2">
-              <span className="text-xs font-semibold text-gray-900 dark:text-white">₹{(d.revenue / 1000).toFixed(0)}k</span>
-              <div className="w-full rounded-t-xl transition-all duration-700"
-                style={{ height: `${(d.revenue / maxRevenue) * 100}px`, background: i === monthlyData.length - 1 ? 'linear-gradient(to top, #971549, #CF455C)' : '#e5e7eb' }} />
-              <span className="text-xs text-gray-500 dark:text-gray-400">{d.month}</span>
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+
+        {/* Revenue Bar Chart */}
+        <div className="rounded-2xl p-5" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
+          <div className="flex items-center justify-between mb-5">
+            <div className="flex items-center gap-2">
+              <DollarSign size={15} className="text-violet-500" />
+              <h3 className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>Revenue Trend</h3>
+            </div>
+            <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 dark:bg-emerald-900/30 dark:text-emerald-400 px-2 py-0.5 rounded-full flex items-center gap-0.5">
+              <ArrowUpRight size={11} />+12.5%
+            </span>
+          </div>
+          <div className="flex items-end gap-2 h-36">
+            {revenueData.map((d, i) => (
+              <div key={d.month} className="flex-1 flex flex-col items-center gap-1.5">
+                <span className="text-[10px] font-semibold" style={{ color: '#7c3aed' }}>₹{d.value}k</span>
+                <div className="w-full rounded-t-lg transition-all duration-500"
+                  style={{ height: `${(d.value / maxRev) * 100}px`, background: i === revenueData.length - 1 ? 'linear-gradient(to top, #7c3aed, #a78bfa)' : 'var(--border)' }} />
+                <span className="text-[10px]" style={{ color: 'var(--text-secondary)' }}>{d.month}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Client Growth Stacked */}
+        <div className="rounded-2xl p-5" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
+          <div className="flex items-center gap-2 mb-5">
+            <Users size={15} className="text-sky-500" />
+            <h3 className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>Client Growth</h3>
+            <div className="ml-auto flex items-center gap-3 text-[11px]">
+              <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-sky-500 inline-block" />New</span>
+              <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-violet-300 inline-block" />Returning</span>
+            </div>
+          </div>
+          <div className="flex items-end gap-2 h-36">
+            {clientGrowth.map(d => {
+              const total = d.new + d.returning
+              const maxTotal = Math.max(...clientGrowth.map(x => x.new + x.returning))
+              const h = (total / maxTotal) * 120
+              const newH = (d.new / total) * h
+              const retH = (d.returning / total) * h
+              return (
+                <div key={d.month} className="flex-1 flex flex-col items-center gap-1.5">
+                  <div className="w-full flex flex-col rounded-t-lg overflow-hidden">
+                    <div style={{ height: `${newH}px`, background: '#0ea5e9' }} />
+                    <div style={{ height: `${retH}px`, background: '#c4b5fd' }} />
+                  </div>
+                  <span className="text-[10px]" style={{ color: 'var(--text-secondary)' }}>{d.month}</span>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* Top Services */}
+      <div className="rounded-2xl p-5" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
+        <div className="flex items-center gap-2 mb-5">
+          <Scissors size={15} className="text-violet-500" />
+          <h3 className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>Top Services by Revenue</h3>
+        </div>
+        <div className="space-y-4">
+          {topServices.map(s => (
+            <div key={s.name}>
+              <div className="flex items-center justify-between mb-1.5">
+                <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{s.name}</span>
+                <div className="flex items-center gap-3">
+                  <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>{s.pct}%</span>
+                  <span className="text-sm font-bold" style={{ color: s.color }}>₹{s.revenue.toLocaleString()}</span>
+                </div>
+              </div>
+              <div className="h-2.5 rounded-full" style={{ background: 'var(--hover)' }}>
+                <div className="h-2.5 rounded-full transition-all duration-700" style={{ width: `${s.pct}%`, background: s.color }} />
+              </div>
             </div>
           ))}
         </div>

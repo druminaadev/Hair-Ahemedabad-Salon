@@ -1,51 +1,269 @@
 'use client'
 
-import { FileText, CheckCircle2, Clock } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { Search, Download, FileText, CheckCircle2, XCircle, IndianRupee, Filter, X } from 'lucide-react'
 
-const transactions = [
-  { id: 'TXN-001', client: 'Priya Sharma',  date: '2025-06-02', method: 'UPI',  amount: 1800, status: 'Paid'    },
-  { id: 'TXN-002', client: 'Riya Patel',    date: '2025-06-02', method: 'Cash', amount: 800,  status: 'Paid'    },
-  { id: 'TXN-003', client: 'Anita Verma',   date: '2025-06-01', method: 'Card', amount: 400,  status: 'Pending' },
-  { id: 'TXN-004', client: 'Meena Joshi',   date: '2025-05-31', method: 'UPI',  amount: 1200, status: 'Paid'    },
-  { id: 'TXN-005', client: 'Sunita Rao',    date: '2025-05-30', method: 'Cash', amount: 1000, status: 'Paid'    },
-  { id: 'TXN-006', client: 'Kavita Singh',  date: '2025-05-29', method: 'Card', amount: 5000, status: 'Pending' },
+const ALL_TXN = [
+  { id: 'TXN-001', date: '2024-01-15', client: 'Priya Sharma',  service: 'Hair Cut & Color', stylist: 'Neha',  method: 'UPI',  amount: 1888, status: 'Completed' },
+  { id: 'TXN-002', date: '2024-01-15', client: 'Riya Patel',    service: 'Facial',           stylist: 'Pooja', method: 'Cash', amount: 944,  status: 'Completed' },
+  { id: 'TXN-003', date: '2024-01-14', client: 'Anita Verma',   service: 'Manicure',         stylist: 'Sonal', method: 'Card', amount: 472,  status: 'Completed' },
+  { id: 'TXN-004', date: '2024-01-14', client: 'Meena Joshi',   service: 'Hair Spa',         stylist: 'Neha',  method: 'UPI',  amount: 1416, status: 'Refunded'  },
+  { id: 'TXN-005', date: '2024-01-13', client: 'Sunita Rao',    service: 'Waxing (Full)',    stylist: 'Pooja', method: 'Cash', amount: 1180, status: 'Completed' },
+  { id: 'TXN-006', date: '2024-01-13', client: 'Kavita Singh',  service: 'Pedicure',         stylist: 'Sonal', method: 'UPI',  amount: 590,  status: 'Completed' },
+  { id: 'TXN-007', date: '2024-01-12', client: 'Deepa Mehta',   service: 'Hair Coloring',    stylist: 'Neha',  method: 'Card', amount: 2360, status: 'Completed' },
+  { id: 'TXN-008', date: '2024-01-12', client: 'Nisha Gupta',   service: 'Bridal Makeup',    stylist: 'Pooja', method: 'UPI',  amount: 5900, status: 'Completed' },
 ]
 
+const statusCfg: Record<string, { bg: string; text: string; icon: typeof CheckCircle2 }> = {
+  Completed: { bg: '#10b98118', text: '#10b981', icon: CheckCircle2 },
+  Refunded:  { bg: '#ef444418', text: '#ef4444', icon: XCircle },
+}
+const methodCfg: Record<string, { bg: string; text: string }> = {
+  UPI:  { bg: '#7c3aed18', text: '#7c3aed' },
+  Cash: { bg: '#10b98118', text: '#10b981' },
+  Card: { bg: '#0ea5e918', text: '#0ea5e9' },
+}
+
+function useMount() {
+  const [m, setM] = useState(false)
+  useEffect(() => { const t = setTimeout(() => setM(true), 50); return () => clearTimeout(t) }, [])
+  return m
+}
+
 export default function TransactionsPage() {
+  const mounted = useMount()
+  const [search, setSearch]     = useState('')
+  const [fromDate, setFromDate] = useState('')
+  const [toDate, setToDate]     = useState('')
+  const [method, setMethod]     = useState('All')
+  const [status, setStatus]     = useState('All')
+
+  const filtered = ALL_TXN.filter(t => {
+    const q = search.toLowerCase()
+    const matchSearch = !q || t.client.toLowerCase().includes(q) || t.service.toLowerCase().includes(q) || t.stylist.toLowerCase().includes(q) || t.id.toLowerCase().includes(q)
+    const matchMethod = method === 'All' || t.method === method
+    const matchStatus = status === 'All' || t.status === status
+    const matchFrom   = !fromDate || t.date >= fromDate
+    const matchTo     = !toDate   || t.date <= toDate
+    return matchSearch && matchMethod && matchStatus && matchFrom && matchTo
+  })
+
+  const net = filtered.filter(t => t.status === 'Completed').reduce((s, t) => s + t.amount, 0)
+  const hasFilters = search || fromDate || toDate || method !== 'All' || status !== 'All'
+
+  const clearFilters = () => { setSearch(''); setFromDate(''); setToDate(''); setMethod('All'); setStatus('All') }
+
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-2">
-        <FileText size={20} className="text-salon-600 dark:text-salon-100" />
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Transactions</h1>
-        <span className="rounded-full bg-salon-100/25 px-2 py-0.5 text-xs font-semibold text-salon-600 dark:bg-salon-900/40 dark:text-salon-100">{transactions.length}</span>
+
+      {/* Header */}
+      <div
+        className="flex items-center gap-3"
+        style={{ opacity: mounted ? 1 : 0, transform: mounted ? 'none' : 'translateY(10px)', transition: 'all .4s ease' }}
+      >
+        <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: '#0ea5e918' }}>
+          <FileText size={17} style={{ color: '#0ea5e9' }} />
+        </div>
+        <div>
+          <h1 className="text-lg font-bold" style={{ color: 'var(--text-primary)' }}>Transaction History</h1>
+          <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>Full audit trail with advanced filters</p>
+        </div>
+        <button
+          className="ml-auto flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all"
+          style={{ background: '#0ea5e9', color: '#fff' }}
+          onMouseEnter={e => (e.currentTarget.style.background = '#0284c7')}
+          onMouseLeave={e => (e.currentTarget.style.background = '#0ea5e9')}
+        >
+          <Download size={14} /> Export CSV
+        </button>
       </div>
 
-      <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b border-gray-200 dark:border-gray-700 text-xs text-gray-500 dark:text-gray-400">
-              {['Txn ID', 'Client', 'Date', 'Method', 'Amount', 'Status'].map(h => (
-                <th key={h} className="px-5 py-3 text-left font-semibold">{h}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-            {transactions.map(t => (
-              <tr key={t.id} className="hover:bg-gray-50 dark:hover:bg-gray-800 transition">
-                <td className="px-5 py-3.5 font-bold text-salon-600 dark:text-salon-100">{t.id}</td>
-                <td className="px-5 py-3.5 font-medium text-gray-900 dark:text-white">{t.client}</td>
-                <td className="px-5 py-3.5 text-gray-500 dark:text-gray-400">{t.date}</td>
-                <td className="px-5 py-3.5 text-gray-500 dark:text-gray-400">{t.method}</td>
-                <td className="px-5 py-3.5 font-bold text-gray-900 dark:text-white">₹{t.amount.toLocaleString()}</td>
-                <td className="px-5 py-3.5">
-                  <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold ${t.status === 'Paid' ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400' : 'bg-amber-50 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400'}`}>
-                    {t.status === 'Paid' ? <CheckCircle2 size={10} /> : <Clock size={10} />}{t.status}
-                  </span>
-                </td>
-              </tr>
+      {/* Stats */}
+      <div
+        className="grid grid-cols-2 sm:grid-cols-4 gap-4"
+        style={{ opacity: mounted ? 1 : 0, transform: mounted ? 'none' : 'translateY(14px)', transition: 'all .4s ease .05s' }}
+      >
+        {[
+          { label: 'Total',       value: filtered.length,                                       color: '#7c3aed', suffix: '',  format: false },
+          { label: 'Completed',   value: filtered.filter(t => t.status === 'Completed').length,  color: '#10b981', suffix: '',  format: false },
+          { label: 'Refunded',    value: filtered.filter(t => t.status === 'Refunded').length,   color: '#ef4444', suffix: '',  format: false },
+          { label: 'Net Revenue', value: net,                                                    color: '#f59e0b', suffix: '₹', format: true  },
+        ].map(({ label, value, color, suffix, format }) => (
+          <div key={label} className="rounded-2xl p-4" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
+            <div className="text-xs mb-2" style={{ color: 'var(--text-secondary)' }}>{label}</div>
+            <div className="text-2xl font-bold" style={{ color }}>
+              {suffix}{format ? (value as number).toLocaleString() : value}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Filters */}
+      <div
+        className="rounded-2xl p-4 space-y-3"
+        style={{
+          background: 'var(--bg)', border: '1px solid var(--border)',
+          opacity: mounted ? 1 : 0, transform: mounted ? 'none' : 'translateY(14px)',
+          transition: 'all .4s ease .1s',
+        }}
+      >
+        <div className="flex items-center gap-2 mb-1">
+          <Filter size={13} style={{ color: 'var(--text-secondary)' }} />
+          <span className="text-xs font-semibold" style={{ color: 'var(--text-secondary)' }}>Filters</span>
+          {hasFilters && (
+            <button
+              onClick={clearFilters}
+              className="ml-auto flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full transition-colors"
+              style={{ background: '#ef444418', color: '#ef4444' }}
+            >
+              <X size={10} /> Clear all
+            </button>
+          )}
+        </div>
+
+        <div className="flex flex-wrap gap-3">
+          {/* Search */}
+          <div className="relative flex-1 min-w-52">
+            <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2" style={{ color: 'var(--text-secondary)' }} />
+            <input
+              type="text" value={search} onChange={e => setSearch(e.target.value)}
+              placeholder="Search client, service, stylist, ID…"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+              style={{ border: '1px solid var(--border)', background: 'var(--hover)', color: 'var(--text-primary)' }}
+            />
+          </div>
+
+          {/* Date range */}
+          <div className="flex items-center gap-2">
+            <input
+              type="date" value={fromDate} onChange={e => setFromDate(e.target.value)}
+              className="px-3 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+              style={{ border: '1px solid var(--border)', background: 'var(--hover)', color: 'var(--text-primary)' }}
+            />
+            <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>to</span>
+            <input
+              type="date" value={toDate} onChange={e => setToDate(e.target.value)}
+              className="px-3 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+              style={{ border: '1px solid var(--border)', background: 'var(--hover)', color: 'var(--text-primary)' }}
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-2">
+          {/* Method pills */}
+          <div className="flex gap-1.5">
+            {['All', 'UPI', 'Cash', 'Card'].map(m => (
+              <button
+                key={m} onClick={() => setMethod(m)}
+                className="px-3 py-1.5 rounded-xl text-xs font-semibold transition-all"
+                style={{
+                  background: method === m ? '#7c3aed' : 'var(--hover)',
+                  color: method === m ? '#fff' : 'var(--text-secondary)',
+                  border: method === m ? 'none' : '1px solid var(--border)',
+                }}
+              >{m}</button>
             ))}
-          </tbody>
-        </table>
+          </div>
+          <div className="w-px self-stretch" style={{ background: 'var(--border)' }} />
+          {/* Status pills */}
+          <div className="flex gap-1.5">
+            {['All', 'Completed', 'Refunded'].map(s => (
+              <button
+                key={s} onClick={() => setStatus(s)}
+                className="px-3 py-1.5 rounded-xl text-xs font-semibold transition-all"
+                style={{
+                  background: status === s ? (s === 'Refunded' ? '#ef4444' : '#10b981') : 'var(--hover)',
+                  color: status === s ? '#fff' : 'var(--text-secondary)',
+                  border: status === s ? 'none' : '1px solid var(--border)',
+                }}
+              >{s}</button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Table */}
+      <div
+        className="rounded-2xl overflow-hidden"
+        style={{
+          background: 'var(--bg)', border: '1px solid var(--border)',
+          opacity: mounted ? 1 : 0, transform: mounted ? 'none' : 'translateY(14px)',
+          transition: 'all .4s ease .15s',
+        }}
+      >
+        <div className="flex items-center gap-2 px-5 py-4" style={{ borderBottom: '1px solid var(--border)' }}>
+          <IndianRupee size={14} style={{ color: '#0ea5e9' }} />
+          <span className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>Transactions</span>
+          <span className="ml-auto text-xs px-2 py-0.5 rounded-full font-semibold" style={{ background: '#0ea5e918', color: '#0ea5e9' }}>
+            {filtered.length} records
+          </span>
+        </div>
+
+        {filtered.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-16 gap-3">
+            <Search size={32} style={{ color: 'var(--text-secondary)', opacity: .4 }} />
+            <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>No transactions match your filters</p>
+            <button onClick={clearFilters} className="text-xs font-semibold px-3 py-1.5 rounded-xl" style={{ background: '#7c3aed18', color: '#7c3aed' }}>
+              Clear filters
+            </button>
+          </div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="text-xs uppercase" style={{ background: 'var(--hover)', color: 'var(--text-secondary)' }}>
+                  {['TXN ID', 'Date', 'Client', 'Service', 'Stylist', 'Method', 'Amount', 'Status'].map(h => (
+                    <th key={h} className="text-left px-5 py-3.5 font-semibold whitespace-nowrap">{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {filtered.map((t, i) => {
+                  const sc = statusCfg[t.status]
+                  const mc = methodCfg[t.method]
+                  const StatusIcon = sc.icon
+                  return (
+                    <tr
+                      key={t.id}
+                      className="transition-colors"
+                      style={{
+                        borderTop: '1px solid var(--border)',
+                        opacity: mounted ? 1 : 0,
+                        transition: `opacity .3s ease ${.2 + i * .04}s`,
+                      }}
+                      onMouseEnter={e => (e.currentTarget.style.background = 'var(--hover)')}
+                      onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
+                    >
+                      <td className="px-5 py-3.5">
+                        <span className="text-xs font-bold" style={{ color: '#7c3aed' }}>{t.id}</span>
+                      </td>
+                      <td className="px-5 py-3.5 text-xs whitespace-nowrap" style={{ color: 'var(--text-secondary)' }}>{t.date}</td>
+                      <td className="px-5 py-3.5 font-semibold whitespace-nowrap" style={{ color: 'var(--text-primary)' }}>{t.client}</td>
+                      <td className="px-5 py-3.5 text-xs whitespace-nowrap" style={{ color: 'var(--text-secondary)' }}>{t.service}</td>
+                      <td className="px-5 py-3.5">
+                        <div className="flex items-center gap-1.5">
+                          <div className="w-5 h-5 rounded-full bg-violet-500 flex items-center justify-center text-white text-[9px] font-bold shrink-0">
+                            {t.stylist[0]}
+                          </div>
+                          <span className="text-xs whitespace-nowrap" style={{ color: 'var(--text-secondary)' }}>{t.stylist}</span>
+                        </div>
+                      </td>
+                      <td className="px-5 py-3.5">
+                        <span className="text-xs font-semibold px-2.5 py-1 rounded-full" style={{ background: mc.bg, color: mc.text }}>{t.method}</span>
+                      </td>
+                      <td className="px-5 py-3.5 font-bold whitespace-nowrap" style={{ color: '#7c3aed' }}>₹{t.amount.toLocaleString()}</td>
+                      <td className="px-5 py-3.5">
+                        <span className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full w-fit" style={{ background: sc.bg, color: sc.text }}>
+                          <StatusIcon size={10} />{t.status}
+                        </span>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   )
