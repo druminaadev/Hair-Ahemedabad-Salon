@@ -58,7 +58,7 @@ export default function AnalyticsPage() {
         <div className="rounded-2xl p-5" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-2">
-              <DollarSign size={15} className="text-violet-500" />
+              <DollarSign size={15} className="text-rose-500" />
               <h3 className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>Revenue Trend</h3>
             </div>
             <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 dark:bg-emerald-900/30 dark:text-emerald-400 px-2 py-0.5 rounded-full flex items-center gap-0.5">
@@ -84,7 +84,7 @@ export default function AnalyticsPage() {
             <h3 className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>Client Growth</h3>
             <div className="ml-auto flex items-center gap-3 text-[11px]">
               <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-sky-500 inline-block" />New</span>
-              <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-violet-300 inline-block" />Returning</span>
+              <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-rose-300 inline-block" />Returning</span>
             </div>
           </div>
           <div className="flex items-end gap-2 h-36">
@@ -111,7 +111,7 @@ export default function AnalyticsPage() {
       {/* Top Services */}
       <div className="rounded-2xl p-5" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
         <div className="flex items-center gap-2 mb-5">
-          <Scissors size={15} className="text-violet-500" />
+          <Scissors size={15} className="text-rose-500" />
           <h3 className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>Top Services by Revenue</h3>
         </div>
         <div className="space-y-4">

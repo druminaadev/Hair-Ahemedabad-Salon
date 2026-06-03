@@ -50,12 +50,12 @@ export default function SettingsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Settings size={18} className="text-violet-500" />
+          <Settings size={18} className="text-rose-500" />
           <h1 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>Settings</h1>
         </div>
         <button
           onClick={handleSave}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold transition"
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-transparent hover:opacity-90 text-white text-sm font-semibold transition"
         >
           <Save size={16} />
           Save Changes
@@ -65,7 +65,7 @@ export default function SettingsPage() {
       {/* Salon Information */}
       <div className="rounded-2xl p-5" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
         <div className="flex items-center gap-2 mb-4">
-          <Building size={16} className="text-violet-500" />
+          <Building size={16} className="text-rose-500" />
           <h2 className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>Salon Information</h2>
         </div>
         <div className="grid grid-cols-2 gap-4">
@@ -75,7 +75,7 @@ export default function SettingsPage() {
               type="text"
               value={settings.salon.name}
               onChange={e => setSettings({ ...settings, salon: { ...settings.salon, name: e.target.value } })}
-              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
               style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }}
             />
           </div>
@@ -85,7 +85,7 @@ export default function SettingsPage() {
               type="text"
               value={settings.salon.gst}
               onChange={e => setSettings({ ...settings, salon: { ...settings.salon, gst: e.target.value } })}
-              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
               style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }}
             />
           </div>
@@ -95,7 +95,7 @@ export default function SettingsPage() {
               value={settings.salon.address}
               onChange={e => setSettings({ ...settings, salon: { ...settings.salon, address: e.target.value } })}
               rows={2}
-              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
               style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }}
             />
           </div>
@@ -105,7 +105,7 @@ export default function SettingsPage() {
               type="tel"
               value={settings.salon.phone}
               onChange={e => setSettings({ ...settings, salon: { ...settings.salon, phone: e.target.value } })}
-              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
               style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }}
             />
           </div>
@@ -115,7 +115,7 @@ export default function SettingsPage() {
               type="email"
               value={settings.salon.email}
               onChange={e => setSettings({ ...settings, salon: { ...settings.salon, email: e.target.value } })}
-              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
               style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }}
             />
           </div>
@@ -125,7 +125,7 @@ export default function SettingsPage() {
       {/* Business Hours */}
       <div className="rounded-2xl p-5" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
         <div className="flex items-center gap-2 mb-4">
-          <Clock size={16} className="text-violet-500" />
+          <Clock size={16} className="text-rose-500" />
           <h2 className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>Business Hours &amp; Pricing</h2>
         </div>
         <div className="grid grid-cols-3 gap-4">
@@ -135,7 +135,7 @@ export default function SettingsPage() {
               type="time"
               value={settings.business.openTime}
               onChange={e => setSettings({ ...settings, business: { ...settings.business, openTime: e.target.value } })}
-              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
               style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }}
             />
           </div>
@@ -145,7 +145,7 @@ export default function SettingsPage() {
               type="time"
               value={settings.business.closeTime}
               onChange={e => setSettings({ ...settings, business: { ...settings.business, closeTime: e.target.value } })}
-              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
               style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }}
             />
           </div>
@@ -155,7 +155,7 @@ export default function SettingsPage() {
               type="number"
               value={settings.business.slotDuration}
               onChange={e => setSettings({ ...settings, business: { ...settings.business, slotDuration: Number(e.target.value) } })}
-              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
               style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }}
             />
           </div>
@@ -165,7 +165,7 @@ export default function SettingsPage() {
               type="number"
               value={settings.business.taxRate}
               onChange={e => setSettings({ ...settings, business: { ...settings.business, taxRate: Number(e.target.value) } })}
-              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
               style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }}
             />
           </div>
@@ -174,7 +174,7 @@ export default function SettingsPage() {
             <select
               value={settings.business.currency}
               onChange={e => setSettings({ ...settings, business: { ...settings.business, currency: e.target.value } })}
-              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
               style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }}
             >
               <option value="INR">INR (₹)</option>
@@ -188,7 +188,7 @@ export default function SettingsPage() {
       {/* Loyalty Program */}
       <div className="rounded-2xl p-5" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
         <div className="flex items-center gap-2 mb-4">
-          <DollarSign size={16} className="text-violet-500" />
+          <DollarSign size={16} className="text-rose-500" />
           <h2 className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>Loyalty Program</h2>
         </div>
         <div className="space-y-4">
@@ -212,7 +212,7 @@ export default function SettingsPage() {
                   type="number"
                   value={settings.loyalty.pointsPerRupee}
                   onChange={e => setSettings({ ...settings, loyalty: { ...settings.loyalty, pointsPerRupee: Number(e.target.value) } })}
-                  className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+                  className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
                   style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }}
                 />
               </div>
@@ -222,7 +222,7 @@ export default function SettingsPage() {
                   type="number"
                   value={settings.loyalty.pointsValue}
                   onChange={e => setSettings({ ...settings, loyalty: { ...settings.loyalty, pointsValue: Number(e.target.value) } })}
-                  className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+                  className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
                   style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }}
                 />
               </div>
@@ -232,7 +232,7 @@ export default function SettingsPage() {
                   type="number"
                   value={settings.loyalty.minRedemption}
                   onChange={e => setSettings({ ...settings, loyalty: { ...settings.loyalty, minRedemption: Number(e.target.value) } })}
-                  className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+                  className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
                   style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }}
                 />
               </div>
@@ -244,7 +244,7 @@ export default function SettingsPage() {
       {/* Notifications */}
       <div className="rounded-2xl p-5" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
         <div className="flex items-center gap-2 mb-4">
-          <Bell size={16} className="text-violet-500" />
+          <Bell size={16} className="text-rose-500" />
           <h2 className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>Notifications</h2>
         </div>
         <div className="space-y-3">
@@ -278,7 +278,7 @@ export default function SettingsPage() {
               type="number"
               value={settings.notifications.reminderHours}
               onChange={e => setSettings({ ...settings, notifications: { ...settings.notifications, reminderHours: Number(e.target.value) } })}
-              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
               style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }}
             />
           </div>

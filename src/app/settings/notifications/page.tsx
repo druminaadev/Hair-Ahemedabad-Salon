@@ -40,7 +40,7 @@ export default function NotificationSettingsPage() {
           <h1 className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>Notification Settings</h1>
           <p className="text-sm mt-1" style={{ color: 'var(--text-secondary)' }}>Configure WhatsApp, email, and push notifications</p>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold transition">
+        <button className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-transparent hover:opacity-90 text-white text-sm font-semibold transition">
           <Save size={15} /> Save Changes
         </button>
       </div>

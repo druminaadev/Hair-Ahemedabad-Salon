@@ -32,10 +32,10 @@ export default function InventoryPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Package size={18} className="text-violet-500" />
+          <Package size={18} style={{ color: '#CF455C' }} />
           <h1 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>Inventory Management</h1>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold transition">
+        <button className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-white text-sm font-semibold transition" style={{ background: '#CF455C' }}>
           <Plus size={16} /> Add Product
         </button>
       </div>
@@ -67,7 +67,7 @@ export default function InventoryPage() {
         <div className="flex-1 relative">
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color: 'var(--text-secondary)' }} />
           <input type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search products..."
-            className="w-full pl-10 pr-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+            className="w-full pl-10 pr-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
             style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }} />
         </div>
         <div className="flex gap-2">
@@ -75,7 +75,7 @@ export default function InventoryPage() {
             <button key={f.key} onClick={() => setFilter(f.key as any)}
               className="px-4 py-2 rounded-xl text-sm font-semibold transition"
               style={{
-                background: filter === f.key ? '#7c3aed' : 'var(--hover)',
+                background: filter === f.key ? '#CF455C' : 'var(--hover)',
                 color: filter === f.key ? '#fff' : 'var(--text-secondary)',
                 border: filter === f.key ? 'none' : '1px solid var(--border)',
               }}>
@@ -107,8 +107,8 @@ export default function InventoryPage() {
                     onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-lg bg-violet-100 dark:bg-violet-900/40 flex items-center justify-center">
-                          <Package size={14} className="text-violet-600" />
+                        <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: '#CF455C18' }}>
+                          <Package size={14} style={{ color: '#CF455C' }} />
                         </div>
                         <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{product.name}</span>
                       </div>
@@ -130,7 +130,7 @@ export default function InventoryPage() {
                       </div>
                     </td>
                     <td className="px-4 py-3 text-right text-sm" style={{ color: 'var(--text-secondary)' }}>₹{product.costPrice}</td>
-                    <td className="px-4 py-3 text-right text-sm font-semibold text-violet-600">₹{product.sellingPrice}</td>
+                    <td className="px-4 py-3 text-right text-sm font-semibold" style={{ color: '#CF455C' }}>₹{product.sellingPrice}</td>
                     <td className="px-4 py-3 text-center">
                       {product.isConsumable ? (
                         <span className="text-xs px-2 py-1 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400">

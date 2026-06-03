@@ -26,14 +26,14 @@ export default function ClientForm({ onClose, onSave }: { onClose: () => void; o
             <label className="block text-xs font-semibold mb-1.5" style={{ color: 'var(--text-secondary)' }}>{label}</label>
             <input type={type} placeholder={placeholder} value={(form as any)[key]}
               onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))}
-              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
               style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }} />
           </div>
         ))}
         <div>
           <label className="block text-xs font-semibold mb-1.5" style={{ color: 'var(--text-secondary)' }}>Gender</label>
           <select value={form.gender} onChange={e => setForm(f => ({ ...f, gender: e.target.value }))}
-            className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
             style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }}>
             <option>Female</option><option>Male</option><option>Other</option>
           </select>
@@ -42,7 +42,7 @@ export default function ClientForm({ onClose, onSave }: { onClose: () => void; o
           <label className="block text-xs font-semibold mb-1.5" style={{ color: 'var(--text-secondary)' }}>Address</label>
           <input placeholder="Client address" value={form.address}
             onChange={e => setForm(f => ({ ...f, address: e.target.value }))}
-            className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
             style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }} />
         </div>
       </div>
@@ -50,7 +50,7 @@ export default function ClientForm({ onClose, onSave }: { onClose: () => void; o
         <label className="block text-xs font-semibold mb-1.5" style={{ color: 'var(--text-secondary)' }}>Notes</label>
         <textarea rows={3} placeholder="Preferences, allergies, special notes..." value={form.notes}
           onChange={e => setForm(f => ({ ...f, notes: e.target.value }))}
-          className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
+          className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400 resize-none"
           style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }} />
       </div>
       <div className="flex gap-3 pt-2">

@@ -7,11 +7,16 @@ const config: Config = {
     extend: {
       colors: {
         salon: {
-          100: '#FF9898', // light pink
-          400: '#CF455C', // rose
-          600: '#971549', // deep rose
-          900: '#470031', // dark burgundy
+          50:  '#fff0f3',
+          100: '#FF9898',
+          200: '#f9a8b8',
+          400: '#CF455C',
+          600: '#971549',
+          900: '#470031',
         },
+      },
+      ringColor: {
+        salon: '#CF455C',
       },
     },
   },

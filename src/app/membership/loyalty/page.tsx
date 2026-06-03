@@ -13,13 +13,13 @@ const topClients = [
 const tiers = [
   { name: 'Silver',   minPoints: 0,    maxPoints: 999,  color: '#94a3b8', perks: '5% discount on all services'    },
   { name: 'Gold',     minPoints: 1000, maxPoints: 1999, color: '#f59e0b', perks: '10% discount + priority booking' },
-  { name: 'Platinum', minPoints: 2000, maxPoints: null, color: '#8b5cf6', perks: '20% discount + free monthly spa' },
+  { name: 'Platinum', minPoints: 2000, maxPoints: null, color: '#CF455C', perks: '20% discount + free monthly spa' },
 ]
 
 const tierColors: Record<string, string> = {
   Silver:   'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-300',
   Gold:     'bg-amber-50 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400',
-  Platinum: 'bg-violet-50 text-violet-600 dark:bg-violet-900/30 dark:text-violet-400',
+  Platinum: 'bg-rose-50 text-rose-600 dark:bg-rose-900/30 dark:text-rose-400',
 }
 
 const avatarColors = ['bg-salon-600', 'bg-rose-500', 'bg-emerald-500', 'bg-amber-500', 'bg-sky-500']
@@ -42,7 +42,7 @@ export default function LoyaltyPage() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {[
           { label: 'Total Points Issued', value: '6,350',  icon: Star,       color: 'text-amber-500',   bg: 'bg-amber-50 dark:bg-amber-900/20'    },
-          { label: 'Active Members',      value: '5',      icon: Gift,       color: 'text-violet-500',  bg: 'bg-violet-50 dark:bg-violet-900/20'  },
+          { label: 'Active Members',      value: '5',      icon: Gift,       color: 'text-rose-500',    bg: 'bg-rose-50 dark:bg-rose-900/20'      },
           { label: 'Points Redeemed',     value: '1,200',  icon: TrendingUp, color: 'text-emerald-500', bg: 'bg-emerald-50 dark:bg-emerald-900/20' },
         ].map(({ label, value, icon: Icon, color, bg }) => (
           <div key={label} className="rounded-2xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900 p-5 flex items-center gap-4">

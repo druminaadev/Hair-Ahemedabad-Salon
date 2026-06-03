@@ -17,7 +17,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       <Sidebar />
       <div className="flex-1 ml-64">
         <Header />
-        <main className="p-6">
+        <main className="p-6" style={{ background: 'var(--bg-secondary)', minHeight: 'calc(100vh - 64px)' }}>
           {children}
         </main>
       </div>

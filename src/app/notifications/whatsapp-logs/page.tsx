@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Bell, CheckCircle2, XCircle, Clock, Search, MessageSquare } from 'lucide-react'
 
 const logs = [
-  { id: 1, type: 'Booking Confirmation', client: 'Priya Sharma',  avatar: 'PS', color: 'bg-violet-500', phone: '+91 98765 43210', sentAt: '2024-01-15 10:05', status: 'Delivered', template: 'booking_confirm' },
+  { id: 1, type: 'Booking Confirmation', client: 'Priya Sharma',  avatar: 'PS', color: 'bg-rose-500', phone: '+91 98765 43210', sentAt: '2024-01-15 10:05', status: 'Delivered', template: 'booking_confirm' },
   { id: 2, type: '24h Reminder',         client: 'Riya Patel',    avatar: 'RP', color: 'bg-sky-500',    phone: '+91 98765 43211', sentAt: '2024-01-14 11:00', status: 'Delivered', template: 'reminder_24h' },
   { id: 3, type: 'Birthday Benefit',     client: 'Anita Verma',   avatar: 'AV', color: 'bg-emerald-500',phone: '+91 98765 43212', sentAt: '2024-01-01 09:00', status: 'Delivered', template: 'birthday_offer' },
   { id: 4, type: 'Re-engagement',        client: 'Meena Joshi',   avatar: 'MJ', color: 'bg-amber-500',  phone: '+91 98765 43213', sentAt: '2024-01-08 10:00', status: 'Failed',    template: 'dormant_reengagement' },
@@ -66,7 +66,7 @@ export default function WhatsAppLogsPage() {
         <div className="relative flex-1 max-w-md">
           <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2" style={{ color: 'var(--text-secondary)' }} />
           <input type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search by client or type…"
-            className="w-full pl-10 pr-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+            className="w-full pl-10 pr-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
             style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }} />
         </div>
         <div className="flex gap-2">
@@ -87,9 +87,9 @@ export default function WhatsAppLogsPage() {
       {/* Log table */}
       <div className="rounded-2xl overflow-hidden" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
         <div className="flex items-center gap-2 px-5 py-4" style={{ borderBottom: '1px solid var(--border)' }}>
-          <Bell size={15} className="text-violet-500" />
+          <Bell size={15} className="text-rose-500" />
           <h2 className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>WhatsApp Message Log</h2>
-          <span className="ml-auto text-xs px-2 py-0.5 rounded-full bg-violet-100 text-violet-700 dark:bg-violet-900/40 dark:text-violet-400 font-semibold">
+          <span className="ml-auto text-xs px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 dark:bg-rose-900/40 dark:text-rose-400 font-semibold">
             {filtered.length} messages
           </span>
         </div>

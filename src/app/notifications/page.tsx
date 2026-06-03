@@ -15,7 +15,7 @@ const initialNotifications = [
 const typeConfig: Record<string, { icon: any; bg: string; color: string }> = {
   booking: { icon: Clock,         bg: 'bg-salon-100/25 dark:bg-salon-900/30',       color: 'text-salon-600 dark:text-salon-100' },
   alert:   { icon: AlertTriangle, bg: 'bg-amber-50 dark:bg-amber-900/20',            color: 'text-amber-500' },
-  review:  { icon: Star,          bg: 'bg-violet-50 dark:bg-violet-900/20',          color: 'text-violet-500' },
+  review:  { icon: Star,          bg: 'bg-rose-50 dark:bg-rose-900/20',            color: 'text-rose-500' },
   payment: { icon: CheckCircle2,  bg: 'bg-emerald-50 dark:bg-emerald-900/20',        color: 'text-emerald-500' },
 }
 

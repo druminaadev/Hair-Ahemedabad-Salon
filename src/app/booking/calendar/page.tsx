@@ -38,7 +38,7 @@ export default function CalendarPage() {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Calendar size={18} className="text-violet-500" />
+          <Calendar size={18} style={{ color: '#CF455C' }} />
           <h1 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>Calendar View</h1>
         </div>
         <div className="flex items-center gap-2">
@@ -171,21 +171,21 @@ export default function CalendarPage() {
             </div>
             <div className="space-y-3">
               <div className="flex items-center gap-3">
-                <User size={16} className="text-violet-500" />
+                <User size={16} style={{ color: '#CF455C' }} />
                 <div>
                   <div className="text-xs" style={{ color: 'var(--text-secondary)' }}>Client</div>
                   <div className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{selectedBooking.client}</div>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <Scissors size={16} className="text-violet-500" />
+                <Scissors size={16} style={{ color: '#CF455C' }} />
                 <div>
                   <div className="text-xs" style={{ color: 'var(--text-secondary)' }}>Service</div>
                   <div className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{selectedBooking.service}</div>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <Clock size={16} className="text-violet-500" />
+                <Clock size={16} style={{ color: '#CF455C' }} />
                 <div>
                   <div className="text-xs" style={{ color: 'var(--text-secondary)' }}>Time</div>
                   <div className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>
@@ -204,7 +204,7 @@ export default function CalendarPage() {
               </div>
             </div>
             <div className="flex gap-2 pt-2">
-              <button className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold transition">
+              <button className="flex-1 py-2.5 rounded-xl text-white text-sm font-semibold transition" style={{ background: '#CF455C' }}>
                 Edit
               </button>
               <button

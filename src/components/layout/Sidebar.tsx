@@ -138,34 +138,43 @@ export default function Sidebar() {
     setOpenMap((prev) => ({ ...prev, [name]: !prev[name] }))
 
   return (
-    <aside className="fixed left-0 top-0 h-full w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 flex flex-col z-50">
-      <div className="h-16 flex items-center px-6 border-b border-gray-200 dark:border-gray-700">
+    <aside className="fixed left-0 top-0 h-full w-64 flex flex-col z-50"
+      style={{ background: 'var(--sidebar-bg)', borderRight: '1px solid var(--sidebar-border)' }}>
+
+      {/* Logo */}
+      <div className="h-16 flex items-center px-5 shrink-0"
+        style={{ borderBottom: '1px solid var(--sidebar-border)' }}>
         <Link href="/dashboard" className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-salon-400 to-salon-600 flex items-center justify-center">
-            <Scissors className="text-white" size={20} />
+          <div className="w-9 h-9 rounded-xl flex items-center justify-center"
+            style={{ background: 'linear-gradient(135deg, #CF455C, #971549)' }}>
+            <Scissors className="text-white" size={17} />
           </div>
           <div>
-            <h1 className="text-lg font-bold text-gray-900 dark:text-white">SalonPro</h1>
-            <p className="text-xs text-gray-500 dark:text-gray-400">CRM System</p>
+            <h1 className="text-base font-bold" style={{ color: 'var(--sidebar-active-text)' }}>SalonPro</h1>
+            <p className="text-[10px] font-medium" style={{ color: 'var(--text-secondary)' }}>Hair Ahmedabad</p>
           </div>
         </Link>
       </div>
 
-      <nav className="flex-1 overflow-y-auto py-4 px-3">
-        <div className="space-y-1">
+      <nav className="flex-1 overflow-y-auto py-3 px-2.5">
+        <div className="space-y-0.5">
 
           {/* Dashboard */}
           <Link
             href="/dashboard"
-            className={cn(
-              'flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium transition-all',
-              pathname === '/dashboard'
-                ? 'bg-salon-100/20 dark:bg-salon-900/20 text-salon-600 dark:text-salon-100'
-                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
-            )}
+            className="flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium transition-all text-sm"
+            style={{
+              background: pathname === '/dashboard' ? 'var(--sidebar-active-bg)' : 'transparent',
+              color: pathname === '/dashboard' ? 'var(--sidebar-active-text)' : 'var(--sidebar-text)',
+            }}
+            onMouseEnter={e => { if (pathname !== '/dashboard') (e.currentTarget as HTMLElement).style.background = 'var(--sidebar-hover)' }}
+            onMouseLeave={e => { if (pathname !== '/dashboard') (e.currentTarget as HTMLElement).style.background = 'transparent' }}
           >
-            <LayoutDashboard size={20} />
+            <LayoutDashboard size={18} />
             <span>Dashboard</span>
+            {pathname === '/dashboard' && (
+              <span className="ml-auto w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent)' }} />
+            )}
           </Link>
 
           {/* All dropdowns */}
@@ -177,35 +186,40 @@ export default function Sidebar() {
                 <button
                   type="button"
                   onClick={() => toggle(nav.name)}
-                  className={cn(
-                    'w-full flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium transition-all',
-                    isActive
-                      ? 'bg-salon-100/20 dark:bg-salon-900/20 text-salon-600 dark:text-salon-100'
-                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
-                  )}
+                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium transition-all text-sm"
+                  style={{
+                    background: isActive ? 'var(--sidebar-active-bg)' : 'transparent',
+                    color: isActive ? 'var(--sidebar-active-text)' : 'var(--sidebar-text)',
+                  }}
+                  onMouseEnter={e => { if (!isActive) (e.currentTarget as HTMLElement).style.background = 'var(--sidebar-hover)' }}
+                  onMouseLeave={e => { if (!isActive) (e.currentTarget as HTMLElement).style.background = 'transparent' }}
                 >
-                  <nav.icon size={20} />
+                  <nav.icon size={18} />
                   <span className="flex-1 text-left">{nav.name}</span>
+                  {isActive && <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent)' }} />}
                   <ChevronDown
-                    size={16}
-                    className={cn('transition-transform duration-200', isOpen && 'rotate-180')}
+                    size={14}
+                    className={cn('transition-transform duration-200 ml-1', isOpen && 'rotate-180')}
+                    style={{ color: 'var(--text-secondary)' }}
                   />
                 </button>
 
                 {isOpen && (
-                  <div className="mt-1 ml-4 pl-3 border-l-2 border-salon-100 dark:border-salon-900/40 space-y-1">
+                  <div className="mt-0.5 ml-4 pl-3 space-y-0.5"
+                    style={{ borderLeft: '2px solid var(--border)' }}>
                     {nav.items.map((item) => (
                       <Link
                         key={item.href}
                         href={item.href}
-                        className={cn(
-                          'flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all',
-                          pathname === item.href
-                            ? 'bg-salon-100/20 dark:bg-salon-900/20 text-salon-600 dark:text-salon-100'
-                            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
-                        )}
+                        className="flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium transition-all"
+                        style={{
+                          background: pathname === item.href ? 'var(--sidebar-active-bg)' : 'transparent',
+                          color: pathname === item.href ? 'var(--sidebar-active-text)' : 'var(--sidebar-text)',
+                        }}
+                        onMouseEnter={e => { if (pathname !== item.href) (e.currentTarget as HTMLElement).style.background = 'var(--sidebar-hover)' }}
+                        onMouseLeave={e => { if (pathname !== item.href) (e.currentTarget as HTMLElement).style.background = 'transparent' }}
                       >
-                        <item.icon size={16} />
+                        <item.icon size={14} />
                         <span>{item.name}</span>
                       </Link>
                     ))}
@@ -217,6 +231,13 @@ export default function Sidebar() {
 
         </div>
       </nav>
+
+      {/* Bottom brand strip */}
+      <div className="px-4 py-3 shrink-0" style={{ borderTop: '1px solid var(--sidebar-border)' }}>
+        <p className="text-[10px] text-center font-medium" style={{ color: 'var(--text-secondary)' }}>
+          © 2024 Hair Ahmedabad · All rights reserved
+        </p>
+      </div>
     </aside>
   )
 }

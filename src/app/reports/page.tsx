@@ -15,7 +15,7 @@ import {
 } from 'lucide-react'
 
 const summary = [
-  { method: 'UPI', icon: Smartphone, amount: 42500, txns: 28, color: '#7c3aed', bg: '#7c3aed18' },
+  { method: 'UPI', icon: Smartphone, amount: 42500, txns: 28, color: '#CF455C', bg: '#CF455C18' },
   { method: 'Cash', icon: Banknote, amount: 31200, txns: 22, color: '#10b981', bg: '#10b98118' },
   { method: 'Card', icon: CreditCard, amount: 18800, txns: 12, color: '#0ea5e9', bg: '#0ea5e918' },
 ]
@@ -35,7 +35,7 @@ const splitPayments = [
 ]
 
 const methodStyle: Record<string, { bg: string; text: string }> = {
-  UPI: { bg: '#7c3aed18', text: '#7c3aed' },
+  UPI: { bg: '#CF455C18', text: '#CF455C' },
   Cash: { bg: '#10b98118', text: '#10b981' },
   Card: { bg: '#0ea5e918', text: '#0ea5e9' },
 }
@@ -97,8 +97,8 @@ export default function DailyReconciliationPage() {
       >
         <div>
           <div className="mb-0.5 flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-xl" style={{ background: '#7c3aed18' }}>
-              <DollarSign size={16} style={{ color: '#7c3aed' }} />
+            <div className="flex h-8 w-8 items-center justify-center rounded-xl" style={{ background: '#CF455C18' }}>
+              <DollarSign size={16} style={{ color: '#CF455C' }} />
             </div>
             <h1 className="text-lg font-bold" style={{ color: 'var(--text-primary)' }}>
               Daily Reconciliation
@@ -137,13 +137,9 @@ export default function DailyReconciliationPage() {
           <button
             type="button"
             className="flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold transition-all"
-            style={{ background: '#7c3aed', color: '#fff' }}
-            onMouseEnter={(event) => {
-              event.currentTarget.style.background = '#6d28d9'
-            }}
-            onMouseLeave={(event) => {
-              event.currentTarget.style.background = '#7c3aed'
-            }}
+            style={{ background: '#CF455C', color: '#fff' }}
+            onMouseEnter={(event) => { event.currentTarget.style.background = '#971549' }}
+            onMouseLeave={(event) => { event.currentTarget.style.background = '#CF455C' }}
           >
             <Download size={14} /> Export
           </button>
@@ -153,7 +149,7 @@ export default function DailyReconciliationPage() {
       <div
         className="flex flex-col gap-5 rounded-2xl p-6 sm:flex-row sm:items-center"
         style={{
-          background: 'linear-gradient(135deg,#7c3aed 0%,#5b21b6 100%)',
+          background: 'linear-gradient(135deg,#CF455C 0%,#971549 100%)',
           opacity: mounted ? 1 : 0,
           transform: mounted ? 'none' : 'translateY(14px)',
           transition: 'all .45s ease .05s',
@@ -185,7 +181,7 @@ export default function DailyReconciliationPage() {
         }}
       >
         {[
-          { label: 'Subtotal', value: 78136, prefix: 'Rs ', color: '#7c3aed', icon: Receipt },
+          { label: 'Subtotal', value: 78136, prefix: 'Rs ', color: '#CF455C', icon: Receipt },
           { label: 'GST Collected', value: 14064, prefix: 'Rs ', color: '#0ea5e9', icon: Receipt },
           { label: 'Discounts', value: 0, prefix: 'Rs ', color: '#f59e0b', icon: Receipt },
           { label: 'Split Payments', value: splitPayments.length, prefix: '', color: '#ec4899', icon: SplitSquareHorizontal },
@@ -287,7 +283,7 @@ export default function DailyReconciliationPage() {
                     {payment.booking}
                   </div>
                 </div>
-                <div className="text-sm font-bold" style={{ color: '#7c3aed' }}>
+                <div className="text-sm font-bold" style={{ color: '#CF455C' }}>
                   Rs {payment.total.toLocaleString()}
                 </div>
               </div>
@@ -318,11 +314,11 @@ export default function DailyReconciliationPage() {
         }}
       >
         <div className="flex items-center gap-2 px-5 py-4" style={{ borderBottom: '1px solid var(--border)' }}>
-          <Activity size={15} style={{ color: '#7c3aed' }} />
+          <Activity size={15} style={{ color: '#CF455C' }} />
           <h2 className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>
             Today's Transactions
           </h2>
-          <span className="ml-auto rounded-full px-2 py-0.5 text-xs font-semibold" style={{ background: '#7c3aed18', color: '#7c3aed' }}>
+          <span className="ml-auto rounded-full px-2 py-0.5 text-xs font-semibold" style={{ background: '#CF455C18', color: '#CF455C' }}>
             {transactions.length} entries
           </span>
         </div>
@@ -369,7 +365,7 @@ export default function DailyReconciliationPage() {
                     </td>
                     <td className="px-5 py-3.5">
                       <div className="flex items-center gap-1.5">
-                        <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-500 text-[9px] font-bold text-white">
+                        <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[9px] font-bold text-white" style={{ background: '#CF455C' }}>
                           {transaction.staff[0]}
                         </div>
                         <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>
@@ -382,7 +378,7 @@ export default function DailyReconciliationPage() {
                         {transaction.method}
                       </span>
                     </td>
-                    <td className="px-5 py-3.5 font-bold" style={{ color: '#7c3aed' }}>
+                    <td className="px-5 py-3.5 font-bold" style={{ color: '#CF455C' }}>
                       Rs {transaction.amount.toLocaleString()}
                     </td>
                   </tr>

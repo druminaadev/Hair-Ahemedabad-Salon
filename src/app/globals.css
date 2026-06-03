@@ -3,22 +3,67 @@
 @tailwind utilities;
 
 :root {
-  --color-salon-100: #FF9898;
-  --color-salon-400: #CF455C;
-  --color-salon-600: #971549;
-  --color-salon-900: #470031;
+  /* Brand */
+  --salon-50:  #fff0f3;
+  --salon-100: #FF9898;
+  --salon-200: #f9a8b8;
+  --salon-400: #CF455C;
+  --salon-600: #971549;
+  --salon-900: #470031;
 
-  --bg: #ffffff;
-  --border: #e5e7eb;
-  --text-primary: #111827;
-  --text-secondary: #6b7280;
-  --hover: #f3f4f6;
+  /* Layout */
+  --bg:             #ffffff;
+  --bg-secondary:   #fdf2f5;
+  --border:         #f0d6de;
+  --text-primary:   #1a0a0e;
+  --text-secondary: #7a4a56;
+  --hover:          #fdf2f5;
+
+  /* Sidebar */
+  --sidebar-bg:         #ffffff;
+  --sidebar-border:     #f0d6de;
+  --sidebar-active-bg:  #fdf2f5;
+  --sidebar-active-text:#971549;
+  --sidebar-text:       #5c2d3a;
+  --sidebar-hover:      #fdf2f5;
+
+  /* Header */
+  --header-bg:      #ffffff;
+  --header-border:  #f0d6de;
+
+  /* Accent bars / highlights */
+  --accent:         #CF455C;
+  --accent-light:   #fff0f3;
 }
 
 .dark {
-  --bg: #111827;
-  --border: #374151;
-  --text-primary: #f9fafb;
-  --text-secondary: #9ca3af;
-  --hover: #1f2937;
+  /* Layout */
+  --bg:             #18080e;
+  --bg-secondary:   #22101a;
+  --border:         #3d1a26;
+  --text-primary:   #fdf2f5;
+  --text-secondary: #c9899a;
+  --hover:          #2a1018;
+
+  /* Sidebar */
+  --sidebar-bg:         #18080e;
+  --sidebar-border:     #3d1a26;
+  --sidebar-active-bg:  #2e0f1c;
+  --sidebar-active-text:#FF9898;
+  --sidebar-text:       #e8c0cb;
+  --sidebar-hover:      #2a1018;
+
+  /* Header */
+  --header-bg:      #18080e;
+  --header-border:  #3d1a26;
+
+  /* Accent */
+  --accent:         #CF455C;
+  --accent-light:   #2e0f1c;
 }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }

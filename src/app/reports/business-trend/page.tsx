@@ -16,7 +16,7 @@ const trendData = [
 const maxRevenue = Math.max(...trendData.map(d => d.revenue))
 
 const categories = [
-  { name: 'Hair Services', revenue: 52000, pct: 44, change: +12, color: '#7c3aed' },
+  { name: 'Hair Services', revenue: 52000, pct: 44, change: +12, color: '#CF455C' },
   { name: 'Skin & Facial', revenue: 28000, pct: 24, change: +8,  color: '#0ea5e9' },
   { name: 'Nail Services', revenue: 18000, pct: 15, change: -3,  color: '#10b981' },
   { name: 'Memberships',   revenue: 12000, pct: 10, change: +22, color: '#f59e0b' },
@@ -137,7 +137,7 @@ export default function BusinessTrendPage() {
                         </div>
                       )}
                       <Bar value={d.revenue} max={maxRevenue}
-                        color={isLast ? 'linear-gradient(to top,#7c3aed,#a78bfa)' : isHovered ? '#7c3aed60' : 'var(--hover)'}
+                        color={isLast ? 'linear-gradient(to top,#CF455C,#FF9898)' : isHovered ? '#CF455C60' : 'var(--hover)'}
                         delay={i * 80} mounted={mounted} />
                     </div>
                   )
@@ -148,7 +148,7 @@ export default function BusinessTrendPage() {
               {trendData.map((d, i) => (
                 <div key={d.period} className="flex-1 text-center">
                   <span className="text-[11px] font-semibold"
-                    style={{ color: i === trendData.length - 1 ? '#7c3aed' : 'var(--text-secondary)' }}>
+                    style={{ color: i === trendData.length - 1 ? '#CF455C' : 'var(--text-secondary)' }}>
                     {d.period}
                   </span>
                 </div>
@@ -162,7 +162,7 @@ export default function BusinessTrendPage() {
       <div className="rounded-2xl p-6"
         style={{ background: 'var(--bg)', border: '1px solid var(--border)', opacity: mounted ? 1 : 0, transform: mounted ? 'none' : 'translateY(14px)', transition: 'all .4s ease .2s' }}>
         <div className="flex items-center gap-2 mb-5">
-          <Layers size={15} style={{ color: '#7c3aed' }} />
+          <Layers size={15} style={{ color: '#CF455C' }} />
           <h2 className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>Revenue by Category</h2>
         </div>
         <div className="space-y-5">
@@ -195,11 +195,11 @@ export default function BusinessTrendPage() {
       <div className="rounded-2xl p-6"
         style={{ background: 'var(--bg)', border: '1px solid var(--border)', opacity: mounted ? 1 : 0, transform: mounted ? 'none' : 'translateY(14px)', transition: 'all .4s ease .25s' }}>
         <div className="flex items-center gap-2 mb-5">
-          <TrendingUp size={15} style={{ color: '#7c3aed' }} />
+          <TrendingUp size={15} style={{ color: '#CF455C' }} />
           <h2 className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>Period Comparison</h2>
           <div className="ml-auto flex items-center gap-4 text-xs">
-            <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full inline-block" style={{ background: '#7c3aed' }} />Jan 2024</span>
-            <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full inline-block" style={{ background: '#7c3aed40' }} />Dec 2023</span>
+            <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full inline-block" style={{ background: '#CF455C' }} />Jan 2024</span>
+            <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full inline-block" style={{ background: '#CF455C40' }} />Dec 2023</span>
           </div>
         </div>
         <div className="space-y-4">
@@ -213,7 +213,7 @@ export default function BusinessTrendPage() {
                   <span className="text-xs font-bold" style={{ color: '#10b981' }}>+{growth}%</span>
                 </div>
                 <div className="space-y-1.5">
-                  {[{ val: c.p1, color: '#7c3aed' }, { val: c.p2, color: '#7c3aed40' }].map(({ val, color }) => (
+                  {[{ val: c.p1, color: '#CF455C' }, { val: c.p2, color: '#CF455C40' }].map(({ val, color }) => (
                     <div key={color} className="flex items-center gap-2">
                       <div className="w-16 text-[10px] text-right" style={{ color: 'var(--text-secondary)' }}>
                         {val > 1000 ? `₹${(val / 1000).toFixed(0)}k` : val}

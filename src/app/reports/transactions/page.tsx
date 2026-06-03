@@ -19,7 +19,7 @@ const statusCfg: Record<string, { bg: string; text: string; icon: typeof CheckCi
   Refunded:  { bg: '#ef444418', text: '#ef4444', icon: XCircle },
 }
 const methodCfg: Record<string, { bg: string; text: string }> = {
-  UPI:  { bg: '#7c3aed18', text: '#7c3aed' },
+  UPI:  { bg: '#CF455C18', text: '#CF455C' },
   Cash: { bg: '#10b98118', text: '#10b981' },
   Card: { bg: '#0ea5e918', text: '#0ea5e9' },
 }
@@ -84,7 +84,7 @@ export default function TransactionsPage() {
         style={{ opacity: mounted ? 1 : 0, transform: mounted ? 'none' : 'translateY(14px)', transition: 'all .4s ease .05s' }}
       >
         {[
-          { label: 'Total',       value: filtered.length,                                       color: '#7c3aed', suffix: '',  format: false },
+          { label: 'Total',       value: filtered.length,                                       color: '#CF455C', suffix: '',  format: false },
           { label: 'Completed',   value: filtered.filter(t => t.status === 'Completed').length,  color: '#10b981', suffix: '',  format: false },
           { label: 'Refunded',    value: filtered.filter(t => t.status === 'Refunded').length,   color: '#ef4444', suffix: '',  format: false },
           { label: 'Net Revenue', value: net,                                                    color: '#f59e0b', suffix: '₹', format: true  },
@@ -128,7 +128,7 @@ export default function TransactionsPage() {
             <input
               type="text" value={search} onChange={e => setSearch(e.target.value)}
               placeholder="Search client, service, stylist, ID…"
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
               style={{ border: '1px solid var(--border)', background: 'var(--hover)', color: 'var(--text-primary)' }}
             />
           </div>
@@ -137,13 +137,13 @@ export default function TransactionsPage() {
           <div className="flex items-center gap-2">
             <input
               type="date" value={fromDate} onChange={e => setFromDate(e.target.value)}
-              className="px-3 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+              className="px-3 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
               style={{ border: '1px solid var(--border)', background: 'var(--hover)', color: 'var(--text-primary)' }}
             />
             <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>to</span>
             <input
               type="date" value={toDate} onChange={e => setToDate(e.target.value)}
-              className="px-3 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+              className="px-3 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
               style={{ border: '1px solid var(--border)', background: 'var(--hover)', color: 'var(--text-primary)' }}
             />
           </div>
@@ -203,7 +203,7 @@ export default function TransactionsPage() {
           <div className="flex flex-col items-center justify-center py-16 gap-3">
             <Search size={32} style={{ color: 'var(--text-secondary)', opacity: .4 }} />
             <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>No transactions match your filters</p>
-            <button onClick={clearFilters} className="text-xs font-semibold px-3 py-1.5 rounded-xl" style={{ background: '#7c3aed18', color: '#7c3aed' }}>
+            <button onClick={clearFilters} className="text-xs font-semibold px-3 py-1.5 rounded-xl" style={{ background: '#CF455C18', color: '#CF455C' }}>
               Clear filters
             </button>
           </div>
@@ -235,14 +235,14 @@ export default function TransactionsPage() {
                       onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
                     >
                       <td className="px-5 py-3.5">
-                        <span className="text-xs font-bold" style={{ color: '#7c3aed' }}>{t.id}</span>
+                        <span className="text-xs font-bold" style={{ color: '#CF455C' }}>{t.id}</span>
                       </td>
                       <td className="px-5 py-3.5 text-xs whitespace-nowrap" style={{ color: 'var(--text-secondary)' }}>{t.date}</td>
                       <td className="px-5 py-3.5 font-semibold whitespace-nowrap" style={{ color: 'var(--text-primary)' }}>{t.client}</td>
                       <td className="px-5 py-3.5 text-xs whitespace-nowrap" style={{ color: 'var(--text-secondary)' }}>{t.service}</td>
                       <td className="px-5 py-3.5">
                         <div className="flex items-center gap-1.5">
-                          <div className="w-5 h-5 rounded-full bg-violet-500 flex items-center justify-center text-white text-[9px] font-bold shrink-0">
+                          <div className="w-5 h-5 rounded-full flex items-center justify-center text-white text-[9px] font-bold shrink-0" style={{ background: '#CF455C' }}>
                             {t.stylist[0]}
                           </div>
                           <span className="text-xs whitespace-nowrap" style={{ color: 'var(--text-secondary)' }}>{t.stylist}</span>
@@ -251,7 +251,7 @@ export default function TransactionsPage() {
                       <td className="px-5 py-3.5">
                         <span className="text-xs font-semibold px-2.5 py-1 rounded-full" style={{ background: mc.bg, color: mc.text }}>{t.method}</span>
                       </td>
-                      <td className="px-5 py-3.5 font-bold whitespace-nowrap" style={{ color: '#7c3aed' }}>₹{t.amount.toLocaleString()}</td>
+                      <td className="px-5 py-3.5 font-bold whitespace-nowrap" style={{ color: '#CF455C' }}>₹{t.amount.toLocaleString()}</td>
                       <td className="px-5 py-3.5">
                         <span className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full w-fit" style={{ background: sc.bg, color: sc.text }}>
                           <StatusIcon size={10} />{t.status}

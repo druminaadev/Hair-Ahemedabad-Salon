@@ -35,11 +35,11 @@ export default function ClientsPage() {
         <div className="relative flex-1 max-w-md">
           <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2" style={{ color: 'var(--text-secondary)' }} />
           <input type="text" placeholder="Search clients..." value={search} onChange={e => setSearch(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-full pl-10 pr-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
             style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }} />
         </div>
         <button onClick={() => setShowModal(true)}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium transition">
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-white text-sm font-medium transition" style={{ background: '#CF455C' }}>
           <Plus size={15} /> Add Client
         </button>
       </div>
@@ -62,7 +62,7 @@ export default function ClientsPage() {
                   onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-full bg-purple-600 flex items-center justify-center text-white font-bold text-xs">
+                      <div className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-xs" style={{ background: '#CF455C' }}>
                         {c.name.charAt(0)}
                       </div>
                       <span className="font-medium" style={{ color: 'var(--text-primary)' }}>{c.name}</span>
@@ -84,7 +84,7 @@ export default function ClientsPage() {
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
                       <button onClick={() => alert(`View details for ${c.name}`)}
-                        className="text-xs font-medium text-purple-600 hover:underline">View</button>
+                        className="text-xs font-medium hover:underline" style={{ color: '#CF455C' }}>View</button>
                       <button onClick={() => { if (confirm(`Delete ${c.name}?`)) setClients(clients.filter(x => x.id !== c.id)) }}
                         className="text-xs font-medium text-red-500 hover:underline">Delete</button>
                     </div>

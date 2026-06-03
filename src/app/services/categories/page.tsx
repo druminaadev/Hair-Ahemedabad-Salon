@@ -33,7 +33,7 @@ export default function CategoriesPage() {
           <p className="text-sm mt-1" style={{ color: 'var(--text-secondary)' }}>Organize services by category</p>
         </div>
         <button onClick={() => setShowModal(true)}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold transition">
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-white text-sm font-semibold transition" style={{ background: '#CF455C' }}>
           <Plus size={15} /> Add Category
         </button>
       </div>
@@ -49,7 +49,7 @@ export default function CategoriesPage() {
               <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition">
                 <button className="p-1.5 rounded-lg transition"
                   style={{ color: 'var(--text-secondary)' }}
-                  onMouseEnter={e => { e.currentTarget.style.background = 'var(--hover)'; e.currentTarget.style.color = '#7c3aed' }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'var(--hover)'; e.currentTarget.style.color = '#CF455C' }}
                   onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--text-secondary)' }}>
                   <Edit2 size={13} />
                 </button>
@@ -84,7 +84,7 @@ export default function CategoriesPage() {
                 <label className="block text-xs font-semibold mb-1.5" style={{ color: 'var(--text-secondary)' }}>Category Name</label>
                 <input type="text" placeholder="e.g. Bridal Services" value={form.name}
                   onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                  className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+                  className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
                   style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }} />
               </div>
               <div>
@@ -103,7 +103,7 @@ export default function CategoriesPage() {
                 style={{ border: '1px solid var(--border)', color: 'var(--text-secondary)' }}
                 onMouseEnter={e => (e.currentTarget.style.background = 'var(--hover)')}
                 onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>Cancel</button>
-              <button onClick={handleSave} className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold transition">
+              <button onClick={handleSave} className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-white text-sm font-semibold transition" style={{ background: '#CF455C' }}>
                 <Save size={14} /> Save
               </button>
             </div>

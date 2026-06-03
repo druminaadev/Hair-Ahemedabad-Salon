@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Scissors, Plus, Search, Clock, Star, Edit2, Trash2, X, Save } from 'lucide-react'
 
 const CATEGORY_COLORS: Record<string, { bg: string; text: string; dot: string }> = {
-  Hair:   { bg: '#7c3aed18', text: '#7c3aed', dot: 'bg-violet-500' },
+  Hair:   { bg: '#CF455C18', text: '#CF455C', dot: 'bg-rose-500' },
   Skin:   { bg: '#0ea5e918', text: '#0ea5e9', dot: 'bg-sky-500' },
   Nails:  { bg: '#10b98118', text: '#10b981', dot: 'bg-emerald-500' },
   Body:   { bg: '#f59e0b18', text: '#f59e0b', dot: 'bg-amber-500' },
@@ -55,7 +55,7 @@ export default function ServicesPage() {
         <div className="relative flex-1 max-w-md">
           <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2" style={{ color: 'var(--text-secondary)' }} />
           <input type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search services…"
-            className="w-full pl-10 pr-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+            className="w-full pl-10 pr-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
             style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }} />
         </div>
         <div className="flex gap-2 flex-wrap">
@@ -63,7 +63,7 @@ export default function ServicesPage() {
             <button key={cat} onClick={() => setCategory(cat)}
               className="px-3.5 py-2.5 rounded-xl text-xs font-semibold transition"
               style={{
-                background: category === cat ? '#7c3aed' : 'transparent',
+                background: category === cat ? '#CF455C' : 'transparent',
                 color: category === cat ? '#fff' : 'var(--text-secondary)',
                 border: category === cat ? 'none' : '1px solid var(--border)',
               }}>
@@ -72,7 +72,7 @@ export default function ServicesPage() {
           ))}
         </div>
         <button onClick={() => setShowModal(true)}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold transition shadow-sm shadow-violet-200 dark:shadow-none shrink-0">
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-white text-sm font-semibold transition shadow-sm shrink-0" style={{ background: '#CF455C' }}>
           <Plus size={15} /> Add Service
         </button>
       </div>
@@ -111,7 +111,7 @@ export default function ServicesPage() {
                     onClick={() => alert(`Edit service: ${s.name}`)}
                     className="p-1.5 rounded-lg transition"
                     style={{ color: 'var(--text-secondary)' }}
-                    onMouseEnter={e => { e.currentTarget.style.background = 'var(--hover)'; e.currentTarget.style.color = '#7c3aed' }}
+                    onMouseEnter={e => { e.currentTarget.style.background = 'var(--hover)'; e.currentTarget.style.color = '#CF455C' }}
                     onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--text-secondary)' }}>
                     <Edit2 size={13} />
                   </button>
@@ -163,14 +163,14 @@ export default function ServicesPage() {
                   <label className="block text-xs font-semibold mb-1.5" style={{ color: 'var(--text-secondary)' }}>{label}</label>
                   <input type={type} placeholder={placeholder} value={(form as any)[key]}
                     onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))}
-                    className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+                    className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
                     style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }} />
                 </div>
               ))}
               <div>
                 <label className="block text-xs font-semibold mb-1.5" style={{ color: 'var(--text-secondary)' }}>Category</label>
                 <select value={form.category} onChange={e => setForm(f => ({ ...f, category: e.target.value }))}
-                  className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+                  className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
                   style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }}>
                   {['Hair', 'Skin', 'Nails', 'Body', 'Makeup'].map(c => <option key={c}>{c}</option>)}
                 </select>
@@ -181,7 +181,7 @@ export default function ServicesPage() {
                 style={{ border: '1px solid var(--border)', color: 'var(--text-secondary)' }}
                 onMouseEnter={e => (e.currentTarget.style.background = 'var(--hover)')}
                 onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>Cancel</button>
-              <button onClick={handleSave} className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold transition">
+              <button onClick={handleSave} className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-white text-sm font-semibold transition" style={{ background: '#CF455C' }}>
                 <Save size={14} /> Save Service
               </button>
             </div>

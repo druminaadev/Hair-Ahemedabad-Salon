@@ -33,7 +33,7 @@ export default function AddStaffPage() {
     <div className="max-w-2xl space-y-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <UserPlus size={20} className="text-violet-500" />
+          <UserPlus size={20} style={{ color: '#CF455C' }} />
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Add Staff Member</h1>
         </div>
         <Link href="/staff"
@@ -56,7 +56,7 @@ export default function AddStaffPage() {
               <input type={type} placeholder={placeholder} value={(formData as any)[key]}
                 required={label.includes('*')}
                 onChange={e => setFormData({ ...formData, [key]: e.target.value })}
-                className="w-full px-4 py-2.5 rounded-xl text-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-violet-500" />
+                className="w-full px-4 py-2.5 rounded-xl text-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-rose-400" />
             </div>
           ))}
 
@@ -64,7 +64,7 @@ export default function AddStaffPage() {
             <label className="block text-sm font-semibold mb-1.5 text-gray-700 dark:text-gray-300">Speciality *</label>
             <select value={formData.speciality}
               onChange={e => setFormData({ ...formData, speciality: e.target.value })}
-              className="w-full px-4 py-2.5 rounded-xl text-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-violet-500">
+              className="w-full px-4 py-2.5 rounded-xl text-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-rose-400">
               {SPECIALITIES.map(s => <option key={s}>{s}</option>)}
             </select>
           </div>
@@ -77,7 +77,7 @@ export default function AddStaffPage() {
               <button key={day} type="button" onClick={() => toggleDay(day)}
                 className="px-3 py-1.5 rounded-lg text-xs font-semibold transition"
                 style={{
-                  background: formData.workingDays.includes(day) ? '#7c3aed' : 'transparent',
+                  background: formData.workingDays.includes(day) ? '#CF455C' : 'transparent',
                   color: formData.workingDays.includes(day) ? '#fff' : '',
                   border: formData.workingDays.includes(day) ? 'none' : '1px solid #d1d5db',
                 }}>
@@ -96,7 +96,7 @@ export default function AddStaffPage() {
               <label className="block text-sm font-semibold mb-1.5 text-gray-700 dark:text-gray-300">{label}</label>
               <input type="time" value={(formData.workingHours as any)[key]}
                 onChange={e => setFormData({ ...formData, workingHours: { ...formData.workingHours, [key]: e.target.value } })}
-                className="w-full px-4 py-2.5 rounded-xl text-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-violet-500" />
+                className="w-full px-4 py-2.5 rounded-xl text-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-rose-400" />
             </div>
           ))}
         </div>
@@ -107,7 +107,7 @@ export default function AddStaffPage() {
             Cancel
           </Link>
           <button type="submit"
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold transition">
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-white text-sm font-semibold transition" style={{ background: '#CF455C' }}>
             <Save size={15} /> Save Staff
           </button>
         </div>

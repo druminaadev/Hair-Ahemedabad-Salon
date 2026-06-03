@@ -42,11 +42,11 @@ export default function StaffPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Users size={18} className="text-violet-500" />
+          <Users size={18} style={{ color: '#CF455C' }} />
           <h1 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>Staff Management</h1>
         </div>
         <button onClick={() => setShowForm(true)}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold transition">
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-white text-sm font-semibold transition" style={{ background: '#CF455C' }}>
           <Plus size={16} /> Add Staff
         </button>
       </div>
@@ -73,22 +73,14 @@ export default function StaffPage() {
                   <input type="text" required value={formData.name}
                     onChange={e => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Full name"
-                    className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
-                    style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }} />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold mb-1.5" style={{ color: 'var(--text-secondary)' }}>Role *</label>
-                  <input type="text" required value={formData.role}
-                    onChange={e => setFormData({ ...formData, role: e.target.value })}
-                    placeholder="e.g., Senior Stylist"
-                    className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+                    className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
                     style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }} />
                 </div>
                 <div>
                   <label className="block text-xs font-semibold mb-1.5" style={{ color: 'var(--text-secondary)' }}>Speciality *</label>
                   <select required value={formData.speciality}
                     onChange={e => setFormData({ ...formData, speciality: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+                    className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
                     style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }}>
                     {SPECIALITIES.map(spec => <option key={spec} value={spec}>{spec}</option>)}
                   </select>
@@ -98,7 +90,7 @@ export default function StaffPage() {
                   <input type="tel" required value={formData.phone}
                     onChange={e => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="+91 98765 43210"
-                    className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+                    className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
                     style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }} />
                 </div>
                 <div className="col-span-2">
@@ -106,7 +98,7 @@ export default function StaffPage() {
                   <input type="email" value={formData.email}
                     onChange={e => setFormData({ ...formData, email: e.target.value })}
                     placeholder="email@example.com"
-                    className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+                    className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
                     style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }} />
                 </div>
               </div>
@@ -118,7 +110,7 @@ export default function StaffPage() {
                     <button key={day} type="button" onClick={() => toggleDay(day)}
                       className="px-3 py-1.5 rounded-lg text-xs font-semibold transition"
                       style={{
-                        background: formData.workingDays.includes(day) ? '#7c3aed' : 'var(--hover)',
+                        background: formData.workingDays.includes(day) ? '#CF455C' : 'var(--hover)',
                         color: formData.workingDays.includes(day) ? '#fff' : 'var(--text-secondary)',
                         border: formData.workingDays.includes(day) ? 'none' : '1px solid var(--border)',
                       }}>
@@ -133,14 +125,14 @@ export default function StaffPage() {
                   <label className="block text-xs font-semibold mb-1.5" style={{ color: 'var(--text-secondary)' }}>Start Time</label>
                   <input type="time" value={formData.workingHours.start}
                     onChange={e => setFormData({ ...formData, workingHours: { ...formData.workingHours, start: e.target.value } })}
-                    className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+                    className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
                     style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }} />
                 </div>
                 <div>
                   <label className="block text-xs font-semibold mb-1.5" style={{ color: 'var(--text-secondary)' }}>End Time</label>
                   <input type="time" value={formData.workingHours.end}
                     onChange={e => setFormData({ ...formData, workingHours: { ...formData.workingHours, end: e.target.value } })}
-                    className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+                    className="w-full px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
                     style={{ border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text-primary)' }} />
                 </div>
               </div>
@@ -152,7 +144,7 @@ export default function StaffPage() {
                   Cancel
                 </button>
                 <button type="submit"
-                  className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold transition">
+                  className="flex-1 py-2.5 rounded-xl text-white text-sm font-semibold transition" style={{ background: '#CF455C' }}>
                   Add Staff
                 </button>
               </div>
@@ -167,7 +159,7 @@ export default function StaffPage() {
           <div key={member.id} className="rounded-2xl p-5" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white text-lg font-bold">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center text-white text-lg font-bold" style={{ background: 'linear-gradient(135deg, #CF455C, #971549)' }}>
                   {member.name.charAt(0)}
                 </div>
                 <div>
@@ -196,7 +188,7 @@ export default function StaffPage() {
               <div className="text-xs font-semibold mb-2" style={{ color: 'var(--text-secondary)' }}>Working Days</div>
               <div className="flex flex-wrap gap-1">
                 {member.workingDays.map(day => (
-                  <span key={day} className="text-[10px] px-2 py-0.5 rounded-full bg-violet-100 text-violet-700 dark:bg-violet-900/40 dark:text-violet-400">
+                  <span key={day} className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: '#CF455C18', color: '#CF455C' }}>
                     {day.slice(0, 3)}
                   </span>
                 ))}
