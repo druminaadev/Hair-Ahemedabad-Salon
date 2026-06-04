@@ -32,11 +32,11 @@ export default function DiscountsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <BadgePercent size={18} style={{ color: '#CF455C' }} />
+          <BadgePercent size={18} style={{ color: '#9D679F' }} />
           <h1 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>Discounts & Offers</h1>
         </div>
         <button onClick={() => setShowForm(true)}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-white text-sm font-semibold transition" style={{ background: '#CF455C' }}>
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-white text-sm font-semibold transition" style={{ background: '#9D679F' }}>
           <Plus size={16} /> Create Discount
         </button>
       </div>
@@ -145,7 +145,7 @@ export default function DiscountsPage() {
                   Cancel
                 </button>
                 <button type="submit"
-                  className="flex-1 py-2.5 rounded-xl text-white text-sm font-semibold transition" style={{ background: '#CF455C' }}>
+                  className="flex-1 py-2.5 rounded-xl text-white text-sm font-semibold transition" style={{ background: '#9D679F' }}>
                   Create Discount
                 </button>
               </div>
@@ -172,7 +172,7 @@ export default function DiscountsPage() {
             </div>
 
             <div className="mb-4">
-              <div className="text-3xl font-bold" style={{ color: '#CF455C' }}>{discount.value}%</div>
+              <div className="text-3xl font-bold" style={{ color: '#9D679F' }}>{discount.value}%</div>
               {discount.minAmount > 0 && (
                 <div className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>
                   Min. purchase: ₹{discount.minAmount}
@@ -183,13 +183,13 @@ export default function DiscountsPage() {
             <div className="flex gap-2 pt-3" style={{ borderTop: '1px solid var(--border)' }}>
               <button className="flex-1 py-2 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1"
                 style={{ background: 'var(--hover)', color: 'var(--text-primary)' }}
-                onMouseEnter={e => (e.currentTarget.style.color = '#CF455C')}
+                onMouseEnter={e => (e.currentTarget.style.color = '#9D679F')}
                 onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-primary)')}>
                 <Edit2 size={12} /> Edit
               </button>
               <button onClick={() => { if (confirm(`Delete "${discount.name}"?`)) setDiscounts(d => d.filter(x => x.id !== discount.id)) }}
                 className="flex-1 py-2 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1 text-red-500"
-                onMouseEnter={e => (e.currentTarget.style.background = '#fef2f2')}
+                onMouseEnter={e => (e.currentTarget.style.background = '#F9EEF4')}
                 onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>
                 <Trash2 size={12} /> Delete
               </button>

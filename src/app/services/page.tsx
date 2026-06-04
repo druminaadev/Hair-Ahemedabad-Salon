@@ -4,11 +4,11 @@ import { useState } from 'react'
 import { Scissors, Plus, Search, Clock, Star, Edit2, Trash2, X, Save } from 'lucide-react'
 
 const CATEGORY_COLORS: Record<string, { bg: string; text: string; dot: string }> = {
-  Hair:   { bg: '#CF455C18', text: '#CF455C', dot: 'bg-rose-500' },
-  Skin:   { bg: '#0ea5e918', text: '#0ea5e9', dot: 'bg-sky-500' },
-  Nails:  { bg: '#10b98118', text: '#10b981', dot: 'bg-emerald-500' },
-  Body:   { bg: '#f59e0b18', text: '#f59e0b', dot: 'bg-amber-500' },
-  Makeup: { bg: '#ec489918', text: '#ec4899', dot: 'bg-pink-500' },
+  Hair:   { bg: '#9D679F18', text: '#9D679F', dot: 'bg-rose-500' },
+  Skin:   { bg: '#6D91BF18', text: '#6D91BF', dot: 'bg-sky-500' },
+  Nails:  { bg: '#6F9F8F18', text: '#6F9F8F', dot: 'bg-emerald-500' },
+  Body:   { bg: '#C7923E18', text: '#C7923E', dot: 'bg-amber-500' },
+  Makeup: { bg: '#C96F9B18', text: '#C96F9B', dot: 'bg-pink-500' },
 }
 
 const CATEGORIES = ['All', 'Hair', 'Skin', 'Nails', 'Body', 'Makeup']
@@ -63,7 +63,7 @@ export default function ServicesPage() {
             <button key={cat} onClick={() => setCategory(cat)}
               className="px-3.5 py-2.5 rounded-xl text-xs font-semibold transition"
               style={{
-                background: category === cat ? '#CF455C' : 'transparent',
+                background: category === cat ? '#9D679F' : 'transparent',
                 color: category === cat ? '#fff' : 'var(--text-secondary)',
                 border: category === cat ? 'none' : '1px solid var(--border)',
               }}>
@@ -72,7 +72,7 @@ export default function ServicesPage() {
           ))}
         </div>
         <button onClick={() => setShowModal(true)}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-white text-sm font-semibold transition shadow-sm shrink-0" style={{ background: '#CF455C' }}>
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-white text-sm font-semibold transition shadow-sm shrink-0" style={{ background: '#9D679F' }}>
           <Plus size={15} /> Add Service
         </button>
       </div>
@@ -111,7 +111,7 @@ export default function ServicesPage() {
                     onClick={() => alert(`Edit service: ${s.name}`)}
                     className="p-1.5 rounded-lg transition"
                     style={{ color: 'var(--text-secondary)' }}
-                    onMouseEnter={e => { e.currentTarget.style.background = 'var(--hover)'; e.currentTarget.style.color = '#CF455C' }}
+                    onMouseEnter={e => { e.currentTarget.style.background = 'var(--hover)'; e.currentTarget.style.color = '#9D679F' }}
                     onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--text-secondary)' }}>
                     <Edit2 size={13} />
                   </button>
@@ -123,7 +123,7 @@ export default function ServicesPage() {
                     }}
                     className="p-1.5 rounded-lg transition"
                     style={{ color: 'var(--text-secondary)' }}
-                    onMouseEnter={e => { e.currentTarget.style.background = '#fef2f2'; e.currentTarget.style.color = '#ef4444' }}
+                    onMouseEnter={e => { e.currentTarget.style.background = '#F9EEF4'; e.currentTarget.style.color = '#D88385' }}
                     onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--text-secondary)' }}>
                     <Trash2 size={13} />
                   </button>
@@ -181,7 +181,7 @@ export default function ServicesPage() {
                 style={{ border: '1px solid var(--border)', color: 'var(--text-secondary)' }}
                 onMouseEnter={e => (e.currentTarget.style.background = 'var(--hover)')}
                 onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>Cancel</button>
-              <button onClick={handleSave} className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-white text-sm font-semibold transition" style={{ background: '#CF455C' }}>
+              <button onClick={handleSave} className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-white text-sm font-semibold transition" style={{ background: '#9D679F' }}>
                 <Save size={14} /> Save Service
               </button>
             </div>

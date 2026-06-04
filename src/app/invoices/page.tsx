@@ -14,41 +14,47 @@ import {
   Receipt,
 } from 'lucide-react'
 
-const initialInvoices = [
-  { id: 'INV-001', client: 'Priya Sharma', avatar: 'PS', date: '2026-06-02', services: 'Hair Cut & Color', amount: 1888, gst: 288, status: 'Paid', whatsapp: true },
-  { id: 'INV-002', client: 'Riya Patel', avatar: 'RP', date: '2026-06-02', services: 'Facial', amount: 944, gst: 144, status: 'Paid', whatsapp: true },
-  { id: 'INV-003', client: 'Anita Verma', avatar: 'AV', date: '2026-06-01', services: 'Manicure', amount: 472, gst: 72, status: 'Pending', whatsapp: false },
-  { id: 'INV-004', client: 'Meena Joshi', avatar: 'MJ', date: '2026-05-31', services: 'Hair Spa', amount: 1416, gst: 216, status: 'Paid', whatsapp: true },
-  { id: 'INV-005', client: 'Sunita Rao', avatar: 'SR', date: '2026-05-30', services: 'Waxing (Full)', amount: 1180, gst: 180, status: 'Paid', whatsapp: false },
-  { id: 'INV-006', client: 'Kavita Singh', avatar: 'KS', date: '2026-05-29', services: 'Bridal Makeup', amount: 5900, gst: 900, status: 'Pending', whatsapp: false },
-]
+import { useLocationStore, BRANCHES, BRANCH_INVOICES, type BranchId } from '@/store/locationStore'
 
 const avatarColors = ['bg-salon-600', 'bg-salon-400', 'bg-emerald-500', 'bg-amber-500', 'bg-rose-500', 'bg-pink-500']
 
 const statusConfig: Record<string, { cls: string; icon: ElementType }> = {
-  Paid: { cls: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400', icon: CheckCircle2 },
-  Pending: { cls: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400', icon: Clock },
+  Paid:    { cls: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400', icon: CheckCircle2 },
+  Pending: { cls: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400',       icon: Clock },
 }
 
-const stats = [
-  { label: 'Total Invoiced', value: '₹11,800', icon: DollarSign, color: '#971549', bg: '#97154918' },
-  { label: 'Paid', value: '4', icon: CheckCircle2, color: '#10b981', bg: '#10b98118' },
-  { label: 'Pending', value: '2', icon: Clock, color: '#f59e0b', bg: '#f59e0b18' },
-  { label: 'This Month', value: '₹9,900', icon: TrendingUp, color: '#CF455C', bg: '#CF455C18' },
-]
-
 export default function InvoicesPage() {
-  const [invoices, setInvoices] = useState(initialInvoices)
+  const { branchId } = useLocationStore()
+  const activeBranch = BRANCHES.find(b => b.id === branchId) ?? BRANCHES[0]
+  const [allInvoices, setAllInvoices] = useState<Record<BranchId, typeof BRANCH_INVOICES.main>>({
+    main:      [...BRANCH_INVOICES.main],
+    satellite: [...BRANCH_INVOICES.satellite],
+    sghighway: [...BRANCH_INVOICES.sghighway],
+  })
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState('All')
 
-  const filteredInvoices = invoices.filter((invoice) => {
-    const query = search.toLowerCase()
-    const matchesSearch = invoice.client.toLowerCase().includes(query) || invoice.id.toLowerCase().includes(query)
-    const matchesStatus = statusFilter === 'All' || invoice.status === statusFilter
+  const invoices = allInvoices[branchId]
+  const setInvoices = (updater: (prev: typeof BRANCH_INVOICES.main) => typeof BRANCH_INVOICES.main) =>
+    setAllInvoices(prev => ({ ...prev, [branchId]: updater(prev[branchId]) }))
 
-    return matchesSearch && matchesStatus
+  const filteredInvoices = invoices.filter(invoice => {
+    const query = search.toLowerCase()
+    return (invoice.client.toLowerCase().includes(query) || invoice.id.toLowerCase().includes(query))
+      && (statusFilter === 'All' || invoice.status === statusFilter)
   })
+
+  const total     = invoices.reduce((s, i) => s + i.amount, 0)
+  const paid      = invoices.filter(i => i.status === 'Paid').length
+  const pending   = invoices.filter(i => i.status === 'Pending').length
+  const thisMonth = invoices.filter(i => i.status === 'Paid').reduce((s, i) => s + i.amount, 0)
+
+  const stats = [
+    { label: 'Total Invoiced', value: `₹${total.toLocaleString()}`, icon: DollarSign,   color: '#6F5AA3', bg: '#6F5AA318' },
+    { label: 'Paid',           value: String(paid),                  icon: CheckCircle2, color: '#6F9F8F', bg: '#6F9F8F18' },
+    { label: 'Pending',        value: String(pending),               icon: Clock,        color: '#C7923E', bg: '#C7923E18' },
+    { label: 'This Month',     value: `₹${thisMonth.toLocaleString()}`, icon: TrendingUp, color: '#9D679F', bg: '#9D679F18' },
+  ]
 
   return (
     <div className="space-y-6">
@@ -56,6 +62,9 @@ export default function InvoicesPage() {
         <div className="flex items-center gap-2">
           <Receipt size={20} className="text-salon-600 dark:text-salon-100" />
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Invoices</h1>
+          <span className="flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold" style={{ background: 'var(--accent-light)', color: 'var(--accent)' }}>
+            📍 {activeBranch.short}
+          </span>
         </div>
         <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Search invoices, track payments, and send billing updates.</p>
       </div>
@@ -166,7 +175,7 @@ export default function InvoicesPage() {
                         <button
                           title="Send via WhatsApp"
                           onClick={() => {
-                            setInvoices((current) => current.map((item) => item.id === invoice.id ? { ...item, whatsapp: true } : item))
+                          setInvoices(current => current.map(item => item.id === invoice.id ? { ...item, whatsapp: true } : item))
                             alert(`Invoice ${invoice.id} sent via WhatsApp to ${invoice.client}`)
                           }}
                           className={`rounded-lg p-1.5 transition hover:bg-gray-100 dark:hover:bg-gray-700 ${invoice.whatsapp ? 'text-emerald-500' : 'text-gray-500 dark:text-gray-400'}`}

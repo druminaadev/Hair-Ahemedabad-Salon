@@ -12,10 +12,10 @@ const monthlyRevenue = [
 ]
 
 const revenueByService = [
-  { category: 'Hair Services', revenue: 285000, pct: 42, color: '#7c3aed' },
-  { category: 'Skin Care', revenue: 195000, pct: 29, color: '#0ea5e9' },
-  { category: 'Nail Services', revenue: 125000, pct: 18, color: '#10b981' },
-  { category: 'Body Treatments', revenue: 75000, pct: 11, color: '#f59e0b' },
+  { category: 'Hair Services', revenue: 285000, pct: 42, color: '#6F5AA3' },
+  { category: 'Skin Care', revenue: 195000, pct: 29, color: '#6D91BF' },
+  { category: 'Nail Services', revenue: 125000, pct: 18, color: '#6F9F8F' },
+  { category: 'Body Treatments', revenue: 75000, pct: 11, color: '#C7923E' },
 ]
 
 const maxRev = Math.max(...monthlyRevenue.map(m => m.revenue))
@@ -30,10 +30,10 @@ export default function RevenueAnalyticsPage() {
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: 'Total Revenue', value: '₹6.8L', change: '+18.5%', icon: DollarSign, color: '#7c3aed' },
-          { label: 'Avg Monthly', value: '₹1.13L', change: '+12.3%', icon: Calendar, color: '#0ea5e9' },
-          { label: 'This Month', value: '₹1.52L', change: '+25.6%', icon: TrendingUp, color: '#10b981' },
-          { label: 'Target Achievement', value: '101%', change: '+1.3%', icon: ArrowUpRight, color: '#f59e0b' },
+          { label: 'Total Revenue', value: '₹6.8L', change: '+18.5%', icon: DollarSign, color: '#6F5AA3' },
+          { label: 'Avg Monthly', value: '₹1.13L', change: '+12.3%', icon: Calendar, color: '#6D91BF' },
+          { label: 'This Month', value: '₹1.52L', change: '+25.6%', icon: TrendingUp, color: '#6F9F8F' },
+          { label: 'Target Achievement', value: '101%', change: '+1.3%', icon: ArrowUpRight, color: '#C7923E' },
         ].map(({ label, value, change, icon: Icon, color }) => (
           <div key={label} className="rounded-2xl p-5" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
             <div className="flex items-start justify-between mb-3">
@@ -54,18 +54,18 @@ export default function RevenueAnalyticsPage() {
         <div className="flex items-center justify-between mb-6">
           <h3 className="font-bold text-lg" style={{ color: 'var(--text-primary)' }}>Monthly Revenue Trend</h3>
           <div className="flex items-center gap-3 text-xs">
-            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded" style={{ background: '#7c3aed' }} />Revenue</span>
+            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded" style={{ background: '#6F5AA3' }} />Revenue</span>
             <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded" style={{ background: 'var(--border)' }} />Target</span>
           </div>
         </div>
         <div className="flex items-end gap-3 h-64">
           {monthlyRevenue.map(m => (
             <div key={m.month} className="flex-1 flex flex-col items-center gap-2">
-              <span className="text-xs font-semibold" style={{ color: '#7c3aed' }}>₹{(m.revenue / 1000).toFixed(0)}k</span>
+              <span className="text-xs font-semibold" style={{ color: '#6F5AA3' }}>₹{(m.revenue / 1000).toFixed(0)}k</span>
               <div className="w-full flex flex-col gap-1">
                 <div className="w-full rounded-t-lg transition-all duration-500"
-                  style={{ height: `${(m.revenue / maxRev) * 200}px`, background: 'linear-gradient(to top, #7c3aed, #a78bfa)' }} />
-                <div className="w-full h-1 rounded" style={{ background: m.revenue >= m.target ? '#10b981' : '#ef4444' }} />
+                  style={{ height: `${(m.revenue / maxRev) * 200}px`, background: 'linear-gradient(to top, #6F5AA3, #B784B7)' }} />
+                <div className="w-full h-1 rounded" style={{ background: m.revenue >= m.target ? '#6F9F8F' : '#D88385' }} />
               </div>
               <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>{m.month}</span>
             </div>

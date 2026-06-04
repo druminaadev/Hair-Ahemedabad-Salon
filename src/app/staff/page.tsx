@@ -6,16 +6,20 @@ import { Users, Plus, Edit2, Trash2, X, Phone, Mail, Award } from 'lucide-react'
 const SPECIALITIES = ['Hair', 'Skin', 'Nails', 'Body', 'Makeup']
 const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
-const MOCK_STAFF = [
-  { id: 1, name: 'Priya Kumar', role: 'Senior Stylist', speciality: 'Hair',   phone: '+91 98765 11111', email: 'priya@salon.com', isActive: true, workingDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'] },
-  { id: 2, name: 'Rahul Verma', role: 'Color Expert',   speciality: 'Hair',   phone: '+91 98765 22222', email: 'rahul@salon.com', isActive: true, workingDays: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] },
-  { id: 3, name: 'Sonal Patel', role: 'Nail Artist',    speciality: 'Nails',  phone: '+91 98765 33333', email: 'sonal@salon.com', isActive: true, workingDays: ['Monday', 'Wednesday', 'Friday', 'Saturday'] },
-  { id: 4, name: 'Ritu Joshi',  role: 'Makeup Artist',  speciality: 'Makeup', phone: '+91 98765 44444', email: 'ritu@salon.com',  isActive: true, workingDays: ['Thursday', 'Friday', 'Saturday', 'Sunday'] },
-]
+import { useLocationStore, BRANCHES, BRANCH_STAFF, type BranchId } from '@/store/locationStore'
 
 export default function StaffPage() {
+  const { branchId } = useLocationStore()
+  const activeBranch = BRANCHES.find(b => b.id === branchId) ?? BRANCHES[0]
+  const [allStaff, setAllStaff] = useState<Record<BranchId, typeof BRANCH_STAFF.main>>({
+    main: [...BRANCH_STAFF.main],
+    satellite: [...BRANCH_STAFF.satellite],
+    sghighway: [...BRANCH_STAFF.sghighway],
+  })
   const [showForm, setShowForm] = useState(false)
-  const [staff, setStaff] = useState(MOCK_STAFF)
+  const staff = allStaff[branchId]
+  const setStaff = (updater: (prev: typeof BRANCH_STAFF.main) => typeof BRANCH_STAFF.main) =>
+    setAllStaff(prev => ({ ...prev, [branchId]: updater(prev[branchId]) }))
   const [formData, setFormData] = useState({
     name: '', role: '', speciality: 'Hair', phone: '', email: '',
     workingHours: { start: '09:00', end: '18:00' },
@@ -25,7 +29,7 @@ export default function StaffPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setStaff([...staff, { id: Date.now(), ...formData }])
+    setStaff(prev => [...prev, { id: Date.now(), ...formData }])
     setShowForm(false)
     setFormData({ name: '', role: '', speciality: 'Hair', phone: '', email: '', workingHours: { start: '09:00', end: '18:00' }, workingDays: [], isActive: true })
   }
@@ -42,11 +46,14 @@ export default function StaffPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Users size={18} style={{ color: '#CF455C' }} />
+          <Users size={18} style={{ color: '#9D679F' }} />
           <h1 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>Staff Management</h1>
+          <span className="flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold" style={{ background: 'var(--accent-light)', color: 'var(--accent)' }}>
+            📍 {activeBranch.short}
+          </span>
         </div>
         <button onClick={() => setShowForm(true)}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-white text-sm font-semibold transition" style={{ background: '#CF455C' }}>
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-white text-sm font-semibold transition" style={{ background: '#9D679F' }}>
           <Plus size={16} /> Add Staff
         </button>
       </div>
@@ -110,7 +117,7 @@ export default function StaffPage() {
                     <button key={day} type="button" onClick={() => toggleDay(day)}
                       className="px-3 py-1.5 rounded-lg text-xs font-semibold transition"
                       style={{
-                        background: formData.workingDays.includes(day) ? '#CF455C' : 'var(--hover)',
+                        background: formData.workingDays.includes(day) ? '#9D679F' : 'var(--hover)',
                         color: formData.workingDays.includes(day) ? '#fff' : 'var(--text-secondary)',
                         border: formData.workingDays.includes(day) ? 'none' : '1px solid var(--border)',
                       }}>
@@ -144,7 +151,7 @@ export default function StaffPage() {
                   Cancel
                 </button>
                 <button type="submit"
-                  className="flex-1 py-2.5 rounded-xl text-white text-sm font-semibold transition" style={{ background: '#CF455C' }}>
+                  className="flex-1 py-2.5 rounded-xl text-white text-sm font-semibold transition" style={{ background: '#9D679F' }}>
                   Add Staff
                 </button>
               </div>
@@ -159,7 +166,7 @@ export default function StaffPage() {
           <div key={member.id} className="rounded-2xl p-5" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center text-white text-lg font-bold" style={{ background: 'linear-gradient(135deg, #CF455C, #971549)' }}>
+                <div className="w-12 h-12 rounded-full flex items-center justify-center text-white text-lg font-bold" style={{ background: 'linear-gradient(135deg, #9D679F, #6F5AA3)' }}>
                   {member.name.charAt(0)}
                 </div>
                 <div>
@@ -188,7 +195,7 @@ export default function StaffPage() {
               <div className="text-xs font-semibold mb-2" style={{ color: 'var(--text-secondary)' }}>Working Days</div>
               <div className="flex flex-wrap gap-1">
                 {member.workingDays.map(day => (
-                  <span key={day} className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: '#CF455C18', color: '#CF455C' }}>
+                  <span key={day} className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: '#9D679F18', color: '#9D679F' }}>
                     {day.slice(0, 3)}
                   </span>
                 ))}
@@ -201,7 +208,7 @@ export default function StaffPage() {
                 style={{ background: 'var(--hover)', color: 'var(--text-primary)' }}>
                 <Edit2 size={12} className="inline mr-1" /> Edit
               </button>
-              <button onClick={() => { if (confirm(`Remove ${member.name} from staff?`)) setStaff(staff.filter(s => s.id !== member.id)) }}
+              <button onClick={() => { if (confirm(`Remove ${member.name} from staff?`)) setStaff(prev => prev.filter(s => s.id !== member.id)) }}
                 className="flex-1 py-2 rounded-lg text-xs font-semibold transition hover:bg-red-100 dark:hover:bg-red-900/20 text-red-600">
                 <Trash2 size={12} className="inline mr-1" /> Remove
               </button>

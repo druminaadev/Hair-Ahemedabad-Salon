@@ -15,13 +15,13 @@ const ALL_TXN = [
 ]
 
 const statusCfg: Record<string, { bg: string; text: string; icon: typeof CheckCircle2 }> = {
-  Completed: { bg: '#10b98118', text: '#10b981', icon: CheckCircle2 },
-  Refunded:  { bg: '#ef444418', text: '#ef4444', icon: XCircle },
+  Completed: { bg: '#6F9F8F18', text: '#6F9F8F', icon: CheckCircle2 },
+  Refunded:  { bg: '#D8838518', text: '#D88385', icon: XCircle },
 }
 const methodCfg: Record<string, { bg: string; text: string }> = {
-  UPI:  { bg: '#CF455C18', text: '#CF455C' },
-  Cash: { bg: '#10b98118', text: '#10b981' },
-  Card: { bg: '#0ea5e918', text: '#0ea5e9' },
+  UPI:  { bg: '#9D679F18', text: '#9D679F' },
+  Cash: { bg: '#6F9F8F18', text: '#6F9F8F' },
+  Card: { bg: '#6D91BF18', text: '#6D91BF' },
 }
 
 function useMount() {
@@ -61,8 +61,8 @@ export default function TransactionsPage() {
         className="flex items-center gap-3"
         style={{ opacity: mounted ? 1 : 0, transform: mounted ? 'none' : 'translateY(10px)', transition: 'all .4s ease' }}
       >
-        <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: '#0ea5e918' }}>
-          <FileText size={17} style={{ color: '#0ea5e9' }} />
+        <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: '#6D91BF18' }}>
+          <FileText size={17} style={{ color: '#6D91BF' }} />
         </div>
         <div>
           <h1 className="text-lg font-bold" style={{ color: 'var(--text-primary)' }}>Transaction History</h1>
@@ -70,9 +70,9 @@ export default function TransactionsPage() {
         </div>
         <button
           className="ml-auto flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all"
-          style={{ background: '#0ea5e9', color: '#fff' }}
-          onMouseEnter={e => (e.currentTarget.style.background = '#0284c7')}
-          onMouseLeave={e => (e.currentTarget.style.background = '#0ea5e9')}
+          style={{ background: '#6D91BF', color: '#fff' }}
+          onMouseEnter={e => (e.currentTarget.style.background = '#54749C')}
+          onMouseLeave={e => (e.currentTarget.style.background = '#6D91BF')}
         >
           <Download size={14} /> Export CSV
         </button>
@@ -84,10 +84,10 @@ export default function TransactionsPage() {
         style={{ opacity: mounted ? 1 : 0, transform: mounted ? 'none' : 'translateY(14px)', transition: 'all .4s ease .05s' }}
       >
         {[
-          { label: 'Total',       value: filtered.length,                                       color: '#CF455C', suffix: '',  format: false },
-          { label: 'Completed',   value: filtered.filter(t => t.status === 'Completed').length,  color: '#10b981', suffix: '',  format: false },
-          { label: 'Refunded',    value: filtered.filter(t => t.status === 'Refunded').length,   color: '#ef4444', suffix: '',  format: false },
-          { label: 'Net Revenue', value: net,                                                    color: '#f59e0b', suffix: '₹', format: true  },
+          { label: 'Total',       value: filtered.length,                                       color: '#9D679F', suffix: '',  format: false },
+          { label: 'Completed',   value: filtered.filter(t => t.status === 'Completed').length,  color: '#6F9F8F', suffix: '',  format: false },
+          { label: 'Refunded',    value: filtered.filter(t => t.status === 'Refunded').length,   color: '#D88385', suffix: '',  format: false },
+          { label: 'Net Revenue', value: net,                                                    color: '#C7923E', suffix: '₹', format: true  },
         ].map(({ label, value, color, suffix, format }) => (
           <div key={label} className="rounded-2xl p-4" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
             <div className="text-xs mb-2" style={{ color: 'var(--text-secondary)' }}>{label}</div>
@@ -114,7 +114,7 @@ export default function TransactionsPage() {
             <button
               onClick={clearFilters}
               className="ml-auto flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full transition-colors"
-              style={{ background: '#ef444418', color: '#ef4444' }}
+              style={{ background: '#D8838518', color: '#D88385' }}
             >
               <X size={10} /> Clear all
             </button>
@@ -157,7 +157,7 @@ export default function TransactionsPage() {
                 key={m} onClick={() => setMethod(m)}
                 className="px-3 py-1.5 rounded-xl text-xs font-semibold transition-all"
                 style={{
-                  background: method === m ? '#7c3aed' : 'var(--hover)',
+                  background: method === m ? '#6F5AA3' : 'var(--hover)',
                   color: method === m ? '#fff' : 'var(--text-secondary)',
                   border: method === m ? 'none' : '1px solid var(--border)',
                 }}
@@ -172,7 +172,7 @@ export default function TransactionsPage() {
                 key={s} onClick={() => setStatus(s)}
                 className="px-3 py-1.5 rounded-xl text-xs font-semibold transition-all"
                 style={{
-                  background: status === s ? (s === 'Refunded' ? '#ef4444' : '#10b981') : 'var(--hover)',
+                  background: status === s ? (s === 'Refunded' ? '#D88385' : '#6F9F8F') : 'var(--hover)',
                   color: status === s ? '#fff' : 'var(--text-secondary)',
                   border: status === s ? 'none' : '1px solid var(--border)',
                 }}
@@ -192,9 +192,9 @@ export default function TransactionsPage() {
         }}
       >
         <div className="flex items-center gap-2 px-5 py-4" style={{ borderBottom: '1px solid var(--border)' }}>
-          <IndianRupee size={14} style={{ color: '#0ea5e9' }} />
+          <IndianRupee size={14} style={{ color: '#6D91BF' }} />
           <span className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>Transactions</span>
-          <span className="ml-auto text-xs px-2 py-0.5 rounded-full font-semibold" style={{ background: '#0ea5e918', color: '#0ea5e9' }}>
+          <span className="ml-auto text-xs px-2 py-0.5 rounded-full font-semibold" style={{ background: '#6D91BF18', color: '#6D91BF' }}>
             {filtered.length} records
           </span>
         </div>
@@ -203,7 +203,7 @@ export default function TransactionsPage() {
           <div className="flex flex-col items-center justify-center py-16 gap-3">
             <Search size={32} style={{ color: 'var(--text-secondary)', opacity: .4 }} />
             <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>No transactions match your filters</p>
-            <button onClick={clearFilters} className="text-xs font-semibold px-3 py-1.5 rounded-xl" style={{ background: '#CF455C18', color: '#CF455C' }}>
+            <button onClick={clearFilters} className="text-xs font-semibold px-3 py-1.5 rounded-xl" style={{ background: '#9D679F18', color: '#9D679F' }}>
               Clear filters
             </button>
           </div>
@@ -235,14 +235,14 @@ export default function TransactionsPage() {
                       onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
                     >
                       <td className="px-5 py-3.5">
-                        <span className="text-xs font-bold" style={{ color: '#CF455C' }}>{t.id}</span>
+                        <span className="text-xs font-bold" style={{ color: '#9D679F' }}>{t.id}</span>
                       </td>
                       <td className="px-5 py-3.5 text-xs whitespace-nowrap" style={{ color: 'var(--text-secondary)' }}>{t.date}</td>
                       <td className="px-5 py-3.5 font-semibold whitespace-nowrap" style={{ color: 'var(--text-primary)' }}>{t.client}</td>
                       <td className="px-5 py-3.5 text-xs whitespace-nowrap" style={{ color: 'var(--text-secondary)' }}>{t.service}</td>
                       <td className="px-5 py-3.5">
                         <div className="flex items-center gap-1.5">
-                          <div className="w-5 h-5 rounded-full flex items-center justify-center text-white text-[9px] font-bold shrink-0" style={{ background: '#CF455C' }}>
+                          <div className="w-5 h-5 rounded-full flex items-center justify-center text-white text-[9px] font-bold shrink-0" style={{ background: '#9D679F' }}>
                             {t.stylist[0]}
                           </div>
                           <span className="text-xs whitespace-nowrap" style={{ color: 'var(--text-secondary)' }}>{t.stylist}</span>
@@ -251,7 +251,7 @@ export default function TransactionsPage() {
                       <td className="px-5 py-3.5">
                         <span className="text-xs font-semibold px-2.5 py-1 rounded-full" style={{ background: mc.bg, color: mc.text }}>{t.method}</span>
                       </td>
-                      <td className="px-5 py-3.5 font-bold whitespace-nowrap" style={{ color: '#CF455C' }}>₹{t.amount.toLocaleString()}</td>
+                      <td className="px-5 py-3.5 font-bold whitespace-nowrap" style={{ color: '#9D679F' }}>₹{t.amount.toLocaleString()}</td>
                       <td className="px-5 py-3.5">
                         <span className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full w-fit" style={{ background: sc.bg, color: sc.text }}>
                           <StatusIcon size={10} />{t.status}

@@ -31,6 +31,7 @@ import {
   PieChart,
   UserSearch,
   MessageCircle,
+  Wallet,
   type LucideIcon,
 } from 'lucide-react'
 import { cn } from '@/utils/helpers'
@@ -45,6 +46,7 @@ const navItems: NavItem[] = [
       { name: 'Schedule Booking', href: '/booking/new',      icon: CalendarCheck },
       { name: 'Walk-in / POS',    href: '/booking/pos',      icon: ShoppingBag   },
       { name: 'Calendar View',    href: '/booking/calendar', icon: CalendarDays  },
+      { name: 'Booking List',     href: '/booking/list',     icon: List          },
     ],
   },
   {
@@ -93,6 +95,13 @@ const navItems: NavItem[] = [
     items: [
       { name: 'Stock',   href: '/inventory',        icon: Package  },
       { name: 'Reorder', href: '/inventory/reorder', icon: List    },
+    ],
+  },
+  {
+    name: 'Expense', icon: Wallet, prefix: '/expense',
+    items: [
+      { name: 'All Expenses', href: '/expense',        icon: Wallet   },
+      { name: 'Add Expense',  href: '/expense/add',    icon: FileText },
     ],
   },
   {
@@ -146,7 +155,7 @@ export default function Sidebar() {
         style={{ borderBottom: '1px solid var(--sidebar-border)' }}>
         <Link href="/dashboard" className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-xl flex items-center justify-center"
-            style={{ background: 'linear-gradient(135deg, #CF455C, #971549)' }}>
+            style={{ background: 'linear-gradient(135deg, #9D679F, #6F5AA3)' }}>
             <Scissors className="text-white" size={17} />
           </div>
           <div>

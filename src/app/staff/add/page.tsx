@@ -33,7 +33,7 @@ export default function AddStaffPage() {
     <div className="max-w-2xl space-y-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <UserPlus size={20} style={{ color: '#CF455C' }} />
+          <UserPlus size={20} style={{ color: '#9D679F' }} />
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Add Staff Member</h1>
         </div>
         <Link href="/staff"
@@ -77,7 +77,7 @@ export default function AddStaffPage() {
               <button key={day} type="button" onClick={() => toggleDay(day)}
                 className="px-3 py-1.5 rounded-lg text-xs font-semibold transition"
                 style={{
-                  background: formData.workingDays.includes(day) ? '#CF455C' : 'transparent',
+                  background: formData.workingDays.includes(day) ? '#9D679F' : 'transparent',
                   color: formData.workingDays.includes(day) ? '#fff' : '',
                   border: formData.workingDays.includes(day) ? 'none' : '1px solid #d1d5db',
                 }}>
@@ -107,7 +107,7 @@ export default function AddStaffPage() {
             Cancel
           </Link>
           <button type="submit"
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-white text-sm font-semibold transition" style={{ background: '#CF455C' }}>
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-white text-sm font-semibold transition" style={{ background: '#9D679F' }}>
             <Save size={15} /> Save Staff
           </button>
         </div>

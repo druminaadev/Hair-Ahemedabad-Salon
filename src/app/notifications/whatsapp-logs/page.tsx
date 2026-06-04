@@ -13,24 +13,24 @@ const logs = [
 ]
 
 const typeColors: Record<string, { bg: string; text: string }> = {
-  'Booking Confirmation': { bg: '#0ea5e918', text: '#0ea5e9' },
-  '24h Reminder':         { bg: '#f59e0b18', text: '#f59e0b' },
-  'Birthday Benefit':     { bg: '#ec489918', text: '#ec4899' },
-  'Re-engagement':        { bg: '#f9731618', text: '#f97316' },
-  'Invoice PDF':          { bg: '#7c3aed18', text: '#7c3aed' },
+  'Booking Confirmation': { bg: '#6D91BF18', text: '#6D91BF' },
+  '24h Reminder':         { bg: '#C7923E18', text: '#C7923E' },
+  'Birthday Benefit':     { bg: '#C96F9B18', text: '#C96F9B' },
+  'Re-engagement':        { bg: '#D8838518', text: '#D88385' },
+  'Invoice PDF':          { bg: '#6F5AA318', text: '#6F5AA3' },
 }
 
 const statusCfg: Record<string, { icon: React.ElementType; color: string; bg: string }> = {
-  Delivered: { icon: CheckCircle2, color: '#10b981', bg: '#10b98118' },
-  Failed:    { icon: XCircle,      color: '#ef4444', bg: '#ef444418' },
-  Pending:   { icon: Clock,        color: '#f59e0b', bg: '#f59e0b18' },
+  Delivered: { icon: CheckCircle2, color: '#6F9F8F', bg: '#6F9F8F18' },
+  Failed:    { icon: XCircle,      color: '#D88385', bg: '#D8838518' },
+  Pending:   { icon: Clock,        color: '#C7923E', bg: '#C7923E18' },
 }
 
 const stats = [
-  { label: 'Sent Today',  value: '48',  color: '#7c3aed' },
-  { label: 'Delivered',   value: '45',  color: '#10b981' },
-  { label: 'Failed',      value: '3',   color: '#ef4444' },
-  { label: 'This Month',  value: '842', color: '#0ea5e9' },
+  { label: 'Sent Today',  value: '48',  color: '#6F5AA3' },
+  { label: 'Delivered',   value: '45',  color: '#6F9F8F' },
+  { label: 'Failed',      value: '3',   color: '#D88385' },
+  { label: 'This Month',  value: '842', color: '#6D91BF' },
 ]
 
 export default function WhatsAppLogsPage() {
@@ -74,7 +74,7 @@ export default function WhatsAppLogsPage() {
             <button key={s} onClick={() => setStatusFilter(s)}
               className="px-3.5 py-2.5 rounded-xl text-xs font-semibold transition"
               style={{
-                background: statusFilter === s ? '#7c3aed' : 'transparent',
+                background: statusFilter === s ? '#6F5AA3' : 'transparent',
                 color: statusFilter === s ? '#fff' : 'var(--text-secondary)',
                 border: statusFilter === s ? 'none' : '1px solid var(--border)',
               }}>
@@ -107,7 +107,7 @@ export default function WhatsAppLogsPage() {
             </thead>
             <tbody>
               {filtered.map(log => {
-                const tc = typeColors[log.type] ?? { bg: '#94a3b818', text: '#94a3b8' }
+                const tc = typeColors[log.type] ?? { bg: '#8A7D8E18', text: '#8A7D8E' }
                 const sc = statusCfg[log.status]
                 const StatusIcon = sc.icon
                 return (

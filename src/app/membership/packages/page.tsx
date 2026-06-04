@@ -4,9 +4,9 @@ import { useState } from 'react'
 import { Gift, Plus, Edit2, Trash2, X, Save, Scissors } from 'lucide-react'
 
 const initialPackages = [
-  { id: 1, name: 'Bridal Package',    price: 8999,  services: ['Hair Color', 'Bridal Makeup', 'Facial', 'Manicure', 'Pedicure'], validity: '1 Day',    color: '#ec4899' },
-  { id: 2, name: 'Hair Care Bundle',  price: 2999,  services: ['Hair Cut', 'Hair Spa', 'Hair Color'],                             validity: '1 Month',  color: '#8b5cf6' },
-  { id: 3, name: 'Skin Glow Pack',    price: 1999,  services: ['Facial', 'Face Massage', 'Clean-up'],                            validity: '2 Months', color: '#0ea5e9' },
+  { id: 1, name: 'Bridal Package',    price: 8999,  services: ['Hair Color', 'Bridal Makeup', 'Facial', 'Manicure', 'Pedicure'], validity: '1 Day',    color: '#C96F9B' },
+  { id: 2, name: 'Hair Care Bundle',  price: 2999,  services: ['Hair Cut', 'Hair Spa', 'Hair Color'],                             validity: '1 Month',  color: '#8E7AB5' },
+  { id: 3, name: 'Skin Glow Pack',    price: 1999,  services: ['Facial', 'Face Massage', 'Clean-up'],                            validity: '2 Months', color: '#6D91BF' },
 ]
 
 export default function PackagesPage() {
@@ -16,7 +16,7 @@ export default function PackagesPage() {
 
   const handleSave = () => {
     if (!form.name || !form.price) return
-    setPackages(p => [...p, { id: Date.now(), name: form.name, price: Number(form.price), services: [], validity: form.validity || '1 Month', color: '#6366f1' }])
+    setPackages(p => [...p, { id: Date.now(), name: form.name, price: Number(form.price), services: [], validity: form.validity || '1 Month', color: '#6D91BF' }])
     setForm({ name: '', price: '', validity: '' })
     setShowModal(false)
   }

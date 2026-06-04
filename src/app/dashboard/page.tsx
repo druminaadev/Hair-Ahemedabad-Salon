@@ -1,603 +1,467 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import {
-  TrendingUp,
-  Users,
-  Calendar,
-  DollarSign,
-  ArrowUpRight,
-  ArrowDownRight,
-  Clock,
-  Scissors,
-  ShoppingBag,
-  Plus,
-  Star,
-  MoreHorizontal,
-  CheckCircle2,
-  Circle,
-  Timer,
-  ChevronRight,
-  Sparkles,
-  Bell,
-  Activity,
-  Receipt,
-  Gift,
-  BadgePercent,
-  Boxes,
-  BarChart2,
-  Settings,
-  FileText,
-  Package,
-  Tag,
-  RefreshCw,
-  BarChart,
-  CreditCard,
-  UserCircle,
-  CalendarCheck,
-  type LucideIcon,
+  ArrowUpRight, CalendarCheck, Clock, DollarSign, Plus,
+  Scissors, Sparkles, Users, TrendingUp, Star, Package,
+  Bell, MessageSquare, MapPin,
 } from 'lucide-react'
+import { useLocationStore, BRANCHES, BRANCH_DATA } from '@/store/locationStore'
 
-const theme = {
-  primary: '#971549',
-  primarySoft: '#FF9898',
-  primaryMid: '#CF455C',
-  primaryDark: '#470031',
-  emerald: '#10B981',
-  amber: '#F59E0B',
-  sky: '#0EA5E9',
+const palette = {
+  rose:  '#6F5AA3',
+  coral: '#9D679F',
+  sage:  '#6F9F8F',
+  amber: '#C7923E',
+  sky:   '#6D91BF',
+  plum:  '#5F4C86',
+  pink:  '#C96F9B',
 }
 
-const stats = [
-  {
-    label: 'Total Revenue',
-    value: '₹1,24,500',
-    change: '+12.5%',
-    up: true,
-    icon: DollarSign,
-    iconBox: 'bg-salon-100/25 dark:bg-salon-900/30',
-    iconColor: 'text-salon-600 dark:text-salon-100',
-  },
-  {
-    label: 'Appointments',
-    value: '284',
-    change: '+8.2%',
-    up: true,
-    icon: Calendar,
-    iconBox: 'bg-rose-100 dark:bg-rose-950/40',
-    iconColor: 'text-rose-600 dark:text-rose-300',
-  },
-  {
-    label: 'Active Clients',
-    value: '1,340',
-    change: '+5.1%',
-    up: true,
-    icon: Users,
-    iconBox: 'bg-emerald-50 dark:bg-emerald-950/40',
-    iconColor: 'text-emerald-600 dark:text-emerald-400',
-  },
-  {
-    label: 'Avg. Ticket',
-    value: '₹438',
-    change: '-2.3%',
-    up: false,
-    icon: TrendingUp,
-    iconBox: 'bg-amber-50 dark:bg-amber-950/40',
-    iconColor: 'text-amber-600 dark:text-amber-400',
-  },
+const METRIC_META = [
+  { icon: DollarSign,   color: palette.rose,  gradient: 'from-[#6F5AA3] to-[#9D679F]' },
+  { icon: CalendarCheck,color: palette.sky,   gradient: 'from-[#6D91BF] to-[#5F4C86]' },
+  { icon: Users,        color: palette.sage,  gradient: 'from-[#6F9F8F] to-[#6D91BF]' },
+  { icon: Sparkles,     color: palette.pink,  gradient: 'from-[#C96F9B] to-[#D88385]' },
 ]
 
-const appointments = [
-  { id: 1, client: 'Priya Sharma', avatar: 'PS', service: 'Hair Cut & Color', staff: 'Neha', time: '10:00 AM', duration: '90 min', status: 'completed', amount: '₹1,800' },
-  { id: 2, client: 'Riya Patel', avatar: 'RP', service: 'Facial', staff: 'Pooja', time: '11:30 AM', duration: '60 min', status: 'in-progress', amount: '₹800' },
-  { id: 3, client: 'Anita Verma', avatar: 'AV', service: 'Manicure', staff: 'Sonal', time: '01:00 PM', duration: '45 min', status: 'upcoming', amount: '₹400' },
-  { id: 4, client: 'Meena Joshi', avatar: 'MJ', service: 'Hair Spa', staff: 'Neha', time: '02:30 PM', duration: '60 min', status: 'upcoming', amount: '₹1,200' },
-  { id: 5, client: 'Sunita Rao', avatar: 'SR', service: 'Waxing', staff: 'Pooja', time: '04:00 PM', duration: '60 min', status: 'upcoming', amount: '₹1,000' },
+const SERVICE_META = [
+  { color: palette.rose,  gradient: 'from-[#6F5AA3] to-[#9D679F]' },
+  { color: palette.pink,  gradient: 'from-[#C96F9B] to-[#D88385]' },
+  { color: palette.sage,  gradient: 'from-[#6F9F8F] to-[#6D91BF]' },
+  { color: palette.amber, gradient: 'from-[#C7923E] to-[#D88385]' },
 ]
 
-const staff = [
-  { name: 'Neha Sharma', role: 'Senior Stylist', avatar: 'N', revenue: '₹48,200', bookings: 142, rating: 4.9 },
-  { name: 'Pooja Verma', role: 'Beautician', avatar: 'P', revenue: '₹32,100', bookings: 98, rating: 4.7 },
-  { name: 'Sonal Patel', role: 'Nail Artist', avatar: 'S', revenue: '₹24,800', bookings: 76, rating: 4.8 },
-  { name: 'Ritu Joshi', role: 'Makeup Artist', avatar: 'R', revenue: '₹18,600', bookings: 54, rating: 4.6 },
-]
-
-const services = [
-  { name: 'Hair Cut & Color', bookings: 84, revenue: '₹42,000', pct: 90 },
-  { name: 'Facial', bookings: 62, revenue: '₹24,800', pct: 66 },
-  { name: 'Hair Spa', bookings: 48, revenue: '₹28,800', pct: 51 },
-  { name: 'Manicure', bookings: 44, revenue: '₹8,800', pct: 47 },
-  { name: 'Waxing', bookings: 38, revenue: '₹19,000', pct: 40 },
-]
-
-const revenueChart = [
-  { month: 'Aug', value: 82 },
-  { month: 'Sep', value: 91 },
-  { month: 'Oct', value: 78 },
-  { month: 'Nov', value: 105 },
-  { month: 'Dec', value: 124 },
-  { month: 'Jan', value: 118 },
-]
-
-const notifications = [
-  { text: 'Priya Sharma booked Hair Spa for tomorrow', time: '2m ago', dot: 'bg-salon-600' },
-  { text: 'Low stock alert: Hair Color (Blonde)', time: '15m ago', dot: 'bg-amber-500' },
-  { text: 'Riya Patel left a 5 star review', time: '1h ago', dot: 'bg-emerald-500' },
-]
-
-const statusConfig: Record<string, { label: string; icon: LucideIcon; cls: string }> = {
-  completed: { label: 'Completed', icon: CheckCircle2, cls: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400' },
-  'in-progress': { label: 'In Progress', icon: Timer, cls: 'bg-salon-100/25 text-salon-600 dark:bg-salon-900/40 dark:text-salon-100' },
-  upcoming: { label: 'Upcoming', icon: Circle, cls: 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400' },
+const NOTIF_COLORS: Record<string, string> = {
+  booking:   palette.sky,
+  inventory: palette.amber,
+  review:    palette.pink,
 }
 
-const avatarColors = ['bg-salon-600', 'bg-rose-500', 'bg-emerald-500', 'bg-amber-500', 'bg-sky-500']
-const maxRevenue = Math.max(...revenueChart.map((d) => d.value))
+const statusStyles: Record<string, string> = {
+  Done:   'bg-gray-100 text-gray-500 dark:bg-white/10 dark:text-gray-400',
+  Active: 'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400',
+  Next:   'bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400',
+  Booked: 'bg-purple-50 text-purple-600 dark:bg-purple-900/30 dark:text-purple-300',
+}
 
-const pages = [
-  {
-    group: 'Booking',
-    color: theme.primary,
-    icon: CalendarCheck,
-    items: [
-      { label: 'New Booking', path: '/booking/new', icon: Calendar, desc: 'Schedule a new appointment' },
-      { label: 'POS / Walk-in', path: '/booking/pos', icon: ShoppingBag, desc: 'Quick walk-in billing' },
-      { label: 'Calendar View', path: '/booking/calendar', icon: CalendarCheck, desc: 'Plan daily appointments' },
-    ],
-  },
-  {
-    group: 'Invoices',
-    color: theme.amber,
-    icon: Receipt,
-    items: [
-      { label: 'All Invoices', path: '/invoices', icon: FileText, desc: 'Manage billing and payments' },
-    ],
-  },
-  {
-    group: 'Services',
-    color: theme.primaryMid,
-    icon: Scissors,
-    items: [
-      { label: 'All Services', path: '/services', icon: Scissors, desc: '5 active services' },
-      { label: 'Categories', path: '/services/categories', icon: Tag, desc: 'Organise service types' },
-    ],
-  },
-  {
-    group: 'Staff',
-    color: theme.sky,
-    icon: Users,
-    items: [
-      { label: 'Staff List', path: '/staff', icon: Users, desc: '5 staff members' },
-      { label: 'Add Staff', path: '/staff/add', icon: UserCircle, desc: 'Onboard new member' },
-    ],
-  },
-  {
-    group: 'Clients',
-    color: theme.emerald,
-    icon: UserCircle,
-    items: [
-      { label: 'Client List', path: '/customers', icon: UserCircle, desc: '1,340 active clients' },
-      { label: 'Add Client', path: '/customers/add', icon: Plus, desc: 'Register new client' },
-    ],
-  },
-  {
-    group: 'Membership',
-    color: '#EC4899',
-    icon: Gift,
-    items: [
-      { label: 'Plans', path: '/membership', icon: CreditCard, desc: 'Subscription plans' },
-      { label: 'Packages', path: '/membership/packages', icon: Package, desc: 'Service bundles' },
-      { label: 'Loyalty', path: '/loyalty', icon: Star, desc: 'Reward points program' },
-    ],
-  },
-  {
-    group: 'Discounts',
-    color: '#F97316',
-    icon: BadgePercent,
-    items: [
-      { label: 'All Discounts', path: '/discounts', icon: BadgePercent, desc: 'Coupons and offers' },
-    ],
-  },
-  {
-    group: 'Inventory',
-    color: '#14B8A6',
-    icon: Boxes,
-    items: [
-      { label: 'Stock', path: '/inventory', icon: Boxes, desc: 'Product stock levels' },
-      { label: 'Reorder', path: '/inventory/reorder', icon: RefreshCw, desc: '3 items low on stock' },
-    ],
-  },
-  {
-    group: 'Reports',
-    color: theme.primaryDark,
-    icon: BarChart2,
-    items: [
-      { label: 'Reports', path: '/reports', icon: Activity, desc: 'Business overview' },
-      { label: 'Transactions', path: '/reports/transactions', icon: FileText, desc: 'All transactions log' },
-      { label: 'Business Trend', path: '/reports/business-trend', icon: TrendingUp, desc: 'Growth analytics' },
-      { label: 'Stylist Progress', path: '/reports/stylist-progress', icon: BarChart, desc: 'Staff performance' },
-    ],
-  },
-  {
-    group: 'Notifications',
-    color: '#64748B',
-    icon: Bell,
-    items: [
-      { label: 'WhatsApp Logs', path: '/notifications', icon: Bell, desc: 'Message delivery logs' },
-    ],
-  },
-  {
-    group: 'Settings',
-    color: '#94A3B8',
-    icon: Settings,
-    items: [
-      { label: 'Salon Info', path: '/settings', icon: Sparkles, desc: 'Salon profile and branding' },
-      { label: 'Notifications', path: '/settings/notifications', icon: Bell, desc: 'Alert preferences' },
-    ],
-  },
-]
+const statusBorder: Record<string, string> = {
+  Done:   'border-l-gray-300',
+  Active: 'border-l-emerald-400',
+  Next:   'border-l-blue-400',
+  Booked: 'border-l-purple-400',
+}
 
-const serviceBars = [
-  'from-salon-600 to-salon-400',
-  'from-rose-500 to-pink-400',
-  'from-emerald-500 to-green-400',
-  'from-amber-500 to-yellow-400',
-  'from-sky-500 to-blue-400',
-]
+function initials(name: string) {
+  return name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()
+}
 
-const staffColors = [theme.primary, theme.primaryMid, theme.emerald, theme.amber]
-const availablePagePaths = new Set(['/booking/new', '/booking/pos', '/booking/calendar', '/customers', '/customers/add'])
+function avatarColor(name: string) {
+  const colors = ['#6F5AA3', '#9D679F', '#6F9F8F', '#6D91BF', '#C7923E', '#C96F9B']
+  return colors[name.charCodeAt(0) % colors.length]
+}
 
-export default function DashboardPage() {
-  const [activeTab, setActiveTab] = useState<'today' | 'upcoming'>('today')
+function Card({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  return (
+    <section className={`rounded-2xl border border-white/80 bg-white shadow-[0_18px_45px_rgba(36,21,26,0.07)] dark:border-white/10 dark:bg-white/[0.04] ${className}`}>
+      {children}
+    </section>
+  )
+}
 
-  const now = new Date()
-  const hour = now.getHours()
-  const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening'
-  const dateStr = now.toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
+function StaffLoadBar({ load, active }: { load: number; active: boolean }) {
+  const [visible, setVisible] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect() } }, { threshold: 0.3 })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+  return (
+    <div ref={ref} className="h-2 flex-1 overflow-hidden rounded-full bg-gray-100 dark:bg-white/10">
+      <div className={`h-full rounded-full transition-all duration-1000 ease-out bg-gradient-to-r ${active ? 'from-[#6F9F8F] to-[#6D91BF]' : 'from-[#C7923E] to-[#D88385]'}`}
+        style={{ width: visible ? `${load}%` : '0%' }} />
+    </div>
+  )
+}
+
+function DonutChart({ services }: { services: { name: string; value: number }[] }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
+  const size = 168, radius = 58, stroke = 18
+  const circumference = 2 * Math.PI * radius
+  let offset = 0
+
+  useEffect(() => {
+    setVisible(false)
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect() } }, { threshold: 0.35 })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [services])
 
   return (
-    <div className="space-y-6 pb-6">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <div className="mb-1 flex items-center gap-2">
-            <Sparkles size={18} className="text-salon-600 dark:text-salon-100" />
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-              {greeting}, Admin
-            </h1>
-          </div>
-          <p className="text-sm text-gray-500 dark:text-gray-400">{dateStr}</p>
+    <div ref={ref} className="flex flex-col items-center">
+      <div className="relative" style={{ width: size, height: size }}>
+        <div className="absolute inset-0 rounded-full opacity-20 blur-xl" style={{ background: 'radial-gradient(circle, #6F5AA3 0%, transparent 70%)' }} />
+        <svg width={size} height={size} className="-rotate-90 relative">
+          <circle cx={size/2} cy={size/2} r={radius} fill="none" stroke="#F4E7E9" strokeWidth={stroke} />
+          {services.map((s, i) => {
+            const meta = SERVICE_META[i % SERVICE_META.length]
+            const dash = (s.value / 100) * circumference
+            const seg = (
+              <circle key={s.name}
+                className="transition-[stroke-dasharray,stroke-dashoffset] duration-1000 ease-out"
+                cx={size/2} cy={size/2} r={radius} fill="none"
+                stroke={meta.color}
+                strokeDasharray={visible ? `${dash} ${circumference - dash}` : `0 ${circumference}`}
+                strokeDashoffset={visible ? -offset : 0}
+                strokeLinecap="round" strokeWidth={stroke}
+                style={{ transitionDelay: `${i * 140}ms` }}
+              />
+            )
+            offset += dash
+            return seg
+          })}
+        </svg>
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <span className="text-2xl font-bold text-gray-950 dark:text-white">{visible ? '100%' : '0%'}</span>
+          <span className="text-xs text-gray-500 dark:text-gray-400">services</span>
         </div>
+      </div>
+    </div>
+  )
+}
 
-        <div className="flex flex-wrap gap-2">
-          <Link href="/booking/new" className="flex items-center gap-1.5 rounded-xl bg-salon-600 px-4 py-2 text-xs font-semibold text-white shadow-sm shadow-salon-100 transition hover:bg-salon-900 dark:shadow-none">
-            <Plus size={14} />New Booking
-          </Link>
-          <Link href="/booking/pos" className="flex items-center gap-1.5 rounded-xl bg-salon-400 px-4 py-2 text-xs font-semibold text-white shadow-sm shadow-salon-100 transition hover:bg-salon-600 dark:shadow-none">
-            <ShoppingBag size={14} />Walk-in POS
-          </Link>
-          <Link href="/customers" className="flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-4 py-2 text-xs font-semibold text-gray-900 transition hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800">
-            <Users size={14} />Add Client
+export default function DashboardPage() {
+  const { branchId }   = useLocationStore()
+  const activeBranch   = BRANCHES.find(b => b.id === branchId) ?? BRANCHES[0]
+  const data           = BRANCH_DATA[branchId]
+
+  const today = new Date().toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' })
+
+  return (
+    <main className="min-h-full space-y-6 bg-[#FBF4F8] pb-6 text-gray-950 dark:bg-transparent dark:text-white">
+
+      {/* ── Header ── */}
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#6F5AA3] via-[#9D679F] to-[#C96F9B] px-6 py-7 shadow-[0_20px_50px_rgba(111,90,163,0.35)]">
+        <div className="pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full bg-white/10 blur-2xl" />
+        <div className="pointer-events-none absolute -bottom-8 left-1/3 h-32 w-32 rounded-full bg-white/10 blur-2xl" />
+        <div className="pointer-events-none absolute bottom-0 right-1/4 h-20 w-20 rounded-full bg-[#C96F9B]/40 blur-xl" />
+        <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <div className="mb-3 flex flex-wrap items-center gap-2">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/20 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
+                <Sparkles size={12} className="animate-pulse" /> Salon CRM
+              </div>
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-white/20 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
+                <MapPin size={11} />{activeBranch.name}
+              </div>
+            </div>
+            <h1 className="text-3xl font-bold tracking-tight text-white drop-shadow-sm">Dashboard</h1>
+            <p className="mt-1 text-sm font-medium text-white/90">{today} — {activeBranch.address}</p>
+          </div>
+          <Link href="/booking/new"
+            className="inline-flex h-11 items-center justify-center gap-2 self-start rounded-xl border border-white/30 bg-white/20 px-5 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/30 sm:self-auto">
+            <Plus size={16} /> New Booking
           </Link>
         </div>
       </div>
 
+      {/* ── Metric Cards ── */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {stats.map(({ label, value, change, up, icon: Icon, iconBox, iconColor }) => (
-          <div key={label} className="rounded-2xl border border-gray-200 bg-white p-5 transition hover:shadow-md dark:border-gray-700 dark:bg-gray-900">
-            <div className="mb-4 flex items-start justify-between">
-              <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${iconBox}`}>
-                <Icon size={18} className={iconColor} />
+        {data.metrics.map(({ label, value, helper }, i) => {
+          const { icon: Icon, color, gradient } = METRIC_META[i]
+          return (
+            <div key={label} className="group relative overflow-hidden rounded-2xl border border-white/80 bg-white p-5 shadow-[0_18px_45px_rgba(36,21,26,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_55px_rgba(36,21,26,0.13)] dark:border-white/10 dark:bg-white/[0.04]">
+              <div className={`absolute inset-x-0 top-0 h-0.5 rounded-t-2xl bg-gradient-to-r ${gradient}`} />
+              <div className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full opacity-[0.06]" style={{ background: color }} />
+              <div className="flex items-start justify-between">
+                <div className={`flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${gradient} shadow-lg`}>
+                  <Icon size={19} className="text-white" />
+                </div>
+                <span className="inline-flex items-center gap-1 rounded-full bg-[#F2FBF6] px-2 py-1 text-xs font-semibold text-[#34835B]">
+                  <ArrowUpRight size={12} /> Live
+                </span>
               </div>
-              <span className={`flex items-center gap-0.5 rounded-full px-2 py-0.5 text-xs font-semibold ${up ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400' : 'bg-red-50 text-red-500 dark:bg-red-900/30 dark:text-red-400'}`}>
-                {up ? <ArrowUpRight size={11} /> : <ArrowDownRight size={11} />}
-                {change}
-              </span>
+              <p className="mt-5 text-3xl font-bold tracking-tight text-[#24151A] dark:text-white">{value}</p>
+              <div className="mt-1 flex items-center justify-between gap-3">
+                <p className="text-sm font-medium text-gray-600 dark:text-gray-300">{label}</p>
+                <p className="text-xs text-gray-400 dark:text-gray-500">{helper}</p>
+              </div>
             </div>
-            <p className="mb-0.5 text-2xl font-bold text-gray-900 dark:text-white">{value}</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">{label}</p>
-          </div>
-        ))}
+          )
+        })}
       </div>
 
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
-        <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900 xl:col-span-2">
-          <div className="flex items-center justify-between px-5 pb-4 pt-5">
-            <div className="flex items-center gap-2">
-              <Calendar size={16} className="text-salon-600 dark:text-salon-100" />
-              <h2 className="text-base font-bold text-gray-900 dark:text-white">Appointments</h2>
-              <span className="rounded-full bg-salon-100/25 px-2 py-0.5 text-xs font-semibold text-salon-600 dark:bg-salon-900/40 dark:text-salon-100">
-                {appointments.length}
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="flex overflow-hidden rounded-xl border border-gray-200 text-xs font-semibold dark:border-gray-700">
-                {(['today', 'upcoming'] as const).map((tab) => (
-                  <button
-                    key={tab}
-                    onClick={() => setActiveTab(tab)}
-                    className={`px-3 py-1.5 capitalize transition ${activeTab === tab ? 'bg-salon-600 text-white' : 'text-gray-500 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-800'}`}
-                  >
-                    {tab}
-                  </button>
-                ))}
+      {/* ── Timeline + Staff ── */}
+      <div className="grid grid-cols-1 gap-6 xl:grid-cols-[1.25fr_0.75fr]">
+        <Card className="overflow-hidden">
+          <div className="flex items-center justify-between border-b border-gray-100 px-5 py-4 dark:border-white/10">
+            <div>
+              <div className="flex items-center gap-2">
+                <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-[#6F5AA3] to-[#9D679F]">
+                  <Clock size={13} className="text-white" />
+                </div>
+                <h2 className="text-base font-semibold text-[#24151A] dark:text-white">Today&apos;s Timeline</h2>
               </div>
-              <Link href="/booking/calendar" className="flex items-center gap-0.5 text-xs font-semibold text-salon-600 hover:underline dark:text-salon-100">
-                View all <ChevronRight size={13} />
-              </Link>
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Scannable client appointments for the day</p>
             </div>
+            <span className="rounded-full bg-gradient-to-r from-[#6F5AA3] to-[#9D679F] px-3 py-1 text-xs font-semibold text-white shadow-sm">
+              {data.timeline.length} visits
+            </span>
           </div>
+          <div className="divide-y divide-gray-100 dark:divide-white/10">
+            {data.timeline.map(item => (
+              <div key={`${item.time}-${item.client}`}
+                className={`grid gap-3 border-l-4 px-5 py-4 transition hover:bg-[#FBF4F8] dark:hover:bg-white/[0.04] sm:grid-cols-[4.5rem_1fr_auto] sm:items-center ${statusBorder[item.status] ?? 'border-l-transparent'}`}>
+                <div className="text-sm font-bold text-[#24151A] dark:text-white">{item.time}</div>
+                <div className="flex min-w-0 items-center gap-3">
+                  <div className="hidden h-8 w-8 shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-white shadow-sm sm:flex"
+                    style={{ background: avatarColor(item.client) }}>
+                    {initials(item.client)}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="font-semibold text-[#24151A] dark:text-white">{item.client}</span>
+                      <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${statusStyles[item.status]}`}>{item.status}</span>
+                    </div>
+                    <p className="mt-0.5 truncate text-xs text-gray-500 dark:text-gray-400">{item.service} · {item.stylist}</p>
+                  </div>
+                </div>
+                <div className="text-sm font-bold text-[#6F5AA3] dark:text-[#C9A8F5]">{item.amount}</div>
+              </div>
+            ))}
+          </div>
+        </Card>
 
-          <div className="divide-y divide-gray-200 border-t border-gray-200 dark:divide-gray-700 dark:border-gray-700">
-            {appointments.map((appointment, index) => {
-              const status = statusConfig[appointment.status]
-              const StatusIcon = status.icon
-
+        <Card className="p-5">
+          <div className="mb-4 flex items-center gap-2">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-[#6F9F8F] to-[#6D91BF]">
+              <Users size={13} className="text-white" />
+            </div>
+            <h2 className="text-base font-semibold text-[#24151A] dark:text-white">Staff Tracker</h2>
+          </div>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-1">
+            {data.staff.map(member => {
+              const active = member.state === 'Active'
               return (
-                <div key={appointment.id} className="group flex items-center gap-4 px-5 py-3.5 transition hover:bg-gray-50 dark:hover:bg-gray-800">
-                  <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white ${avatarColors[index % avatarColors.length]}`}>
-                    {appointment.avatar}
+                <div key={member.name} className="rounded-xl border border-gray-100 bg-[#FFFDFC] p-3 transition hover:shadow-md dark:border-white/10 dark:bg-white/[0.03]">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white shadow-sm"
+                      style={{ background: avatarColor(member.name) }}>
+                      {initials(member.name)}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-semibold text-[#24151A] dark:text-white">{member.name}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">{member.role}</p>
+                    </div>
+                    <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${active ? 'bg-[#F2FBF6] text-[#34835B]' : 'bg-[#FFF4E6] text-[#9A641F]'}`}>
+                      {member.state}
+                    </span>
                   </div>
-                  <div className="min-w-0 flex-1">
+                  <div className="mt-3 flex items-center gap-3">
+                    <StaffLoadBar load={member.load} active={active} />
+                    <span className="text-[10px] font-medium text-gray-500 dark:text-gray-400">{member.next}</span>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </Card>
+      </div>
+
+      {/* ── Weekly Performance ── */}
+      <Card className="overflow-hidden">
+        <div className="border-b border-gray-100 px-5 py-4 dark:border-white/10">
+          <div className="flex items-center justify-between">
+            <div>
+              <div className="flex items-center gap-2">
+                <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-[#6F5AA3] to-[#9D679F]">
+                  <TrendingUp size={13} className="text-white" />
+                </div>
+                <h2 className="text-base font-semibold text-[#24151A] dark:text-white">Weekly Performance</h2>
+              </div>
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Revenue & bookings trend · {activeBranch.short}</p>
+            </div>
+            <span className="rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 px-3 py-1 text-xs font-semibold text-white shadow-sm">
+              +12% vs last week
+            </span>
+          </div>
+        </div>
+        <div className="px-5 py-6">
+          <div className="flex items-end justify-between gap-2">
+            {data.weeklyPerformance.map(day => (
+              <div key={day.day} className="group flex flex-1 flex-col items-center gap-2">
+                <div className="relative w-full">
+                  <div className="pointer-events-none absolute -top-20 left-1/2 z-10 -translate-x-1/2 rounded-lg border border-gray-200 bg-white px-3 py-2 opacity-0 shadow-lg transition-opacity group-hover:opacity-100 dark:border-white/20 dark:bg-gray-900">
+                    <p className="whitespace-nowrap text-xs font-semibold text-[#24151A] dark:text-white">Rs.{day.revenue.toLocaleString()}</p>
+                    <p className="whitespace-nowrap text-[10px] text-gray-500 dark:text-gray-400">{day.bookings} bookings</p>
+                  </div>
+                  <div className={`relative mx-auto w-full rounded-t-lg transition-all duration-700 ${day.isToday ? 'bg-gradient-to-t from-[#6F5AA3] to-[#9D679F] shadow-lg' : 'bg-gradient-to-t from-gray-200 to-gray-300 dark:from-white/10 dark:to-white/20'}`}
+                    style={{ height: `${day.height}px` }}>
+                    {day.isToday && <span className="absolute -top-1 left-1/2 h-2 w-2 -translate-x-1/2 animate-pulse rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />}
+                  </div>
+                </div>
+                <span className={`text-xs font-semibold ${day.isToday ? 'text-[#6F5AA3] dark:text-[#C9A8F5]' : 'text-gray-500 dark:text-gray-400'}`}>
+                  {day.day}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Card>
+
+      {/* ── Top Products + Reviews ── */}
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <Card className="overflow-hidden">
+          <div className="border-b border-gray-100 px-5 py-4 dark:border-white/10">
+            <div className="flex items-center gap-2">
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-[#C7923E] to-[#D88385]">
+                <Package size={13} className="text-white" />
+              </div>
+              <h2 className="text-base font-semibold text-[#24151A] dark:text-white">Top Products</h2>
+            </div>
+            <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Best-selling retail items this week</p>
+          </div>
+          <div className="divide-y divide-gray-100 dark:divide-white/10">
+            {data.topProducts.map((product, idx) => (
+              <div key={product.name} className="flex items-center gap-4 px-5 py-4 transition hover:bg-[#FBF4F8] dark:hover:bg-white/[0.04]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#C7923E] to-[#D88385] text-sm font-bold text-white shadow-sm">
+                  {idx + 1}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-sm font-semibold text-[#24151A] dark:text-white">{product.name}</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">{product.sales} sold · {product.stock} in stock</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-sm font-bold text-[#24151A] dark:text-white">{product.revenue}</p>
+                  <p className="flex items-center gap-1 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                    <TrendingUp size={10} />{product.trend}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Card>
+
+        <Card className="overflow-hidden">
+          <div className="border-b border-gray-100 px-5 py-4 dark:border-white/10">
+            <div className="flex items-center gap-2">
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-[#C96F9B] to-[#6F5AA3]">
+                <Star size={13} className="text-white" />
+              </div>
+              <h2 className="text-base font-semibold text-[#24151A] dark:text-white">Recent Reviews</h2>
+            </div>
+            <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Latest customer feedback</p>
+          </div>
+          <div className="divide-y divide-gray-100 dark:divide-white/10">
+            {data.reviews.map(review => (
+              <div key={`${review.client}-${review.time}`} className="px-5 py-4 transition hover:bg-[#FBF4F8] dark:hover:bg-white/[0.04]">
+                <div className="mb-2 flex items-start justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#C96F9B] to-[#6F5AA3] text-xs font-bold text-white shadow-sm">
+                      {initials(review.client)}
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-[#24151A] dark:text-white">{review.client}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">{review.service} · {review.time}</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-0.5">
+                    {Array.from({ length: review.rating }).map((_, i) => (
+                      <Star key={i} size={12} className="fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-300">{review.comment}</p>
+              </div>
+            ))}
+          </div>
+        </Card>
+      </div>
+
+      {/* ── Live Activity ── */}
+      <Card className="overflow-hidden">
+        <div className="border-b border-gray-100 px-5 py-4 dark:border-white/10">
+          <div className="flex items-center justify-between">
+            <div>
+              <div className="flex items-center gap-2">
+                <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-[#6D91BF] to-[#5F4C86]">
+                  <Bell size={13} className="text-white" />
+                </div>
+                <h2 className="text-base font-semibold text-[#24151A] dark:text-white">Live Activity</h2>
+              </div>
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Real-time salon updates · {activeBranch.short}</p>
+            </div>
+            <span className="relative flex h-3 w-3">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-3 w-3 rounded-full bg-emerald-500" />
+            </span>
+          </div>
+        </div>
+        <div className="divide-y divide-gray-100 dark:divide-white/10">
+          {data.notifications.map((notif, idx) => {
+            const color = NOTIF_COLORS[notif.type] ?? palette.sky
+            return (
+              <div key={idx} className="flex items-start gap-4 px-5 py-4 transition hover:bg-[#FBF4F8] dark:hover:bg-white/[0.04]">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full" style={{ background: `${color}20` }}>
+                  <MessageSquare size={14} style={{ color }} />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm text-[#24151A] dark:text-white">{notif.message}</p>
+                  <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">{notif.time}</p>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </Card>
+
+      {/* ── Service Analytics ── */}
+      <Card className="p-5">
+        <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <div className="flex items-center gap-2">
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-[#C96F9B] to-[#6F5AA3]">
+                <Scissors size={13} className="text-white" />
+              </div>
+              <h2 className="text-base font-semibold text-[#24151A] dark:text-white">Service Analytics</h2>
+            </div>
+            <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Popular treatments by booking share · {activeBranch.short}</p>
+          </div>
+          <Link href="/services" className="text-xs font-semibold text-salon-600 hover:underline dark:text-salon-100">
+            Manage services →
+          </Link>
+        </div>
+        <div className="grid gap-6 lg:grid-cols-[14rem_1fr] lg:items-center">
+          <DonutChart services={data.services} />
+          <div className="grid gap-3 sm:grid-cols-2">
+            {data.services.map((service, i) => {
+              const meta = SERVICE_META[i % SERVICE_META.length]
+              return (
+                <div key={service.name} className="group relative overflow-hidden rounded-xl border border-gray-100 bg-[#FFFDFC] p-4 transition hover:-translate-y-0.5 hover:shadow-md dark:border-white/10 dark:bg-white/[0.03]">
+                  <div className={`absolute inset-y-0 left-0 w-1 rounded-l-xl bg-gradient-to-b ${meta.gradient}`} />
+                  <div className="mb-3 flex items-center justify-between pl-2">
                     <div className="flex items-center gap-2">
-                      <span className="truncate text-sm font-semibold text-gray-900 dark:text-white">{appointment.client}</span>
-                      <span className={`hidden items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium sm:flex ${status.cls}`}>
-                        <StatusIcon size={10} />{status.label}
-                      </span>
+                      <span className="h-3 w-3 rounded-full shadow-sm" style={{ background: meta.color }} />
+                      <span className="text-sm font-semibold text-[#24151A] dark:text-white">{service.name}</span>
                     </div>
-                    <div className="mt-0.5 flex items-center gap-2">
-                      <Scissors size={11} className="shrink-0 text-salon-400" />
-                      <span className="truncate text-xs text-gray-500 dark:text-gray-400">{appointment.service}</span>
-                      <span className="hidden text-xs text-gray-500 dark:text-gray-400 sm:block">· {appointment.staff}</span>
-                    </div>
+                    <span className="rounded-full px-2 py-0.5 text-sm font-bold" style={{ background: `${meta.color}18`, color: meta.color }}>{service.value}%</span>
                   </div>
-                  <div className="shrink-0 text-right">
-                    <div className="flex items-center gap-1 text-xs font-semibold text-gray-900 dark:text-white">
-                      <Clock size={11} className="text-salon-400" />{appointment.time}
-                    </div>
-                    <div className="mt-0.5 text-xs font-bold text-salon-600 dark:text-salon-100">{appointment.amount}</div>
+                  <div className="h-2 overflow-hidden rounded-full bg-gray-100 pl-2 dark:bg-white/10">
+                    <div className={`h-full rounded-full bg-gradient-to-r ${meta.gradient}`} style={{ width: `${service.value}%` }} />
                   </div>
-                  <MoreHorizontal size={15} className="shrink-0 text-gray-400 opacity-0 transition group-hover:opacity-100" />
                 </div>
               )
             })}
           </div>
         </div>
-
-        <div className="space-y-5">
-          <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-700 dark:bg-gray-900">
-            <div className="mb-4 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Activity size={15} className="text-salon-600 dark:text-salon-100" />
-                <h3 className="text-sm font-bold text-gray-900 dark:text-white">Revenue Trend</h3>
-              </div>
-              <span className="flex items-center gap-0.5 rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-semibold text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400">
-                <ArrowUpRight size={11} />+12.5%
-              </span>
-            </div>
-            <div className="flex h-20 items-end gap-1.5">
-              {revenueChart.map((day, index) => (
-                <div key={day.month} className="flex flex-1 flex-col items-center gap-1">
-                  <div
-                    className="w-full rounded-t-lg transition-all duration-500"
-                    style={{
-                      height: `${(day.value / maxRevenue) * 72}px`,
-                      background: index === revenueChart.length - 1
-                        ? `linear-gradient(to top, ${theme.primary}, ${theme.primarySoft})`
-                        : 'rgb(229 231 235)',
-                    }}
-                  />
-                  <span className="text-[9px] text-gray-500 dark:text-gray-400">{day.month}</span>
-                </div>
-              ))}
-            </div>
-            <div className="mt-3 flex items-center justify-between border-t border-gray-200 pt-3 dark:border-gray-700">
-              <span className="text-xs text-gray-500 dark:text-gray-400">This month</span>
-              <span className="text-sm font-bold text-gray-900 dark:text-white">₹1,18,000</span>
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-700 dark:bg-gray-900">
-            <div className="mb-4 flex items-center gap-2">
-              <Bell size={15} className="text-salon-600 dark:text-salon-100" />
-              <h3 className="text-sm font-bold text-gray-900 dark:text-white">Recent Activity</h3>
-            </div>
-            <div className="space-y-3">
-              {notifications.map((notification) => (
-                <div key={notification.text} className="flex items-start gap-3">
-                  <div className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${notification.dot}`} />
-                  <div className="min-w-0 flex-1">
-                    <p className="text-xs leading-relaxed text-gray-900 dark:text-white">{notification.text}</p>
-                    <p className="mt-0.5 text-[10px] text-gray-500 dark:text-gray-400">{notification.time}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-700 dark:bg-gray-900">
-          <div className="mb-2 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Scissors size={15} className="text-salon-600 dark:text-salon-100" />
-              <h3 className="text-sm font-bold text-gray-900 dark:text-white">Top Services</h3>
-            </div>
-            <Link href="/services" className="flex items-center gap-0.5 text-xs font-semibold text-salon-600 hover:underline dark:text-salon-100">
-              View all <ChevronRight size={13} />
-            </Link>
-          </div>
-          <p className="mb-5 text-xs text-gray-500 dark:text-gray-400">Bookings this month</p>
-
-          <div className="space-y-3">
-            {services.map((service, index) => (
-              <div key={service.name}>
-                <div className="mb-1 flex items-center justify-between gap-3">
-                  <div className="flex min-w-0 items-center gap-2">
-                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-salon-600 text-[10px] font-bold text-white">
-                      {index + 1}
-                    </span>
-                    <span className="truncate text-xs font-medium text-gray-900 dark:text-white">{service.name}</span>
-                  </div>
-                  <div className="flex shrink-0 items-center gap-3">
-                    <span className="hidden text-xs text-gray-500 dark:text-gray-400 sm:inline">{service.bookings} bookings</span>
-                    <span className="text-xs font-bold text-salon-600 dark:text-salon-100">{service.revenue}</span>
-                  </div>
-                </div>
-                <div className="relative h-6 overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800">
-                  <div className={`flex h-full items-center justify-end rounded-lg bg-gradient-to-r pr-2 transition-all duration-700 ${serviceBars[index]}`} style={{ width: `${service.pct}%` }}>
-                    <span className="text-[10px] font-bold text-white">{service.pct}%</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-3 flex justify-between px-0.5">
-            {[0, 25, 50, 75, 100].map((value) => (
-              <span key={value} className="text-[9px] text-gray-500 dark:text-gray-400">{value}%</span>
-            ))}
-          </div>
-        </div>
-
-        <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-700 dark:bg-gray-900">
-          <div className="mb-2 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Users size={15} className="text-salon-600 dark:text-salon-100" />
-              <h3 className="text-sm font-bold text-gray-900 dark:text-white">Staff Performance</h3>
-            </div>
-            <Link href="/staff" className="flex items-center gap-0.5 text-xs font-semibold text-salon-600 hover:underline dark:text-salon-100">
-              View all <ChevronRight size={13} />
-            </Link>
-          </div>
-          <p className="mb-5 text-xs text-gray-500 dark:text-gray-400">Revenue contribution this month</p>
-
-          {(() => {
-            const totalRevenue = staff.reduce((sum, member) => sum + Number(member.revenue.replace(/[₹,]/g, '')), 0)
-            const size = 140
-            const cx = size / 2
-            const cy = size / 2
-            const r = 52
-            const strokeWidth = 18
-            const circumference = 2 * Math.PI * r
-            let offset = 0
-            const segments = staff.map((member, index) => {
-              const value = Number(member.revenue.replace(/[₹,]/g, ''))
-              const pct = value / totalRevenue
-              const dash = pct * circumference
-              const segment = { offset, dash, color: staffColors[index] }
-              offset += dash
-              return segment
-            })
-
-            return (
-              <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
-                <div className="relative shrink-0 self-center" style={{ width: size, height: size }}>
-                  <svg width={size} height={size} style={{ transform: 'rotate(-90deg)' }}>
-                    <circle cx={cx} cy={cy} r={r} fill="none" stroke="rgb(229 231 235)" strokeWidth={strokeWidth} />
-                    {segments.map((segment, index) => (
-                      <circle
-                        key={segment.color}
-                        cx={cx}
-                        cy={cy}
-                        r={r}
-                        fill="none"
-                        stroke={segment.color}
-                        strokeWidth={strokeWidth}
-                        strokeDasharray={`${segment.dash - 2} ${circumference - segment.dash + 2}`}
-                        strokeDashoffset={-segment.offset}
-                        strokeLinecap="round"
-                      />
-                    ))}
-                  </svg>
-                  <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className="text-lg font-bold text-gray-900 dark:text-white">₹1.2L</span>
-                    <span className="text-[10px] text-gray-500 dark:text-gray-400">Total</span>
-                  </div>
-                </div>
-
-                <div className="flex-1 space-y-3">
-                  {staff.map((member, index) => {
-                    const value = Number(member.revenue.replace(/[₹,]/g, ''))
-                    const pct = Math.round((value / totalRevenue) * 100)
-
-                    return (
-                      <div key={member.name} className="flex cursor-pointer items-center gap-2.5 rounded-xl p-2 transition hover:bg-gray-50 dark:hover:bg-gray-800">
-                        <div className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: staffColors[index] }} />
-                        <div className="min-w-0 flex-1">
-                          <div className="flex items-center justify-between gap-2">
-                            <span className="truncate text-xs font-semibold text-gray-900 dark:text-white">{member.name.split(' ')[0]}</span>
-                            <span className="text-xs font-bold" style={{ color: staffColors[index] }}>{pct}%</span>
-                          </div>
-                          <div className="mt-0.5 flex items-center justify-between">
-                            <span className="text-[10px] text-gray-500 dark:text-gray-400">{member.revenue}</span>
-                            <div className="flex items-center gap-0.5">
-                              <Star size={9} className="text-amber-400" fill="currentColor" />
-                              <span className="text-[10px] font-semibold text-gray-500 dark:text-gray-400">{member.rating}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-            )
-          })()}
-        </div>
-      </div>
-
-      <div>
-        <div className="mb-4 flex items-center gap-2">
-          <Sparkles size={15} className="text-salon-600 dark:text-salon-100" />
-          <h2 className="text-base font-bold text-gray-900 dark:text-white">All Pages</h2>
-          <span className="rounded-full bg-salon-100/25 px-2 py-0.5 text-xs font-semibold text-salon-600 dark:bg-salon-900/40 dark:text-salon-100">
-            {pages.reduce((sum, group) => sum + group.items.length, 0)}
-          </span>
-        </div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {pages.map((group) => (
-            <div key={group.group} className="rounded-2xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-900">
-              <div className="mb-3 flex items-center gap-2">
-                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg" style={{ background: `${group.color}18` }}>
-                  <group.icon size={14} style={{ color: group.color }} />
-                </div>
-                <span className="text-xs font-bold uppercase text-gray-500 dark:text-gray-400">{group.group}</span>
-                <span className="ml-auto rounded-full px-1.5 py-0.5 text-[10px] font-semibold" style={{ background: `${group.color}18`, color: group.color }}>
-                  {group.items.length}
-                </span>
-              </div>
-              <div className="space-y-1">
-                {group.items.map((item) => {
-                  const isAvailable = availablePagePaths.has(item.path)
-                  const itemContent = (
-                    <>
-                      <item.icon size={13} style={{ color: group.color, opacity: isAvailable ? 0.85 : 0.45, flexShrink: 0 }} />
-                      <div className="min-w-0 flex-1">
-                        <div className={`truncate text-xs font-semibold ${isAvailable ? 'text-gray-900 dark:text-white' : 'text-gray-400 dark:text-gray-500'}`}>{item.label}</div>
-                        <div className="truncate text-[10px] text-gray-500 dark:text-gray-400">{isAvailable ? item.desc : 'Coming soon'}</div>
-                      </div>
-                      <ChevronRight size={12} className="shrink-0 opacity-0 transition group-hover/page:opacity-100" style={{ color: group.color }} />
-                    </>
-                  )
-
-                  return isAvailable ? (
-                    <Link key={item.path} href={item.path} className="group/page flex items-center gap-3 rounded-xl px-3 py-2.5 transition hover:bg-gray-50 dark:hover:bg-gray-800">
-                      {itemContent}
-                    </Link>
-                  ) : (
-                    <div key={item.path} className="flex cursor-not-allowed items-center gap-3 rounded-xl px-3 py-2.5 opacity-70">
-                      {itemContent}
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
+      </Card>
+    </main>
   )
 }

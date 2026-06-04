@@ -49,8 +49,8 @@ export default function NotificationSettingsPage() {
         {/* WhatsApp */}
         <div className="rounded-2xl p-6" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
           <div className="flex items-center gap-2.5 mb-5">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: '#10b98118' }}>
-              <MessageSquare size={18} style={{ color: '#10b981' }} />
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: '#6F9F8F18' }}>
+              <MessageSquare size={18} style={{ color: '#6F9F8F' }} />
             </div>
             <div>
               <h3 className="font-bold text-base" style={{ color: 'var(--text-primary)' }}>WhatsApp Notifications</h3>
@@ -73,7 +73,7 @@ export default function NotificationSettingsPage() {
                 </div>
                 <button onClick={() => toggle('whatsapp', key)}
                   className="w-12 h-6 rounded-full transition-colors relative"
-                  style={{ background: settings.whatsapp[key as keyof typeof settings.whatsapp] ? '#10b981' : 'var(--border)' }}>
+                  style={{ background: settings.whatsapp[key as keyof typeof settings.whatsapp] ? '#6F9F8F' : 'var(--border)' }}>
                   <span className="absolute top-0.5 w-5 h-5 rounded-full bg-white transition-all"
                     style={{ left: settings.whatsapp[key as keyof typeof settings.whatsapp] ? '26px' : '2px' }} />
                 </button>
@@ -85,8 +85,8 @@ export default function NotificationSettingsPage() {
         {/* Email */}
         <div className="rounded-2xl p-6" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
           <div className="flex items-center gap-2.5 mb-5">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: '#0ea5e918' }}>
-              <Mail size={18} style={{ color: '#0ea5e9' }} />
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: '#6D91BF18' }}>
+              <Mail size={18} style={{ color: '#6D91BF' }} />
             </div>
             <div>
               <h3 className="font-bold text-base" style={{ color: 'var(--text-primary)' }}>Email Notifications</h3>
@@ -107,7 +107,7 @@ export default function NotificationSettingsPage() {
                 </div>
                 <button onClick={() => toggle('email', key)}
                   className="w-12 h-6 rounded-full transition-colors relative"
-                  style={{ background: settings.email[key as keyof typeof settings.email] ? '#0ea5e9' : 'var(--border)' }}>
+                  style={{ background: settings.email[key as keyof typeof settings.email] ? '#6D91BF' : 'var(--border)' }}>
                   <span className="absolute top-0.5 w-5 h-5 rounded-full bg-white transition-all"
                     style={{ left: settings.email[key as keyof typeof settings.email] ? '26px' : '2px' }} />
                 </button>
@@ -119,8 +119,8 @@ export default function NotificationSettingsPage() {
         {/* Push */}
         <div className="rounded-2xl p-6" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
           <div className="flex items-center gap-2.5 mb-5">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: '#7c3aed18' }}>
-              <Bell size={18} style={{ color: '#7c3aed' }} />
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: '#6F5AA318' }}>
+              <Bell size={18} style={{ color: '#6F5AA3' }} />
             </div>
             <div>
               <h3 className="font-bold text-base" style={{ color: 'var(--text-primary)' }}>Push Notifications</h3>
@@ -140,7 +140,7 @@ export default function NotificationSettingsPage() {
                 </div>
                 <button onClick={() => toggle('push', key)}
                   className="w-12 h-6 rounded-full transition-colors relative"
-                  style={{ background: settings.push[key as keyof typeof settings.push] ? '#7c3aed' : 'var(--border)' }}>
+                  style={{ background: settings.push[key as keyof typeof settings.push] ? '#6F5AA3' : 'var(--border)' }}>
                   <span className="absolute top-0.5 w-5 h-5 rounded-full bg-white transition-all"
                     style={{ left: settings.push[key as keyof typeof settings.push] ? '26px' : '2px' }} />
                 </button>

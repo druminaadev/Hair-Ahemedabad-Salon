@@ -11,9 +11,9 @@ const topClients = [
 ]
 
 const tiers = [
-  { name: 'Silver',   minPoints: 0,    maxPoints: 999,  color: '#94a3b8', perks: '5% discount on all services'    },
-  { name: 'Gold',     minPoints: 1000, maxPoints: 1999, color: '#f59e0b', perks: '10% discount + priority booking' },
-  { name: 'Platinum', minPoints: 2000, maxPoints: null, color: '#CF455C', perks: '20% discount + free monthly spa' },
+  { name: 'Silver',   minPoints: 0,    maxPoints: 999,  color: '#8A7D8E', perks: '5% discount on all services'    },
+  { name: 'Gold',     minPoints: 1000, maxPoints: 1999, color: '#C7923E', perks: '10% discount + priority booking' },
+  { name: 'Platinum', minPoints: 2000, maxPoints: null, color: '#9D679F', perks: '20% discount + free monthly spa' },
 ]
 
 const tierColors: Record<string, string> = {

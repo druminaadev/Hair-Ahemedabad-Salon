@@ -15,11 +15,11 @@ const clientGrowth = [
 ]
 
 const topServices = [
-  { name: 'Hair Cut & Color', revenue: 42000, pct: 90, color: '#7c3aed' },
-  { name: 'Facial',           revenue: 24800, pct: 59, color: '#0ea5e9' },
-  { name: 'Hair Spa',         revenue: 28800, pct: 69, color: '#10b981' },
-  { name: 'Manicure',         revenue: 8800,  pct: 21, color: '#f59e0b' },
-  { name: 'Waxing',           revenue: 19000, pct: 45, color: '#ec4899' },
+  { name: 'Hair Cut & Color', revenue: 42000, pct: 90, color: '#6F5AA3' },
+  { name: 'Facial',           revenue: 24800, pct: 59, color: '#6D91BF' },
+  { name: 'Hair Spa',         revenue: 28800, pct: 69, color: '#6F9F8F' },
+  { name: 'Manicure',         revenue: 8800,  pct: 21, color: '#C7923E' },
+  { name: 'Waxing',           revenue: 19000, pct: 45, color: '#C96F9B' },
 ]
 
 export default function AnalyticsPage() {
@@ -29,10 +29,10 @@ export default function AnalyticsPage() {
       {/* KPI Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: 'Total Revenue',   value: '₹1,24,500', change: '+12.5%', icon: DollarSign, color: '#7c3aed', bg: '#7c3aed18' },
-          { label: 'Total Clients',   value: '1,340',      change: '+5.1%',  icon: Users,      color: '#0ea5e9', bg: '#0ea5e918' },
-          { label: 'Appointments',    value: '284',        change: '+8.2%',  icon: Calendar,   color: '#10b981', bg: '#10b98118' },
-          { label: 'Avg Ticket',      value: '₹438',       change: '-2.3%',  icon: TrendingUp, color: '#f59e0b', bg: '#f59e0b18' },
+          { label: 'Total Revenue',   value: '₹1,24,500', change: '+12.5%', icon: DollarSign, color: '#6F5AA3', bg: '#6F5AA318' },
+          { label: 'Total Clients',   value: '1,340',      change: '+5.1%',  icon: Users,      color: '#6D91BF', bg: '#6D91BF18' },
+          { label: 'Appointments',    value: '284',        change: '+8.2%',  icon: Calendar,   color: '#6F9F8F', bg: '#6F9F8F18' },
+          { label: 'Avg Ticket',      value: '₹438',       change: '-2.3%',  icon: TrendingUp, color: '#C7923E', bg: '#C7923E18' },
         ].map(({ label, value, change, icon: Icon, color, bg }) => {
           const up = change.startsWith('+')
           return (
@@ -68,9 +68,9 @@ export default function AnalyticsPage() {
           <div className="flex items-end gap-2 h-36">
             {revenueData.map((d, i) => (
               <div key={d.month} className="flex-1 flex flex-col items-center gap-1.5">
-                <span className="text-[10px] font-semibold" style={{ color: '#7c3aed' }}>₹{d.value}k</span>
+                <span className="text-[10px] font-semibold" style={{ color: '#6F5AA3' }}>₹{d.value}k</span>
                 <div className="w-full rounded-t-lg transition-all duration-500"
-                  style={{ height: `${(d.value / maxRev) * 100}px`, background: i === revenueData.length - 1 ? 'linear-gradient(to top, #7c3aed, #a78bfa)' : 'var(--border)' }} />
+                  style={{ height: `${(d.value / maxRev) * 100}px`, background: i === revenueData.length - 1 ? 'linear-gradient(to top, #6F5AA3, #B784B7)' : 'var(--border)' }} />
                 <span className="text-[10px]" style={{ color: 'var(--text-secondary)' }}>{d.month}</span>
               </div>
             ))}
@@ -97,7 +97,7 @@ export default function AnalyticsPage() {
               return (
                 <div key={d.month} className="flex-1 flex flex-col items-center gap-1.5">
                   <div className="w-full flex flex-col rounded-t-lg overflow-hidden">
-                    <div style={{ height: `${newH}px`, background: '#0ea5e9' }} />
+                    <div style={{ height: `${newH}px`, background: '#6D91BF' }} />
                     <div style={{ height: `${retH}px`, background: '#c4b5fd' }} />
                   </div>
                   <span className="text-[10px]" style={{ color: 'var(--text-secondary)' }}>{d.month}</span>

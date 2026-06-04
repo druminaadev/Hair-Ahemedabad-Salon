@@ -175,13 +175,13 @@ export default function NewBookingPage() {
         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/40">
           <CheckCircle2 size={32} className="text-emerald-500" />
         </div>
-        <h2 className="text-xl font-bold text-gray-900 dark:text-white">Booking Confirmed!</h2>
-        <p className="text-sm text-gray-500 dark:text-gray-400">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Booking Confirmed!</h2>
+        <p className="text-md text-gray-500 dark:text-gray-400">
           {clientName} · {selectedDate} at {selectedSlot}
         </p>
         <button
           onClick={resetBooking}
-          className="mt-2 rounded-xl bg-salon-600 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-salon-900"
+          className="mt-2 rounded-2xl bg-salon-600 px-6 py-2.5 text-md font-semibold text-white transition hover:bg-salon-900"
         >
           New Booking
         </button>
@@ -193,7 +193,7 @@ export default function NewBookingPage() {
     <div className="mx-auto max-w-5xl space-y-6">
       <div>
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white">New Booking</h1>
-        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Select services, assign staff, and confirm the appointment.</p>
+        <p className="mt-1 text-md text-gray-500 dark:text-gray-400">Select services, assign staff, and confirm the appointment.</p>
       </div>
 
       <div className="flex items-center">
@@ -207,14 +207,14 @@ export default function NewBookingPage() {
                 <div
                   className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold transition-all ${
                     done || current
-                      ? 'bg-salon-600 text-white shadow-sm shadow-salon-100 dark:shadow-none'
-                      : 'bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400'
+                      ? 'bg-salon-600 text-white shadow-md shadow-salon-100 dark:shadow-none'
+                      : 'bg-violet-200 text-gray-800 dark:bg-gray-800 dark:text-gray-400'
                   } ${current ? 'ring-4 ring-salon-100/40 dark:ring-salon-900/50' : ''}`}
                 >
                   {done ? <CheckCircle2 size={14} /> : <item.icon size={13} />}
                 </div>
                 <span
-                  className={`hidden text-xs font-semibold sm:block ${
+                  className={`hidden text-md font-semibold md:block ${
                     current || done ? 'text-salon-600 dark:text-salon-100' : 'text-gray-500 dark:text-gray-400'
                   }`}
                 >
@@ -236,9 +236,9 @@ export default function NewBookingPage() {
               <div className="border-b border-gray-200 p-5 pb-4 dark:border-gray-700">
                 <div className="mb-3 flex items-center gap-2">
                   <BadgePercent size={14} className="text-rose-500" />
-                  <span className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Combo Packages</span>
+                  <span className="text-md font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Combo Packages</span>
                 </div>
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                   {COMBOS.map((combo) => {
                     const inCart = cart.some((item) => item.serviceId === combo.id && item.isCombo)
 
@@ -255,7 +255,7 @@ export default function NewBookingPage() {
                         <span className="absolute right-2.5 top-2.5 rounded-full bg-rose-100 px-1.5 py-0.5 text-[9px] font-bold text-rose-600 dark:bg-rose-900/40 dark:text-rose-400">
                           {combo.tag}
                         </span>
-                        <div className="mb-1.5 text-sm font-semibold text-gray-900 dark:text-white">{combo.name}</div>
+                        <div className="mb-1.5 text-md font-semibold text-gray-900 dark:text-white">{combo.name}</div>
                         <div className="flex items-center gap-2">
                           <span className="text-base font-bold text-salon-600 dark:text-salon-100">₹{combo.price}</span>
                           <span className="text-xs text-gray-500 line-through dark:text-gray-400">₹{combo.originalPrice}</span>
@@ -290,7 +290,7 @@ export default function NewBookingPage() {
                   ))}
                 </div>
 
-                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
                   {filteredServices.map((service) => {
                     const inCart = cart.find((item) => item.serviceId === service.id)
 
@@ -305,7 +305,7 @@ export default function NewBookingPage() {
                         }`}
                       >
                         <div className="min-w-0">
-                          <div className="truncate text-sm font-semibold text-gray-900 dark:text-white">{service.name}</div>
+                          <div className="truncate text-md font-semibold text-gray-900 dark:text-white">{service.name}</div>
                           <div className="mt-0.5 flex items-center gap-2">
                             <span className="flex items-center gap-1 text-[11px] text-gray-500 dark:text-gray-400">
                               <Clock size={10} />{service.duration} min
@@ -316,7 +316,7 @@ export default function NewBookingPage() {
                           </div>
                         </div>
                         <div className="flex shrink-0 items-center gap-2">
-                          <span className="text-sm font-bold text-salon-600 dark:text-salon-100">₹{service.price}</span>
+                          <span className="text-md font-bold text-salon-600 dark:text-salon-100">₹{service.price}</span>
                           {inCart && (
                             <span className="flex h-5 w-5 items-center justify-center rounded-full bg-salon-600 text-[10px] font-bold text-white">
                               {inCart.qty}
@@ -335,18 +335,18 @@ export default function NewBookingPage() {
             <div className="space-y-4 rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-700 dark:bg-gray-900">
               <div className="flex items-center gap-2">
                 <User size={15} className="text-salon-600 dark:text-salon-100" />
-                <h2 className="text-sm font-bold text-gray-900 dark:text-white">Assign Stylist</h2>
+                <h2 className="text-md font-bold text-gray-900 dark:text-white">Assign Stylist</h2>
                 <span className="rounded-full bg-salon-100/25 px-2 py-0.5 text-[10px] text-salon-600 dark:bg-salon-900/40 dark:text-salon-100">Multiple allowed</span>
               </div>
               {cart.map((item) => (
                 <div key={item.serviceId} className="space-y-3 rounded-xl border border-gray-200 p-4 dark:border-gray-700">
                   <div className="flex items-center gap-2">
                     <Scissors size={13} className="text-salon-400" />
-                    <span className="text-sm font-semibold text-gray-900 dark:text-white">{item.name}</span>
+                    <span className="text-md font-semibold text-gray-900 dark:text-white">{item.name}</span>
                     {item.qty > 1 && <span className="rounded-full bg-salon-100/25 px-1.5 py-0.5 text-[10px] text-salon-600 dark:bg-salon-900/40 dark:text-salon-100">x{item.qty}</span>}
                     <span className="ml-auto text-xs font-bold text-salon-600 dark:text-salon-100">₹{item.price}</span>
                   </div>
-                  <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                  <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
                     {STAFF.map((staff) => {
                       const selected = item.staffIds.includes(staff.id)
 
@@ -360,7 +360,7 @@ export default function NewBookingPage() {
                               : 'border border-gray-200 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-800'
                           }`}
                         >
-                          <div className={`flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold text-white ${staff.color}`}>
+                          <div className={`flex h-9 w-9 items-center justify-center rounded-full text-md font-bold text-white ${staff.color}`}>
                             {staff.name.charAt(0)}
                           </div>
                           <div className="text-center">
@@ -383,7 +383,7 @@ export default function NewBookingPage() {
             <div className="space-y-5 rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-700 dark:bg-gray-900">
               <div className="flex items-center gap-2">
                 <CalendarDays size={15} className="text-salon-600 dark:text-salon-100" />
-                <h2 className="text-sm font-bold text-gray-900 dark:text-white">Pick Date & Time</h2>
+                <h2 className="text-md font-bold text-gray-900 dark:text-white">Pick Date & Time</h2>
               </div>
 
               <div>
@@ -392,13 +392,13 @@ export default function NewBookingPage() {
                   type="date"
                   value={selectedDate}
                   onChange={(event) => setSelectedDate(event.target.value)}
-                  className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-salon-400 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+                  className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-salon-400 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
                 />
               </div>
 
               <div>
                 <label className="mb-3 block text-xs font-semibold text-gray-500 dark:text-gray-400">Available Slots</label>
-                <div className="grid grid-cols-4 gap-2 sm:grid-cols-7">
+                <div className="grid grid-cols-4 gap-2 md:grid-cols-7">
                   {SLOTS.map((slot) => {
                     const selected = selectedSlot === slot
 
@@ -422,7 +422,7 @@ export default function NewBookingPage() {
               {selectedDate && selectedSlot && (
                 <div className="flex items-center gap-2 rounded-xl border border-salon-100 bg-salon-100/10 px-4 py-3">
                   <CalendarDays size={14} className="shrink-0 text-salon-600" />
-                  <span className="text-sm font-semibold text-salon-600 dark:text-salon-100">{selectedDate} at {selectedSlot}</span>
+                  <span className="text-md font-semibold text-salon-600 dark:text-salon-100">{selectedDate} at {selectedSlot}</span>
                 </div>
               )}
             </div>
@@ -432,10 +432,10 @@ export default function NewBookingPage() {
             <div className="space-y-5 rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-700 dark:bg-gray-900">
               <div className="flex items-center gap-2">
                 <Sparkles size={15} className="text-salon-600 dark:text-salon-100" />
-                <h2 className="text-sm font-bold text-gray-900 dark:text-white">Client Details</h2>
+                <h2 className="text-md font-bold text-gray-900 dark:text-white">Client Details</h2>
               </div>
 
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <div>
                   <label className="mb-1.5 block text-xs font-semibold text-gray-500 dark:text-gray-400">Full Name</label>
                   <input
@@ -443,7 +443,7 @@ export default function NewBookingPage() {
                     value={clientName}
                     onChange={(event) => setClientName(event.target.value)}
                     placeholder="Client name"
-                    className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-salon-400 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+                    className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-salon-400 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
                   />
                 </div>
                 <div>
@@ -453,7 +453,7 @@ export default function NewBookingPage() {
                     value={clientPhone}
                     onChange={(event) => setClientPhone(event.target.value)}
                     placeholder="+91 98765 43210"
-                    className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-salon-400 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+                    className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-salon-400 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
                   />
                 </div>
               </div>
@@ -479,7 +479,7 @@ export default function NewBookingPage() {
                   <span>GST (18%)</span>
                   <span>₹{gst}</span>
                 </div>
-                <div className="flex justify-between text-sm font-bold">
+                <div className="flex justify-between text-md font-bold">
                   <span className="text-gray-900 dark:text-white">Total</span>
                   <span className="text-salon-600 dark:text-salon-100">₹{total}</span>
                 </div>
@@ -491,7 +491,7 @@ export default function NewBookingPage() {
             {step > 0 && (
               <button
                 onClick={() => setStep((current) => current - 1)}
-                className="flex-1 rounded-xl border border-gray-200 py-2.5 text-sm font-semibold text-gray-900 transition hover:bg-gray-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800"
+                className="flex-1 rounded-xl border border-gray-200 py-2.5 text-md font-semibold text-gray-900 transition hover:bg-gray-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800"
               >
                 Back
               </button>
@@ -500,7 +500,7 @@ export default function NewBookingPage() {
               <button
                 onClick={() => setStep((current) => current + 1)}
                 disabled={cart.length === 0}
-                className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-salon-600 py-2.5 text-sm font-semibold text-white shadow-sm shadow-salon-100 transition hover:bg-salon-900 disabled:opacity-40 dark:shadow-none"
+                className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-salon-600 py-2.5 text-md font-semibold text-white shadow-md shadow-salon-100 transition hover:bg-salon-900 disabled:opacity-40 dark:shadow-none"
               >
                 Continue <ChevronRight size={15} />
               </button>
@@ -508,7 +508,7 @@ export default function NewBookingPage() {
               <button
                 onClick={() => setConfirmed(true)}
                 disabled={!clientName || !clientPhone}
-                className="flex-1 rounded-xl bg-salon-600 py-2.5 text-sm font-semibold text-white shadow-sm shadow-salon-100 transition hover:bg-salon-900 disabled:opacity-40 dark:shadow-none"
+                className="flex-1 rounded-xl bg-salon-600 py-2.5 text-md font-semibold text-white shadow-md shadow-salon-100 transition hover:bg-salon-900 disabled:opacity-40 dark:shadow-none"
               >
                 Confirm Booking
               </button>
@@ -519,7 +519,7 @@ export default function NewBookingPage() {
         <div className="h-fit rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-700 dark:bg-gray-900 lg:sticky lg:top-4">
           <div className="mb-4 flex items-center gap-2">
             <ShoppingCart size={15} className="text-salon-600 dark:text-salon-100" />
-            <h3 className="text-sm font-bold text-gray-900 dark:text-white">Cart</h3>
+            <h3 className="text-md font-bold text-gray-900 dark:text-white">Cart</h3>
             {cart.length > 0 && (
               <span className="ml-auto rounded-full bg-salon-100/25 px-1.5 py-0.5 text-[10px] font-bold text-salon-600 dark:bg-salon-900/40 dark:text-salon-100">
                 {cart.length} item{cart.length > 1 ? 's' : ''}
@@ -563,7 +563,7 @@ export default function NewBookingPage() {
                   <span>GST (18%)</span>
                   <span>₹{gst}</span>
                 </div>
-                <div className="flex justify-between border-t border-gray-200 pt-1 text-sm font-bold dark:border-gray-700">
+                <div className="flex justify-between border-t border-gray-200 pt-1 text-md font-bold dark:border-gray-700">
                   <span className="text-gray-900 dark:text-white">Total</span>
                   <span className="text-salon-600 dark:text-salon-100">₹{total}</span>
                 </div>

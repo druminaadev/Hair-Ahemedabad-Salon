@@ -7,16 +7,22 @@ const config: Config = {
     extend: {
       colors: {
         salon: {
-          50:  '#fff0f3',
-          100: '#FF9898',
-          200: '#f9a8b8',
-          400: '#CF455C',
-          600: '#971549',
-          900: '#470031',
+          50:  '#F9EEF4',
+          100: '#D88385',
+          200: '#C96F9B',
+          400: '#9D679F',
+          600: '#6F5AA3',
+          900: '#4C3A76',
+        },
+        support: {
+          sage: '#6F9F8F',
+          gold: '#C7923E',
+          sky: '#6D91BF',
+          plum: '#5F4C86',
         },
       },
       ringColor: {
-        salon: '#CF455C',
+        salon: '#9D679F',
       },
     },
   },

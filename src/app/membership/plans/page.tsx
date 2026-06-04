@@ -4,9 +4,9 @@ import { useState } from 'react'
 import { CreditCard, Plus, Edit2, Trash2, X, Save } from 'lucide-react'
 
 const initialPlans = [
-  { id: 1, name: 'Silver',   price: 999,  duration: '1 Month',  services: 5,  discount: 10, color: '#94a3b8' },
-  { id: 2, name: 'Gold',     price: 2499, duration: '3 Months', services: 15, discount: 20, color: '#f59e0b' },
-  { id: 3, name: 'Platinum', price: 4999, duration: '6 Months', services: 35, discount: 30, color: '#8b5cf6' },
+  { id: 1, name: 'Silver',   price: 999,  duration: '1 Month',  services: 5,  discount: 10, color: '#8A7D8E' },
+  { id: 2, name: 'Gold',     price: 2499, duration: '3 Months', services: 15, discount: 20, color: '#C7923E' },
+  { id: 3, name: 'Platinum', price: 4999, duration: '6 Months', services: 35, discount: 30, color: '#8E7AB5' },
 ]
 
 export default function PlansPage() {
@@ -16,7 +16,7 @@ export default function PlansPage() {
 
   const handleSave = () => {
     if (!form.name || !form.price) return
-    setPlans(p => [...p, { id: Date.now(), name: form.name, price: Number(form.price), duration: form.duration || '1 Month', services: Number(form.services) || 0, discount: Number(form.discount) || 0, color: '#6366f1' }])
+    setPlans(p => [...p, { id: Date.now(), name: form.name, price: Number(form.price), duration: form.duration || '1 Month', services: Number(form.services) || 0, discount: Number(form.discount) || 0, color: '#6D91BF' }])
     setForm({ name: '', price: '', duration: '', services: '', discount: '' })
     setShowModal(false)
   }

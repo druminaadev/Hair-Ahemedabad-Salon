@@ -4,15 +4,15 @@ import { useEffect, useState } from 'react'
 import { Star, TrendingUp, TrendingDown, Users, DollarSign, Award, Medal, Trophy, Crown, Scissors, ChevronDown } from 'lucide-react'
 
 const stylists = [
-  { name: 'Neha Sharma',  role: 'Senior Stylist', revenue: 48200, services: 142, rating: 4.9, clients: 98,  color: '#7c3aed', trend: [38, 42, 45, 48, 52, 48] },
-  { name: 'Pooja Verma',  role: 'Beautician',     revenue: 32100, services: 98,  rating: 4.7, clients: 72,  color: '#0ea5e9', trend: [28, 30, 32, 35, 33, 32] },
-  { name: 'Sonal Patel',  role: 'Nail Artist',    revenue: 24800, services: 76,  rating: 4.8, clients: 58,  color: '#10b981', trend: [20, 22, 24, 26, 25, 25] },
-  { name: 'Ritu Joshi',   role: 'Makeup Artist',  revenue: 18600, services: 54,  rating: 4.6, clients: 44,  color: '#f59e0b', trend: [15, 16, 18, 20, 19, 19] },
-  { name: 'Kavita Singh', role: 'Junior Stylist',  revenue: 12400, services: 38,  rating: 4.5, clients: 32,  color: '#ec4899', trend: [10, 11, 12, 13, 12, 12] },
+  { name: 'Neha Sharma',  role: 'Senior Stylist', revenue: 48200, services: 142, rating: 4.9, clients: 98,  color: '#6F5AA3', trend: [38, 42, 45, 48, 52, 48] },
+  { name: 'Pooja Verma',  role: 'Beautician',     revenue: 32100, services: 98,  rating: 4.7, clients: 72,  color: '#6D91BF', trend: [28, 30, 32, 35, 33, 32] },
+  { name: 'Sonal Patel',  role: 'Nail Artist',    revenue: 24800, services: 76,  rating: 4.8, clients: 58,  color: '#6F9F8F', trend: [20, 22, 24, 26, 25, 25] },
+  { name: 'Ritu Joshi',   role: 'Makeup Artist',  revenue: 18600, services: 54,  rating: 4.6, clients: 44,  color: '#C7923E', trend: [15, 16, 18, 20, 19, 19] },
+  { name: 'Kavita Singh', role: 'Junior Stylist',  revenue: 12400, services: 38,  rating: 4.5, clients: 32,  color: '#C96F9B', trend: [10, 11, 12, 13, 12, 12] },
 ]
 
 const rankIcons  = [Crown, Trophy, Medal, Award, Award]
-const rankColors = ['#f59e0b', '#94a3b8', '#cd7c2f', '#7c3aed', '#ec4899']
+const rankColors = ['#C7923E', '#8A7D8E', '#C7923E', '#6F5AA3', '#C96F9B']
 const months     = ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan']
 
 function useMount() {
@@ -71,8 +71,8 @@ export default function StylistProgressPage() {
       {/* ── Header ── */}
       <div style={{ opacity: mounted ? 1 : 0, transform: mounted ? 'none' : 'translateY(10px)', transition: 'all .4s ease' }}
         className="flex items-center gap-3">
-        <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: '#f59e0b18' }}>
-          <Users size={17} style={{ color: '#f59e0b' }} />
+        <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: '#C7923E18' }}>
+          <Users size={17} style={{ color: '#C7923E' }} />
         </div>
         <div>
           <h1 className="text-lg font-bold" style={{ color: 'var(--text-primary)' }}>Stylist Progress</h1>
@@ -84,10 +84,10 @@ export default function StylistProgressPage() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4"
         style={{ opacity: mounted ? 1 : 0, transform: mounted ? 'none' : 'translateY(14px)', transition: 'all .4s ease .05s' }}>
         {[
-          { label: 'Team Revenue',  value: `₹${(totalRevenue / 1000).toFixed(0)}k`, icon: DollarSign, color: '#7c3aed' },
-          { label: 'Services Done', value: totalServices,                            icon: Scissors,   color: '#0ea5e9' },
-          { label: 'Avg Rating',    value: avgRating,                                icon: Star,       color: '#f59e0b' },
-          { label: 'Top Earner',    value: stylists[0].name.split(' ')[0],           icon: Crown,      color: '#10b981' },
+          { label: 'Team Revenue',  value: `₹${(totalRevenue / 1000).toFixed(0)}k`, icon: DollarSign, color: '#6F5AA3' },
+          { label: 'Services Done', value: totalServices,                            icon: Scissors,   color: '#6D91BF' },
+          { label: 'Avg Rating',    value: avgRating,                                icon: Star,       color: '#C7923E' },
+          { label: 'Top Earner',    value: stylists[0].name.split(' ')[0],           icon: Crown,      color: '#6F9F8F' },
         ].map(({ label, value, icon: Icon, color }) => (
           <div key={label} className="rounded-2xl p-4 flex items-center gap-3"
             style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
@@ -156,11 +156,11 @@ export default function StylistProgressPage() {
                     <div className="flex items-center gap-1 mt-1.5">
                       {[1,2,3,4,5].map(i => (
                         <Star key={i} size={10}
-                          fill={i <= Math.round(s.rating) ? '#f59e0b' : 'none'}
-                          stroke="#f59e0b" strokeWidth={1.5}
+                          fill={i <= Math.round(s.rating) ? '#C7923E' : 'none'}
+                          stroke="#C7923E" strokeWidth={1.5}
                         />
                       ))}
-                      <span className="text-[10px] font-bold ml-0.5" style={{ color: '#f59e0b' }}>{s.rating}</span>
+                      <span className="text-[10px] font-bold ml-0.5" style={{ color: '#C7923E' }}>{s.rating}</span>
                     </div>
                   </div>
 
@@ -168,8 +168,8 @@ export default function StylistProgressPage() {
                   <div
                     className="flex items-center gap-1 text-[11px] font-bold px-2 py-1 rounded-full shrink-0"
                     style={{
-                      background: lastChange > 0 ? '#10b98118' : lastChange < 0 ? '#ef444418' : 'var(--hover)',
-                      color: lastChange > 0 ? '#10b981' : lastChange < 0 ? '#ef4444' : 'var(--text-secondary)',
+                      background: lastChange > 0 ? '#6F9F8F18' : lastChange < 0 ? '#D8838518' : 'var(--hover)',
+                      color: lastChange > 0 ? '#6F9F8F' : lastChange < 0 ? '#D88385' : 'var(--text-secondary)',
                     }}
                   >
                     {lastChange > 0
@@ -186,7 +186,7 @@ export default function StylistProgressPage() {
                   <StatBox label="Revenue"  value={`₹${(s.revenue / 1000).toFixed(1)}k`} color={s.color} />
                   <StatBox label="Services" value={s.services} />
                   <StatBox label="Clients"  value={s.clients} />
-                  <StatBox label="Comm."    value={`₹${(commission / 1000).toFixed(1)}k`} color="#10b981" />
+                  <StatBox label="Comm."    value={`₹${(commission / 1000).toFixed(1)}k`} color="#6F9F8F" />
                 </div>
 
                 {/* ── Revenue share bar ── */}

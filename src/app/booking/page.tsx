@@ -14,7 +14,7 @@ const TABS = [
     label: 'Schedule Booking',
     sub: 'Book future appointments',
     icon: CalendarCheck,
-    color: '#971549',
+    color: '#6F5AA3',
     bg: 'from-salon-400 to-salon-600',
   },
   {
@@ -22,7 +22,7 @@ const TABS = [
     label: 'Walk-in / POS',
     sub: 'Instant billing at counter',
     icon: ShoppingBag,
-    color: '#CF455C',
+    color: '#9D679F',
     bg: 'from-salon-400 to-salon-900',
   },
   {
@@ -30,7 +30,7 @@ const TABS = [
     label: 'Calendar View',
     sub: 'Stylist-wise schedule',
     icon: CalendarDays,
-    color: '#10b981',
+    color: '#6F9F8F',
     bg: 'from-emerald-500 to-green-600',
   },
 ] as const
