@@ -24,7 +24,7 @@ export default function SalonListScreen({ navigation }: Props) {
   const renderSalon = ({ item }: { item: Salon }) => (
     <Card onPress={() => navigation.navigate('SalonDetail', { id: item.id })} style={styles.salonCard}>
       <View style={styles.salonImage}>
-        <Text style={styles.imagePlaceholder}>🏪</Text>
+        <Text style={styles.imagePlaceholder}></Text>
       </View>
       <View style={styles.salonInfo}>
         <Text style={styles.salonName}>{item.name}</Text>

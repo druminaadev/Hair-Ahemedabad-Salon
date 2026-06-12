@@ -17,7 +17,7 @@ export default function Sidebar() {
   return (
     <aside className="w-56 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col min-h-screen">
       <div className="p-5 font-bold text-lg text-primary border-b border-gray-200 dark:border-gray-700">
-        💈 SalonPro CRM
+         SalonPro CRM
       </div>
       <nav className="flex-1 p-3 space-y-1">
         {nav.map(({ href, label, icon: Icon }) => (

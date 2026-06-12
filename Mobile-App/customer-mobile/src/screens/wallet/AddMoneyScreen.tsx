@@ -26,7 +26,7 @@ export default function AddMoneyScreen({ navigation }: any) {
     setLoading(true);
     await new Promise((r) => setTimeout(r, 1000));
     setLoading(false);
-    Alert.alert('Money Added! 🎉', `₹${val} has been added to your wallet.`, [
+    Alert.alert('Money Added! ', `₹${val} has been added to your wallet.`, [
       { text: 'OK', onPress: () => navigation.goBack() },
     ]);
   };

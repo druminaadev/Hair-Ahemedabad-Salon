@@ -25,7 +25,7 @@ export default function SearchScreen({ navigation }: Props) {
   const renderResult = ({ item }: { item: Salon }) => (
     <Card onPress={() => navigation.navigate('SalonDetail', { id: item.id })} style={styles.resultCard}>
       <View style={styles.salonImage}>
-        <Text style={styles.imagePlaceholder}>🏪</Text>
+        <Text style={styles.imagePlaceholder}></Text>
       </View>
       <View style={styles.salonInfo}>
         <Text style={styles.salonName}>{item.name}</Text>
@@ -69,13 +69,13 @@ export default function SearchScreen({ navigation }: Props) {
         />
       ) : query.length >= 1 ? (
         <View style={styles.empty}>
-          <Text style={styles.emptyIcon}>🔍</Text>
+          <Text style={styles.emptyIcon}></Text>
           <Text style={styles.emptyTitle}>No results for "{query}"</Text>
           <Text style={styles.emptyText}>Try searching by salon name or city</Text>
         </View>
       ) : (
         <View style={styles.empty}>
-          <Text style={styles.emptyIcon}>✂️</Text>
+          <Text style={styles.emptyIcon}>️</Text>
           <Text style={styles.emptyTitle}>Find your salon</Text>
           <Text style={styles.emptyText}>Search by name, service, or location</Text>
         </View>

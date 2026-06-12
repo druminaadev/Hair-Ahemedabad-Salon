@@ -51,7 +51,7 @@ export default function EditProfileScreen({ navigation }: any) {
               onPress={() => setGender(g)}
             >
               <Text style={[styles.genderText, gender === g && styles.genderTextActive]}>
-                {g === 'MALE' ? '👨 Male' : '👩 Female'}
+                {g === 'MALE' ? ' Male' : ' Female'}
               </Text>
             </TouchableOpacity>
           ))}

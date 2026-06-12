@@ -1,4 +1,4 @@
-# 🔌 COMPLETE REST API SPECIFICATION
+#  COMPLETE REST API SPECIFICATION
 
 **Base URL**: `https://api.salonapp.in/v1`
 
@@ -6,7 +6,7 @@
 
 ---
 
-## 📋 STANDARD RESPONSE FORMAT
+##  STANDARD RESPONSE FORMAT
 
 ### Success Response
 ```json
@@ -41,7 +41,7 @@
 
 ---
 
-## 🔐 AUTHENTICATION APIs
+##  AUTHENTICATION APIs
 
 ### 1. Send OTP
 ```http
@@ -119,7 +119,7 @@ Content-Type: application/json
 
 ---
 
-## 👤 USER APIs
+##  USER APIs
 
 ### 6. Get Profile
 ```http
@@ -161,7 +161,7 @@ Authorization: Bearer {token}
 
 ---
 
-## 📍 ADDRESS APIs
+##  ADDRESS APIs
 
 ### 10. List Addresses
 ```http
@@ -200,7 +200,7 @@ Authorization: Bearer {token}
 
 ---
 
-## 🏪 SALON APIs
+##  SALON APIs
 
 ### 14. Search Salons
 ```http
@@ -299,7 +299,7 @@ Query Params:
 
 ---
 
-## 📅 BOOKING APIs
+##  BOOKING APIs
 
 ### 20. Get Available Slots
 ```http
@@ -458,7 +458,7 @@ Authorization: Bearer {token}
 
 ---
 
-## 💰 WALLET APIs
+##  WALLET APIs
 
 ### 29. Get Wallet Balance
 ```http
@@ -513,7 +513,7 @@ Authorization: Bearer {token}
 
 ---
 
-## 🎁 MEMBERSHIP APIs
+##  MEMBERSHIP APIs
 
 ### 33. Get Membership Plans
 ```http
@@ -539,7 +539,7 @@ Authorization: Bearer {token}
 
 ---
 
-## 🎟️ COUPON APIs
+## ️ COUPON APIs
 
 ### 36. Get Available Coupons
 ```http
@@ -563,7 +563,7 @@ Authorization: Bearer {token}
 
 ---
 
-## ⭐ REVIEW APIs
+##  REVIEW APIs
 
 ### 38. Submit Review
 ```http
@@ -602,7 +602,7 @@ Authorization: Bearer {token}
 
 ---
 
-## 🔔 NOTIFICATION APIs
+##  NOTIFICATION APIs
 
 ### 42. Get Notifications
 ```http
@@ -639,7 +639,7 @@ Authorization: Bearer {token}
 
 ---
 
-## 💬 SUPPORT APIs
+##  SUPPORT APIs
 
 ### 46. Get FAQs
 ```http
@@ -682,7 +682,7 @@ Authorization: Bearer {token}
 
 ---
 
-## 🏪 SALON OWNER APIs
+##  SALON OWNER APIs
 
 ### 51. Register Salon
 ```http
@@ -857,7 +857,7 @@ Authorization: Bearer {token}
 
 ---
 
-## 🔧 ADMIN APIs
+##  ADMIN APIs
 
 ### 68. Get All Users
 ```http
@@ -1051,7 +1051,7 @@ Query Params:
 
 ---
 
-## 🔍 SEARCH APIs
+##  SEARCH APIs
 
 ### 86. Global Search
 ```http
@@ -1076,7 +1076,7 @@ Query Params:
 
 ---
 
-## 📊 ANALYTICS APIs (SALON OWNER)
+##  ANALYTICS APIs (SALON OWNER)
 
 ### 88. Get Overview Stats
 ```http
@@ -1109,7 +1109,7 @@ Query Params:
 
 ---
 
-## 🌐 PUBLIC APIs (No Auth Required)
+##  PUBLIC APIs (No Auth Required)
 
 ### 91. Get Service Categories
 ```http
@@ -1149,7 +1149,7 @@ Response 200:
 
 ---
 
-## 📱 DEVICE APIs
+##  DEVICE APIs
 
 ### 96. Register Device
 ```http
@@ -1172,7 +1172,7 @@ Authorization: Bearer {token}
 
 ---
 
-## 🎁 REFERRAL APIs
+##  REFERRAL APIs
 
 ### 98. Get Referral Code
 ```http
@@ -1202,7 +1202,7 @@ Authorization: Bearer {token}
 
 ---
 
-## 📸 UPLOAD APIs
+##  UPLOAD APIs
 
 ### 100. Upload Image
 ```http

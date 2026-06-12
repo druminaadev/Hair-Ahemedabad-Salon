@@ -1,24 +1,24 @@
-# ℹ️ CRM Frontend - Project Information
+# ️ CRM Frontend - Project Information
 
 Complete project information, setup guide, and connection documentation.
 
 ---
 
-## 📖 What is This?
+##  What is This?
 
 The **CRM Frontend** is the admin dashboard for the SalonPro Salon Management System. It's a web application built with Next.js 14 that allows salon staff to manage all aspects of the business including:
 
-- 📅 Booking appointments
-- 👥 Managing customers
-- 💰 Processing payments (POS)
-- 📊 Viewing analytics and reports
-- 📦 Managing inventory
-- 💳 Tracking memberships and loyalty points
-- 📱 Sending WhatsApp notifications
+-  Booking appointments
+-  Managing customers
+-  Processing payments (POS)
+-  Viewing analytics and reports
+-  Managing inventory
+-  Tracking memberships and loyalty points
+-  Sending WhatsApp notifications
 
 ---
 
-## 🎯 Purpose
+##  Purpose
 
 This application serves as the **central hub** for salon operations, providing:
 
@@ -28,7 +28,7 @@ This application serves as the **central hub** for salon operations, providing:
 
 ---
 
-## 🏗️ Architecture Overview
+## ️ Architecture Overview
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -58,7 +58,7 @@ This application serves as the **central hub** for salon operations, providing:
 
 ---
 
-## 🔗 How to Connect to Backend
+##  How to Connect to Backend
 
 ### Step 1: Backend Setup
 
@@ -158,7 +158,7 @@ const deleteBooking = async (id) => {
 
 ---
 
-## 🚀 Quick Start Guide
+##  Quick Start Guide
 
 ### 1. Prerequisites
 
@@ -213,7 +213,7 @@ Default credentials:
 
 ---
 
-## 📂 Required Files
+##  Required Files
 
 ### Essential Configuration Files
 
@@ -308,7 +308,7 @@ export default config
 
 ---
 
-## 🔌 API Endpoints Used
+##  API Endpoints Used
 
 ### Authentication
 ```
@@ -372,7 +372,7 @@ GET    /api/reports/stylist-progress
 
 ---
 
-## 🎨 Key Features Explained
+##  Key Features Explained
 
 ### 1. Dashboard
 **What it does**: Shows business overview with KPIs
@@ -406,7 +406,7 @@ GET    /api/reports/stylist-progress
 
 ---
 
-## 🔧 Troubleshooting
+##  Troubleshooting
 
 ### Issue: Cannot connect to backend
 
@@ -453,7 +453,7 @@ npm run dev
 
 ---
 
-## 📦 Dependencies Explained
+##  Dependencies Explained
 
 ### Core Dependencies
 
@@ -509,7 +509,7 @@ npm run dev
 
 ---
 
-## 🚀 Deployment
+##  Deployment
 
 ### Build for Production
 
@@ -547,7 +547,7 @@ NEXTAUTH_SECRET=your-production-secret
 
 ---
 
-## 📚 Learning Resources
+##  Learning Resources
 
 ### Next.js
 - [Next.js Documentation](https://nextjs.org/docs)
@@ -566,7 +566,7 @@ NEXTAUTH_SECRET=your-production-secret
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 1. Create feature branch: `git checkout -b feature/new-feature`
 2. Make changes
@@ -577,7 +577,7 @@ NEXTAUTH_SECRET=your-production-secret
 
 ---
 
-## 📞 Support
+##  Support
 
 For issues or questions:
 - Check documentation files (DESIGN.md, FRONTEND.md)

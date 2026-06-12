@@ -152,7 +152,7 @@ export default function BookingDetailScreen({ navigation, route }: Props) {
           </View>
           <View style={styles.paymentBadge}>
             <Text style={styles.paymentText}>
-              {booking.paymentStatus === 'SUCCESS' ? '✅ Paid' : booking.paymentStatus === 'REFUNDED' ? '↩️ Refunded' : '⏳ Pending'}
+              {booking.paymentStatus === 'SUCCESS' ? ' Paid' : booking.paymentStatus === 'REFUNDED' ? '️ Refunded' : ' Pending'}
             </Text>
           </View>
         </View>

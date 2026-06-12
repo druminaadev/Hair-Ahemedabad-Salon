@@ -1,4 +1,4 @@
-# 🗄️ COMPLETE DATABASE SCHEMA
+# ️ COMPLETE DATABASE SCHEMA
 
 ## Prisma Schema (apps/api/prisma/schema.prisma)
 
@@ -839,14 +839,14 @@ CREATE INDEX idx_salons_search ON salons USING gin(to_tsvector('english', name |
 ---
 
 This schema includes:
-✅ 30+ tables
-✅ All relationships
-✅ Proper indexes
-✅ UUID primary keys
-✅ Soft deletes
-✅ Audit logs
-✅ Geospatial support
-✅ Full-text search
-✅ JSON fields for flexibility
-✅ Enums for type safety
+ 30+ tables
+ All relationships
+ Proper indexes
+ UUID primary keys
+ Soft deletes
+ Audit logs
+ Geospatial support
+ Full-text search
+ JSON fields for flexibility
+ Enums for type safety
 

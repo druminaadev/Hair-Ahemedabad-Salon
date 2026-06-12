@@ -1,10 +1,10 @@
-# 🚀 SALON BOOKING PLATFORM - IMPLEMENTATION ROADMAP
+#  SALON BOOKING PLATFORM - IMPLEMENTATION ROADMAP
 
 **Timeline**: 10-14 Months | **MVP**: 5-6 Months
 
 ---
 
-## 📋 IMPLEMENTATION PHASES
+##  IMPLEMENTATION PHASES
 
 ### **PHASE 0: Foundation & Setup** (Weeks 1-2)
 **Goal**: Project initialization, infrastructure setup, team onboarding
@@ -515,7 +515,7 @@
 
 ---
 
-## 📊 RESOURCE ALLOCATION
+##  RESOURCE ALLOCATION
 
 ### Team Structure by Phase
 
@@ -541,31 +541,31 @@
 
 ---
 
-## 🎯 MVP SCOPE (Months 1-6)
+##  MVP SCOPE (Months 1-6)
 
 ### MVP Includes:
-✅ Customer Mobile App (Core flows)
-✅ Salon Owner Mobile App (Basic features)
-✅ Backend APIs
-✅ Database
-✅ Authentication
-✅ Booking Engine
-✅ Payment Integration
-✅ Basic Admin Panel
-✅ AWS Infrastructure
+ Customer Mobile App (Core flows)
+ Salon Owner Mobile App (Basic features)
+ Backend APIs
+ Database
+ Authentication
+ Booking Engine
+ Payment Integration
+ Basic Admin Panel
+ AWS Infrastructure
 
 ### MVP Excludes:
-❌ Web Dashboard (full features)
-❌ AI Recommendations
-❌ Advanced Analytics
-❌ Chat System
-❌ AR Try-On
-❌ Group Bookings
-❌ Complex Loyalty Programs
+ Web Dashboard (full features)
+ AI Recommendations
+ Advanced Analytics
+ Chat System
+ AR Try-On
+ Group Bookings
+ Complex Loyalty Programs
 
 ---
 
-## 🚨 CRITICAL PATH ITEMS
+##  CRITICAL PATH ITEMS
 
 ### Must Complete First:
 1. Database schema finalization
@@ -577,16 +577,16 @@
 7. Review system
 
 ### High Risk Items:
-⚠️ Booking concurrency (double booking prevention)
-⚠️ Payment reconciliation
-⚠️ Real-time slot updates
-⚠️ Search performance at scale
-⚠️ App store approval process
-⚠️ Third-party API dependencies
+️ Booking concurrency (double booking prevention)
+️ Payment reconciliation
+️ Real-time slot updates
+️ Search performance at scale
+️ App store approval process
+️ Third-party API dependencies
 
 ---
 
-## 📈 SUCCESS METRICS BY PHASE
+##  SUCCESS METRICS BY PHASE
 
 ### Phase 2 (MVP Mobile):
 - Cold start < 2s
@@ -611,7 +611,7 @@
 
 ---
 
-## 💰 COST ESTIMATION BY PHASE
+##  COST ESTIMATION BY PHASE
 
 ### Development (Months 1-12):
 - Team Salaries: ₹80-120 lakhs
@@ -625,7 +625,7 @@
 
 ---
 
-## 📝 DELIVERABLES CHECKLIST
+##  DELIVERABLES CHECKLIST
 
 ### Code Repositories:
 - [ ] Backend API (Node.js + TypeScript)
@@ -662,7 +662,7 @@
 
 ---
 
-## 🔄 AGILE WORKFLOW
+##  AGILE WORKFLOW
 
 ### Sprint Structure:
 - **Sprint Duration**: 2 weeks
@@ -672,18 +672,18 @@
 - **Sprint Retro**: Bi-weekly Friday (1h)
 
 ### Definition of Done:
-✅ Code reviewed & approved
-✅ Unit tests written (80%+ coverage)
-✅ Integration tests passing
-✅ Documentation updated
-✅ QA testing completed
-✅ Security reviewed
-✅ Deployed to staging
-✅ Product owner approved
+ Code reviewed & approved
+ Unit tests written (80%+ coverage)
+ Integration tests passing
+ Documentation updated
+ QA testing completed
+ Security reviewed
+ Deployed to staging
+ Product owner approved
 
 ---
 
-## 🎓 KNOWLEDGE TRANSFER
+##  KNOWLEDGE TRANSFER
 
 ### Documentation Requirements:
 - Architecture Decision Records (ADRs)
@@ -702,7 +702,7 @@
 
 ---
 
-## 🚀 DEPLOYMENT STRATEGY
+##  DEPLOYMENT STRATEGY
 
 ### Environments:
 1. **Development**: Feature branches, auto-deploy
@@ -716,7 +716,7 @@
 
 ---
 
-## 🎯 NEXT STEPS
+##  NEXT STEPS
 
 1. Review and approve this roadmap
 2. Finalize team structure

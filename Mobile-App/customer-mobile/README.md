@@ -1,27 +1,27 @@
-# 📱 SalonBooking - Customer Mobile App
+#  SalonBooking - Customer Mobile App
 
 Production-ready React Native mobile application for salon booking platform.
 
 ---
 
-## 🎯 Overview
+##  Overview
 
 This is the customer-facing mobile app built with React Native and Expo, following enterprise-grade architecture and best practices.
 
 ### Features
-- 🔐 OTP-based authentication
-- 🔍 Search & discover nearby salons
-- 📅 Real-time slot booking
-- 💳 Integrated payment (Razorpay)
-- 💰 Wallet & loyalty points
-- ⭐ Reviews & ratings
-- 📱 Push notifications
-- 🔒 Biometric authentication
-- 🌓 Dark mode support
+-  OTP-based authentication
+-  Search & discover nearby salons
+-  Real-time slot booking
+-  Integrated payment (Razorpay)
+-  Wallet & loyalty points
+-  Reviews & ratings
+-  Push notifications
+-  Biometric authentication
+-  Dark mode support
 
 ---
 
-## 🏗️ Tech Stack
+## ️ Tech Stack
 
 - **Framework**: React Native 0.73 with Expo 50
 - **Language**: TypeScript 5+
@@ -36,7 +36,7 @@ This is the customer-facing mobile app built with React Native and Expo, followi
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 src/
@@ -68,7 +68,7 @@ src/
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 - Node.js >= 18
@@ -113,7 +113,7 @@ npm run ios
 
 ---
 
-## 🎨 Design System
+##  Design System
 
 ### Colors
 Primary colors defined in `src/constants/colors.ts`:
@@ -130,7 +130,7 @@ Consistent spacing values in `src/constants/spacing.ts`
 
 ---
 
-## 🔌 API Integration
+##  API Integration
 
 ### Authentication
 
@@ -183,7 +183,7 @@ const order = await bookingsApi.createPaymentOrder(bookingId);
 
 ---
 
-## 🗂️ State Management
+## ️ State Management
 
 ### Auth Store
 
@@ -220,7 +220,7 @@ const total = getTotalAmount();
 
 ---
 
-## 🧩 Components
+##  Components
 
 ### Button
 
@@ -264,7 +264,7 @@ import { Card } from '@/components/common/Card';
 
 ---
 
-## 🧪 Testing
+##  Testing
 
 ```bash
 # Run tests
@@ -279,7 +279,7 @@ npm run test:coverage
 
 ---
 
-## 📱 Build & Deploy
+##  Build & Deploy
 
 ### Development Build
 
@@ -313,7 +313,7 @@ eas submit --platform ios
 
 ---
 
-## 📊 Performance Targets
+##  Performance Targets
 
 - Cold start: < 2 seconds
 - Screen transition: < 300ms
@@ -322,7 +322,7 @@ eas submit --platform ios
 
 ---
 
-## 🔒 Security
+##  Security
 
 - Encrypted local storage (MMKV)
 - JWT with refresh token rotation
@@ -333,7 +333,7 @@ eas submit --platform ios
 
 ---
 
-## 📝 Development Guidelines
+##  Development Guidelines
 
 ### Code Style
 - Follow TypeScript strict mode
@@ -355,7 +355,7 @@ eas submit --platform ios
 
 ---
 
-## 🐛 Debugging
+##  Debugging
 
 ### React Native Debugger
 
@@ -379,7 +379,7 @@ brew install --cask reactotron
 
 ---
 
-## 📚 Documentation
+##  Documentation
 
 - [Implementation Guide](./IMPLEMENTATION_GUIDE.md)
 - [API Specification](../../API_SPECIFICATION.md)
@@ -388,7 +388,7 @@ brew install --cask reactotron
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 1. Create feature branch
 2. Make changes
@@ -399,13 +399,13 @@ brew install --cask reactotron
 
 ---
 
-## 📄 License
+##  License
 
 Proprietary - All rights reserved
 
 ---
 
-## 📞 Support
+##  Support
 
 For issues or questions:
 - Check documentation
@@ -414,4 +414,4 @@ For issues or questions:
 
 ---
 
-**Built with ❤️ for SalonBooking Platform**
+**Built with ️ for SalonBooking Platform**

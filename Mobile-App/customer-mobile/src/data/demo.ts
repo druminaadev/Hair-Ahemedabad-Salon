@@ -205,16 +205,16 @@ export const DEMO_TRANSACTIONS: WalletTransaction[] = [
 ];
 
 export const DEMO_NOTIFICATIONS: Notification[] = [
-  { id: 'n1',  type: 'booking',  title: 'Booking Confirmed ✅',       body: 'Your Haircut appointment at Hair Ahmedabad on Feb 15 at 10:00 AM is confirmed. See you soon!',              isRead: false, createdAt: '2024-01-13T09:00:00Z', data: { bookingId: 'b1' } },
-  { id: 'n2',  type: 'offer',    title: '20% Off This Weekend! 🎉',   body: 'Use code WEEKEND20 for 20% off on all services this Saturday & Sunday. Limited slots available.',         isRead: false, createdAt: '2024-01-12T10:00:00Z' },
-  { id: 'n3',  type: 'reminder', title: 'Appointment Tomorrow ⏰',    body: 'Reminder: You have a Full Body Massage at Glam Studio tomorrow at 2:00 PM. Get ready!',                   isRead: false, createdAt: '2024-01-11T08:00:00Z', data: { bookingId: 'b2' } },
-  { id: 'n4',  type: 'wallet',   title: 'Refund Credited 💰',         body: '₹1,770 has been refunded to your wallet for cancelled booking at Serenity Spa. Available instantly.',      isRead: false, createdAt: '2024-01-09T10:00:00Z' },
-  { id: 'n5',  type: 'loyalty',  title: '50 Points Earned! ⭐',       body: 'You earned 50 loyalty points for your visit to Hair Ahmedabad. Total balance: 250 points (≈ ₹25).',         isRead: true,  createdAt: '2024-01-08T16:00:00Z' },
-  { id: 'n6',  type: 'offer',    title: 'New Salon Near You 📍',      body: 'Nail Artistry just opened 5 km away! Get 15% off on your first visit. Book now before slots fill up.',    isRead: true,  createdAt: '2024-01-07T11:00:00Z', data: { salonId: 's5' } },
-  { id: 'n7',  type: 'booking',  title: 'Review Your Visit ✍️',      body: 'How was your Facial & Manicure at Hair Ahmedabad? Share your experience and earn 20 bonus points.',         isRead: true,  createdAt: '2024-01-06T14:00:00Z', data: { bookingId: 'b3' } },
-  { id: 'n8',  type: 'wallet',   title: 'Money Added 🎉',             body: '₹500 has been successfully added to your wallet via UPI. Current balance: ₹984.',                         isRead: true,  createdAt: '2024-01-05T09:00:00Z' },
-  { id: 'n9',  type: 'offer',    title: 'Flash Sale: Spa at ₹999 🔥', body: 'Serenity Spa is offering Full Body Spa for just ₹999 today only (regular ₹1,500). Book in next 2 hours!', isRead: true,  createdAt: '2024-01-04T12:00:00Z', data: { salonId: 's3' } },
-  { id: 'n10', type: 'loyalty',  title: 'Referral Bonus Credited 🎁', body: 'Ankit used your referral code! ₹100 has been credited to your wallet. Keep sharing and keep earning.',      isRead: true,  createdAt: '2024-01-03T15:00:00Z' },
+  { id: 'n1',  type: 'booking',  title: 'Booking Confirmed ',       body: 'Your Haircut appointment at Hair Ahmedabad on Feb 15 at 10:00 AM is confirmed. See you soon!',              isRead: false, createdAt: '2024-01-13T09:00:00Z', data: { bookingId: 'b1' } },
+  { id: 'n2',  type: 'offer',    title: '20% Off This Weekend! ',   body: 'Use code WEEKEND20 for 20% off on all services this Saturday & Sunday. Limited slots available.',         isRead: false, createdAt: '2024-01-12T10:00:00Z' },
+  { id: 'n3',  type: 'reminder', title: 'Appointment Tomorrow ',    body: 'Reminder: You have a Full Body Massage at Glam Studio tomorrow at 2:00 PM. Get ready!',                   isRead: false, createdAt: '2024-01-11T08:00:00Z', data: { bookingId: 'b2' } },
+  { id: 'n4',  type: 'wallet',   title: 'Refund Credited ',         body: '₹1,770 has been refunded to your wallet for cancelled booking at Serenity Spa. Available instantly.',      isRead: false, createdAt: '2024-01-09T10:00:00Z' },
+  { id: 'n5',  type: 'loyalty',  title: '50 Points Earned! ',       body: 'You earned 50 loyalty points for your visit to Hair Ahmedabad. Total balance: 250 points (≈ ₹25).',         isRead: true,  createdAt: '2024-01-08T16:00:00Z' },
+  { id: 'n6',  type: 'offer',    title: 'New Salon Near You ',      body: 'Nail Artistry just opened 5 km away! Get 15% off on your first visit. Book now before slots fill up.',    isRead: true,  createdAt: '2024-01-07T11:00:00Z', data: { salonId: 's5' } },
+  { id: 'n7',  type: 'booking',  title: 'Review Your Visit ️',      body: 'How was your Facial & Manicure at Hair Ahmedabad? Share your experience and earn 20 bonus points.',         isRead: true,  createdAt: '2024-01-06T14:00:00Z', data: { bookingId: 'b3' } },
+  { id: 'n8',  type: 'wallet',   title: 'Money Added ',             body: '₹500 has been successfully added to your wallet via UPI. Current balance: ₹984.',                         isRead: true,  createdAt: '2024-01-05T09:00:00Z' },
+  { id: 'n9',  type: 'offer',    title: 'Flash Sale: Spa at ₹999 ', body: 'Serenity Spa is offering Full Body Spa for just ₹999 today only (regular ₹1,500). Book in next 2 hours!', isRead: true,  createdAt: '2024-01-04T12:00:00Z', data: { salonId: 's3' } },
+  { id: 'n10', type: 'loyalty',  title: 'Referral Bonus Credited ', body: 'Ankit used your referral code! ₹100 has been credited to your wallet. Keep sharing and keep earning.',      isRead: true,  createdAt: '2024-01-03T15:00:00Z' },
 ];
 
 export const DEMO_WALLET = { balance: 984, loyaltyPoints: 250 };

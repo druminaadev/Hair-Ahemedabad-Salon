@@ -14,7 +14,7 @@ interface Props {
 export const SalonCard: React.FC<Props> = ({ salon, onPress, horizontal = true }) => (
   <Card onPress={onPress} style={horizontal ? styles.horizontal : styles.vertical}>
     <View style={horizontal ? styles.image : styles.imageVertical}>
-      <Text style={styles.emoji}>🏪</Text>
+      <Text style={styles.emoji}></Text>
     </View>
     <View style={horizontal ? styles.info : styles.infoVertical}>
       <Text style={styles.name} numberOfLines={1}>{salon.name}</Text>

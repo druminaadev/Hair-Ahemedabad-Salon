@@ -101,7 +101,7 @@ export default function BookingSummaryScreen({ navigation, route }: Props) {
         {/* Salon Card */}
         <View style={styles.salonCard}>
           <View style={styles.salonImageBox}>
-            <Text style={styles.salonEmoji}>🏪</Text>
+            <Text style={styles.salonEmoji}></Text>
           </View>
           <View style={styles.salonInfo}>
             <Text style={styles.salonName}>{salon.name}</Text>
@@ -248,7 +248,7 @@ export default function BookingSummaryScreen({ navigation, route }: Props) {
           <View>
             <Text style={styles.footerLabel}>Total Payable</Text>
             {discountAmt > 0 && (
-              <Text style={styles.footerSaving}>You save ₹{discountAmt} 🎉</Text>
+              <Text style={styles.footerSaving}>You save ₹{discountAmt} </Text>
             )}
           </View>
           <Text style={styles.footerAmount}>₹{total}</Text>

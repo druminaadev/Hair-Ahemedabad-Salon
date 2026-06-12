@@ -84,7 +84,7 @@ export default function PaymentScreen({ navigation, route }: Props) {
 
         <View style={styles.section}>
           <View style={styles.secureNote}>
-            <Text style={styles.secureText}>🔒 Your payment is secured with 256-bit encryption</Text>
+            <Text style={styles.secureText}> Your payment is secured with 256-bit encryption</Text>
           </View>
         </View>
       </ScrollView>

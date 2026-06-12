@@ -19,19 +19,19 @@ const { width } = Dimensions.get('window');
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const CATEGORIES = [
-  { id: 'all',     name: 'All',     icon: '🌟', color: '#6366F1' },
-  { id: 'hair',    name: 'Haircut', icon: '✂️', color: '#8B5CF6' },
-  { id: 'facial',  name: 'Facial',  icon: '🧖', color: '#EC4899' },
-  { id: 'spa',     name: 'Spa',     icon: '💆', color: '#06B6D4' },
-  { id: 'nails',   name: 'Nails',   icon: '💅', color: '#F59E0B' },
-  { id: 'makeup',  name: 'Makeup',  icon: '💄', color: '#EF4444' },
-  { id: 'massage', name: 'Massage', icon: '🤲', color: '#10B981' },
+  { id: 'all',     name: 'All',     icon: '', color: '#6366F1' },
+  { id: 'hair',    name: 'Haircut', icon: '️', color: '#8B5CF6' },
+  { id: 'facial',  name: 'Facial',  icon: '', color: '#EC4899' },
+  { id: 'spa',     name: 'Spa',     icon: '', color: '#06B6D4' },
+  { id: 'nails',   name: 'Nails',   icon: '', color: '#F59E0B' },
+  { id: 'makeup',  name: 'Makeup',  icon: '', color: '#EF4444' },
+  { id: 'massage', name: 'Massage', icon: '', color: '#10B981' },
 ];
 
 const OFFERS = [
-  { id: 'o1', title: '20% Off This Weekend!',  sub: 'Code: WEEKEND20',  emoji: '🎉', bg: '#6366F1', accent: '#818CF8' },
-  { id: 'o2', title: 'Free Hair Spa Today',    sub: 'On orders above ₹999', emoji: '✨', bg: '#EC4899', accent: '#F472B6' },
-  { id: 'o3', title: 'Refer & Earn ₹100',      sub: 'Per successful referral', emoji: '🎁', bg: '#10B981', accent: '#34D399' },
+  { id: 'o1', title: '20% Off This Weekend!',  sub: 'Code: WEEKEND20',  emoji: '', bg: '#6366F1', accent: '#818CF8' },
+  { id: 'o2', title: 'Free Hair Spa Today',    sub: 'On orders above ₹999', emoji: '', bg: '#EC4899', accent: '#F472B6' },
+  { id: 'o3', title: 'Refer & Earn ₹100',      sub: 'Per successful referral', emoji: '', bg: '#10B981', accent: '#34D399' },
 ];
 
 const QUICK_ACTIONS = [
@@ -61,7 +61,7 @@ const OfferBanner = ({ item, onPress }: { item: typeof OFFERS[0]; onPress: () =>
 const SalonCardHorizontal = ({ item, onPress }: { item: Salon; onPress: () => void }) => (
   <TouchableOpacity onPress={onPress} activeOpacity={0.85} style={styles.salonCardH}>
     <View style={styles.salonImageH}>
-      <Text style={styles.salonEmojiH}>🏪</Text>
+      <Text style={styles.salonEmojiH}></Text>
       <View style={styles.ratingBadge}>
         <Star size={10} color="#FFF" fill="#FFF" />
         <Text style={styles.ratingBadgeText}>{item.rating}</Text>
@@ -87,7 +87,7 @@ const SalonCardHorizontal = ({ item, onPress }: { item: Salon; onPress: () => vo
 const SalonCardVertical = ({ item, onPress }: { item: Salon; onPress: () => void }) => (
   <TouchableOpacity onPress={onPress} activeOpacity={0.85} style={styles.salonCardV}>
     <View style={styles.salonImageV}>
-      <Text style={styles.salonEmojiV}>🏪</Text>
+      <Text style={styles.salonEmojiV}></Text>
       <View style={styles.distanceBadge}>
         <MapPin size={10} color={colors.primary} />
         <Text style={styles.distanceBadgeText}>{item.distance} km</Text>
@@ -154,7 +154,7 @@ export default function HomeScreen({ navigation }: Props) {
           </View>
           <View>
             <Text style={styles.greetingText}>{greeting()},</Text>
-            <Text style={styles.userName}>{user.name?.split(' ')[0] ?? 'There'} 👋</Text>
+            <Text style={styles.userName}>{user.name?.split(' ')[0] ?? 'There'} </Text>
           </View>
         </View>
         <View style={styles.headerRight}>
@@ -286,7 +286,7 @@ export default function HomeScreen({ navigation }: Props) {
         {/* ── Top Rated — Horizontal Scroll ── */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>⭐ Top Rated</Text>
+            <Text style={styles.sectionTitle}> Top Rated</Text>
             <TouchableOpacity onPress={() => navigation.navigate('SalonList', {})} style={styles.seeAllBtn}>
               <Text style={styles.seeAllText}>See All</Text>
               <ChevronRight size={14} color={colors.primary} />
@@ -310,7 +310,7 @@ export default function HomeScreen({ navigation }: Props) {
         {/* ── Nearby Salons — Vertical ── */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>📍 Nearby Salons</Text>
+            <Text style={styles.sectionTitle}> Nearby Salons</Text>
             <TouchableOpacity onPress={() => navigation.navigate('SalonList', {})} style={styles.seeAllBtn}>
               <Text style={styles.seeAllText}>See All</Text>
               <ChevronRight size={14} color={colors.primary} />

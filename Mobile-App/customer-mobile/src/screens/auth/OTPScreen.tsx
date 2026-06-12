@@ -39,7 +39,7 @@ export default function OTPScreen({ route }: Props) {
         <Text style={styles.subtitle}>Enter the 6-digit code sent to +91 {phone}</Text>
 
         <View style={styles.demoBanner}>
-          <Text style={styles.demoText}>🧪 Demo mode — use OTP: 123456</Text>
+          <Text style={styles.demoText}> Demo mode — use OTP: 123456</Text>
         </View>
 
         <View style={styles.form}>

@@ -33,7 +33,7 @@ export default function WriteReviewScreen({ navigation, route }: Props) {
     setSubmitting(true);
     await new Promise((r) => setTimeout(r, 800));
     setSubmitting(false);
-    Alert.alert('Thank you! 🎉', 'Your review has been submitted.', [
+    Alert.alert('Thank you! ', 'Your review has been submitted.', [
       { text: 'OK', onPress: () => navigation.goBack() },
     ]);
   };
@@ -45,7 +45,7 @@ export default function WriteReviewScreen({ navigation, route }: Props) {
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         {/* Salon Info */}
         <View style={styles.salonCard}>
-          <Text style={styles.salonEmoji}>🏪</Text>
+          <Text style={styles.salonEmoji}></Text>
           <View>
             <Text style={styles.salonName}>{salon.name}</Text>
             <Text style={styles.serviceNames}>{booking.serviceNames.join(', ')}</Text>

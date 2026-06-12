@@ -17,7 +17,7 @@ const { width } = Dimensions.get('window');
 const STEP_LABELS = ['Services', 'Staff', 'Date & Time', 'Summary'];
 
 const CAT_ICONS: Record<string, string> = {
-  hair: '✂️', skin: '🧖', body: '💆', nails: '💅', makeup: '💄',
+  hair: '️', skin: '', body: '', nails: '', makeup: '',
 };
 
 function StepBar({ current }: { current: number }) {
@@ -108,7 +108,7 @@ export default function ServiceSelectionScreen({ navigation, route }: Props) {
               style={[styles.catTab, active && styles.catTabActive]}
               onPress={() => setActiveCat(cat)}
             >
-              {cat !== 'all' && <Text style={styles.catEmoji}>{CAT_ICONS[cat] ?? '🔸'}</Text>}
+              {cat !== 'all' && <Text style={styles.catEmoji}>{CAT_ICONS[cat] ?? ''}</Text>}
               <Text style={[styles.catTabText, active && styles.catTabTextActive]}>
                 {cat === 'all' ? 'All Services' : cat.charAt(0).toUpperCase() + cat.slice(1)}
               </Text>
@@ -134,7 +134,7 @@ export default function ServiceSelectionScreen({ navigation, route }: Props) {
               activeOpacity={0.8}
             >
               <View style={[styles.serviceLeft, selected && styles.serviceLeftSelected]}>
-                <Text style={styles.serviceEmoji}>{CAT_ICONS[service.categoryId] ?? '💇'}</Text>
+                <Text style={styles.serviceEmoji}>{CAT_ICONS[service.categoryId] ?? ''}</Text>
               </View>
               <View style={styles.serviceInfo}>
                 <Text style={styles.serviceName}>{service.name}</Text>

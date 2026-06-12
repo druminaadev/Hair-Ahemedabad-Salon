@@ -29,7 +29,7 @@ export default function SalonDetailScreen({ navigation, route }: Props) {
         {/* Hero */}
         <View style={styles.imageContainer}>
           <View style={styles.imagePlaceholder}>
-            <Text style={styles.imageIcon}>🏪</Text>
+            <Text style={styles.imageIcon}></Text>
           </View>
           <View style={styles.headerButtons}>
             <TouchableOpacity onPress={() => navigation.goBack()} style={styles.iconButton}>

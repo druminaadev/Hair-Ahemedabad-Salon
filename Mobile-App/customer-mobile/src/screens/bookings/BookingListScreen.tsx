@@ -115,7 +115,7 @@ export default function BookingListScreen({ navigation }: Props) {
         contentContainerStyle={styles.list}
         ListEmptyComponent={
           <View style={styles.empty}>
-            <Text style={styles.emptyIcon}>📋</Text>
+            <Text style={styles.emptyIcon}></Text>
             <Text style={styles.emptyText}>No {activeTab.toLowerCase()} bookings</Text>
           </View>
         }

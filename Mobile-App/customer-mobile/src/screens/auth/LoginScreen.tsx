@@ -27,13 +27,13 @@ export default function LoginScreen({ navigation }: Props) {
     >
       <View style={styles.content}>
         <View style={styles.logoWrap}>
-          <Text style={styles.logoEmoji}>✂️</Text>
+          <Text style={styles.logoEmoji}>️</Text>
         </View>
         <Text style={styles.title}>Welcome Back</Text>
         <Text style={styles.subtitle}>Enter your phone number to continue</Text>
 
         <View style={styles.demoBanner}>
-          <Text style={styles.demoText}>🧪 Demo mode — use any 10-digit number</Text>
+          <Text style={styles.demoText}> Demo mode — use any 10-digit number</Text>
         </View>
 
         <View style={styles.form}>

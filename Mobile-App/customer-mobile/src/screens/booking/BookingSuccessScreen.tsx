@@ -87,9 +87,9 @@ export default function BookingSuccessScreen({ navigation, route }: Props) {
 
         {/* Info */}
         <View style={styles.infoCard}>
-          <Text style={styles.infoText}>📱 Confirmation sent to your phone</Text>
-          <Text style={styles.infoText}>🔔 Reminder 1 hour before your appointment</Text>
-          <Text style={styles.infoText}>❌ Cancel up to 2 hours before for full refund</Text>
+          <Text style={styles.infoText}> Confirmation sent to your phone</Text>
+          <Text style={styles.infoText}> Reminder 1 hour before your appointment</Text>
+          <Text style={styles.infoText}> Cancel up to 2 hours before for full refund</Text>
         </View>
       </ScrollView>
 

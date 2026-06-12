@@ -1,20 +1,20 @@
-# 💼 SalonPro CRM Frontend
+#  SalonPro CRM Frontend
 
 Admin dashboard for comprehensive salon management built with Next.js 14, TypeScript, and Tailwind CSS.
 
 ---
 
-## 📚 Documentation
+##  Documentation
 
 | File | Description |
 |------|-------------|
-| **[INFO.md](./INFO.md)** | 📖 Start here! Project overview, setup guide, and how to connect to backend |
-| **[FRONTEND.md](./FRONTEND.md)** | 💻 Complete technical documentation, architecture, and API integration |
-| **[DESIGN.md](./DESIGN.md)** | 🎨 Design system, components, and UI patterns |
+| **[INFO.md](./INFO.md)** |  Start here! Project overview, setup guide, and how to connect to backend |
+| **[FRONTEND.md](./FRONTEND.md)** |  Complete technical documentation, architecture, and API integration |
+| **[DESIGN.md](./DESIGN.md)** |  Design system, components, and UI patterns |
 
 ---
 
-## ⚡ Quick Start
+##  Quick Start
 
 ```bash
 # Install dependencies
@@ -34,20 +34,20 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## 🎯 Features
+##  Features
 
-- 📅 **Booking Management** - Appointments, calendar, POS billing
-- 👥 **Customer Management** - Profiles, history, loyalty points
-- 💰 **Financial Tracking** - Payments, expenses, reports
-- 📊 **Analytics** - Business insights and trends
-- 📦 **Inventory** - Stock management and alerts
-- 🎁 **Loyalty Programs** - Memberships and packages
-- 📱 **Notifications** - WhatsApp integration
-- 🌓 **Dark Mode** - Full theme support
+-  **Booking Management** - Appointments, calendar, POS billing
+-  **Customer Management** - Profiles, history, loyalty points
+-  **Financial Tracking** - Payments, expenses, reports
+-  **Analytics** - Business insights and trends
+-  **Inventory** - Stock management and alerts
+-  **Loyalty Programs** - Memberships and packages
+-  **Notifications** - WhatsApp integration
+-  **Dark Mode** - Full theme support
 
 ---
 
-## 🛠️ Tech Stack
+## ️ Tech Stack
 
 - **Framework**: Next.js 14 (App Router)
 - **Language**: TypeScript
@@ -60,7 +60,7 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 src/
@@ -82,7 +82,7 @@ src/
 
 ---
 
-## 🔗 Backend Connection
+##  Backend Connection
 
 The frontend connects to the backend API via Axios:
 
@@ -99,7 +99,7 @@ See [INFO.md](./INFO.md) for detailed connection guide.
 
 ---
 
-## 📦 Available Scripts
+##  Available Scripts
 
 ```bash
 npm run dev      # Start development server (port 3000)
@@ -110,14 +110,14 @@ npm run lint     # Run ESLint
 
 ---
 
-## 🔐 Default Login
+##  Default Login
 
 - **Email**: admin@hairahmedabad.com
 - **Password**: Admin@123
 
 ---
 
-## 📖 Documentation Guide
+##  Documentation Guide
 
 ### New to the project?
 1. Read **[INFO.md](./INFO.md)** - Understand what this is and how to set it up
@@ -134,7 +134,7 @@ npm run lint     # Run ESLint
 
 ---
 
-## 🚀 Deployment
+##  Deployment
 
 ### Vercel (Recommended)
 
@@ -150,7 +150,7 @@ NEXT_PUBLIC_API_URL=https://api.yourdomain.com/api
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 1. Create feature branch: `git checkout -b feature/name`
 2. Make changes
@@ -160,15 +160,15 @@ NEXT_PUBLIC_API_URL=https://api.yourdomain.com/api
 
 ---
 
-## 📞 Support
+##  Support
 
-- 📖 Check documentation files
-- 🐛 Report issues via GitHub
-- 💬 Contact development team
+-  Check documentation files
+-  Report issues via GitHub
+-  Contact development team
 
 ---
 
-## 📄 License
+##  License
 
 Proprietary - All rights reserved by Hair Ahmedabad
 

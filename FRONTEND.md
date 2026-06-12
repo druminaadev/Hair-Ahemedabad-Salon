@@ -1,10 +1,10 @@
-# 💻 CRM Frontend - Technical Documentation
+#  CRM Frontend - Technical Documentation
 
 Complete technical documentation for the SalonPro CRM Frontend application.
 
 ---
 
-## 📋 Table of Contents
+##  Table of Contents
 
 1. [Overview](#overview)
 2. [Tech Stack](#tech-stack)
@@ -21,24 +21,24 @@ Complete technical documentation for the SalonPro CRM Frontend application.
 
 ---
 
-## 🎯 Overview
+##  Overview
 
 The CRM Frontend is a Next.js 14 application built with TypeScript and Tailwind CSS. It provides a comprehensive admin dashboard for managing salon operations including bookings, customers, staff, inventory, and financial reports.
 
 ### Key Features
-- 📅 Appointment booking and management
-- 👥 Customer relationship management
-- 💰 POS billing system
-- 📊 Analytics and reports
-- 💳 Payment tracking
-- 📦 Inventory management
-- 🎁 Loyalty and membership programs
-- 📱 WhatsApp notifications
-- 🌓 Dark mode support
+-  Appointment booking and management
+-  Customer relationship management
+-  POS billing system
+-  Analytics and reports
+-  Payment tracking
+-  Inventory management
+-  Loyalty and membership programs
+-  WhatsApp notifications
+-  Dark mode support
 
 ---
 
-## 🛠️ Tech Stack
+## ️ Tech Stack
 
 ### Core
 - **Framework**: Next.js 14 (App Router)
@@ -69,7 +69,7 @@ The CRM Frontend is a Next.js 14 application built with TypeScript and Tailwind 
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 CRM/crm-frontend/
@@ -150,7 +150,7 @@ CRM/crm-frontend/
 
 ---
 
-## ✨ Features
+##  Features
 
 ### 1. Dashboard
 - KPI overview (revenue, bookings, customers)
@@ -215,7 +215,7 @@ CRM/crm-frontend/
 
 ---
 
-## 🗺️ Pages & Routes
+## ️ Pages & Routes
 
 ### Public Routes
 ```
@@ -284,7 +284,7 @@ CRM/crm-frontend/
 
 ---
 
-## 🧩 Components
+##  Components
 
 ### Layout Components
 
@@ -383,7 +383,7 @@ toast.warning('Low stock alert')
 
 ---
 
-## 🗄️ State Management
+## ️ State Management
 
 ### Zustand Stores
 
@@ -444,7 +444,7 @@ function Component() {
 
 ---
 
-## 🔌 API Integration
+##  API Integration
 
 ### API Client Setup
 ```typescript
@@ -548,7 +548,7 @@ const createBooking = async (data: BookingData) => {
 
 ---
 
-## 🔐 Authentication
+##  Authentication
 
 ### NextAuth Configuration
 ```typescript
@@ -626,7 +626,7 @@ export const config = {
 
 ---
 
-## 🎨 Styling
+##  Styling
 
 ### Tailwind Configuration
 ```typescript
@@ -680,7 +680,7 @@ export default config
 
 ---
 
-## 🚀 Development
+##  Development
 
 ### Prerequisites
 ```bash
@@ -720,7 +720,7 @@ npm run lint     # Run ESLint
 
 ---
 
-## 📦 Build & Deploy
+##  Build & Deploy
 
 ### Build for Production
 ```bash
@@ -748,7 +748,7 @@ NEXTAUTH_SECRET=your-secret-key
 
 ---
 
-## 📚 Additional Resources
+##  Additional Resources
 
 - [Next.js Documentation](https://nextjs.org/docs)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)

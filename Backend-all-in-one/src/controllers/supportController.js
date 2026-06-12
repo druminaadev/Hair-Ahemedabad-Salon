@@ -26,7 +26,7 @@ const sendTicketEmail = async (ticket) => {
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <div style="background: linear-gradient(135deg, #9D679F, #6F5AA3); padding: 20px; border-radius: 10px 10px 0 0;">
-          <h2 style="color: white; margin: 0;">🎫 New Support Ticket</h2>
+          <h2 style="color: white; margin: 0;"> New Support Ticket</h2>
         </div>
         <div style="background: #f9f9f9; padding: 20px; border-radius: 0 0 10px 10px;">
           <table style="width: 100%; border-collapse: collapse;">

@@ -8,9 +8,9 @@ import { colors } from '@/constants/colors';
 const REFERRAL_CODE = 'PRIYA100';
 
 const STEPS = [
-  { icon: '📲', text: 'Share your referral code with friends' },
-  { icon: '📝', text: 'Friend signs up and books their first appointment' },
-  { icon: '💰', text: 'You earn ₹100 wallet credit instantly' },
+  { icon: '', text: 'Share your referral code with friends' },
+  { icon: '', text: 'Friend signs up and books their first appointment' },
+  { icon: '', text: 'You earn ₹100 wallet credit instantly' },
 ];
 
 export default function ReferralScreen({ navigation }: any) {
@@ -39,7 +39,7 @@ export default function ReferralScreen({ navigation }: any) {
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         {/* Hero Banner */}
         <View style={styles.hero}>
-          <Text style={styles.heroEmoji}>🎁</Text>
+          <Text style={styles.heroEmoji}></Text>
           <Text style={styles.heroTitle}>Earn ₹100 per Referral!</Text>
           <Text style={styles.heroSub}>Invite friends and earn wallet credits for every successful referral</Text>
         </View>

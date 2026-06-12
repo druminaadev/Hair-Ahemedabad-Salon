@@ -1,6 +1,6 @@
-# 🏗️ PROJECT STRUCTURE - COMPLETE ARCHITECTURE
+# ️ PROJECT STRUCTURE - COMPLETE ARCHITECTURE
 
-## 📁 Monorepo Structure
+##  Monorepo Structure
 
 ```
 salon-booking-platform/
@@ -40,7 +40,7 @@ salon-booking-platform/
 
 ---
 
-## 📱 CUSTOMER MOBILE APP STRUCTURE
+##  CUSTOMER MOBILE APP STRUCTURE
 
 ```
 apps/customer-mobile/
@@ -210,7 +210,7 @@ apps/customer-mobile/
 
 ---
 
-## 🏪 SALON MOBILE APP STRUCTURE
+##  SALON MOBILE APP STRUCTURE
 
 ```
 apps/salon-mobile/
@@ -256,7 +256,7 @@ apps/salon-mobile/
 
 ---
 
-## 💻 WEB DASHBOARD STRUCTURE (Next.js)
+##  WEB DASHBOARD STRUCTURE (Next.js)
 
 ```
 apps/web-dashboard/
@@ -372,7 +372,7 @@ apps/web-dashboard/
 
 ---
 
-## 🔧 ADMIN PANEL STRUCTURE
+##  ADMIN PANEL STRUCTURE
 
 ```
 apps/admin-panel/
@@ -412,7 +412,7 @@ apps/admin-panel/
 
 ---
 
-## 🔌 BACKEND API STRUCTURE
+##  BACKEND API STRUCTURE
 
 ```
 apps/api/
@@ -581,7 +581,7 @@ apps/api/
 
 ---
 
-## 📦 SHARED PACKAGES
+##  SHARED PACKAGES
 
 ### packages/types/
 ```
@@ -639,7 +639,7 @@ packages/api-client/
 
 ---
 
-## 🏗️ INFRASTRUCTURE
+## ️ INFRASTRUCTURE
 
 ### infrastructure/terraform/
 ```
@@ -674,7 +674,7 @@ infrastructure/docker/
 
 ---
 
-## 🔄 CI/CD
+##  CI/CD
 
 ### .github/workflows/
 ```
@@ -690,7 +690,7 @@ infrastructure/docker/
 
 ---
 
-## 📊 DATABASE SCHEMA (Prisma)
+##  DATABASE SCHEMA (Prisma)
 
 Location: `apps/api/prisma/schema.prisma`
 
@@ -704,7 +704,7 @@ Contains:
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 1. Clone repository
 2. Install dependencies: `pnpm install`
@@ -716,13 +716,13 @@ Contains:
 ---
 
 This structure ensures:
-✅ Clean separation of concerns
-✅ Reusable components
-✅ Scalable architecture
-✅ Easy navigation
-✅ Type safety across apps
-✅ Shared business logic
-✅ Independent deployments
-✅ Easy testing
-✅ Future microservice migration
+ Clean separation of concerns
+ Reusable components
+ Scalable architecture
+ Easy navigation
+ Type safety across apps
+ Shared business logic
+ Independent deployments
+ Easy testing
+ Future microservice migration
 

@@ -1,10 +1,10 @@
-# 🎨 CRM Frontend - Design Documentation
+#  CRM Frontend - Design Documentation
 
 Complete design system and architecture documentation for the SalonPro CRM Frontend.
 
 ---
 
-## 📐 Design System
+##  Design System
 
 ### Color Palette
 
@@ -116,7 +116,7 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
 
 ---
 
-## 🧩 Component Design Patterns
+##  Component Design Patterns
 
 ### Button Variants
 
@@ -335,7 +335,7 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
 
 ---
 
-## 📱 Responsive Design
+##  Responsive Design
 
 ### Breakpoints
 
@@ -371,7 +371,7 @@ xl: 1280px  /* Extra large devices (large desktops) */
 
 ---
 
-## 🎭 Animation & Transitions
+##  Animation & Transitions
 
 ### Hover Effects
 
@@ -402,7 +402,7 @@ box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
 
 ---
 
-## 🌓 Dark Mode Support
+##  Dark Mode Support
 
 ```tsx
 {/* Dark mode classes */}
@@ -421,7 +421,7 @@ box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
 
 ---
 
-## 📐 Layout Patterns
+##  Layout Patterns
 
 ### Dashboard Layout
 
@@ -474,7 +474,7 @@ box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
 
 ---
 
-## 🎨 Icon System
+##  Icon System
 
 Using **Lucide React** icons:
 
@@ -495,7 +495,7 @@ import {
 
 ---
 
-## 📊 Data Visualization
+##  Data Visualization
 
 Using **Recharts** for charts:
 
@@ -513,7 +513,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 
 ---
 
-## ✅ Accessibility
+##  Accessibility
 
 ### ARIA Labels
 
@@ -544,7 +544,7 @@ onKeyDown={(e) => {
 
 ---
 
-## 🎯 Best Practices
+##  Best Practices
 
 1. **Consistent Spacing**: Use Tailwind spacing scale
 2. **Color Consistency**: Stick to defined color palette

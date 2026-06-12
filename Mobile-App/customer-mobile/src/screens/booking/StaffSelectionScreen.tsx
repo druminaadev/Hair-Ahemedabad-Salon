@@ -84,7 +84,7 @@ export default function StaffSelectionScreen({ navigation, route }: Props) {
           activeOpacity={0.8}
         >
           <View style={[styles.avatarWrap, { backgroundColor: colors.gray200 }]}>
-            <Text style={styles.anyEmoji}>🎲</Text>
+            <Text style={styles.anyEmoji}></Text>
           </View>
           <View style={styles.cardInfo}>
             <Text style={styles.cardName}>Any Available</Text>
